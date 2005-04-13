@@ -1,0 +1,33 @@
+
+AC_INIT()
+
+AC_CANONICAL_HOST
+AC_CANONICAL_TARGET
+
+PROJ_NAME=lastdefense
+PROJ_VERSION=.08
+AM_INIT_AUTOMAKE($PROJ_NAME, $PROJ_VERSION)
+
+# Setup for automake
+
+# Detect the canonical host and target build environment
+
+# Check for tools
+AC_PROG_CXX
+
+# library generator autoconf
+AC_PROG_RANLIB
+
+# Check for compiler environment
+AC_C_CONST
+
+dnl Check for SDL
+SDL_VERSION=1.2.0
+AM_PATH_SDL($SDL_VERSION, :, AC_MSG_ERROR([*** SDL version $SDL_VERSION not found!]))
+MDL_HAVE_OPENGL
+CFLAGS="$CFLAGS $SDL_CFLAGS"
+LIBS="$LIBS $SDL_LIBS"
+						
+
+# Finally create all the generated files
+AC_OUTPUT(Makefile libs/Makefile libs/glpng/Makefile src/base/Makefile src/weapons/Makefile src/projectiles/Makefile src/entities/Makefile src/engine/Makefile src/Makefile src/include/Makefile src/tests/Makefile src/levels/Makefile)
