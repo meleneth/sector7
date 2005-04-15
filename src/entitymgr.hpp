@@ -8,8 +8,6 @@
 
 #include"entity.hpp"
 #include"asteroid.hpp"
-#include"powerup.hpp"
-#include"shld_powerup.hpp"
 #include"titlescreen.hpp"
 #include"robot.hpp"
 #include"event.hpp"
