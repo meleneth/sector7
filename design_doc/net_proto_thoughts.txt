@@ -1,0 +1,24 @@
+HELLO <- initiates connection
+LOGIN username password <- logs into account
+SELECTPILOT <- chooses who you want to be
+CREATEPILOT <- makes a new pilot
+
+Updates are server->client only.
+SECTORUPDATE <- multi effects, update state of a sector
+ENTUPDATE <- updates entity, always has x,y,vector and sometimes has cmdinfo
+
+ENTUPREQ <- client request for more info on entity, can also be used to request just an update (same API)
+            entities that the server has referenced but the client doesn't know anything about
+            will generate one of these.  Will have different levels of info it can ask for.
+
+            At initial server->client level propogation, full updates will be sent.
+            Any entity can be immediatly fully recreated with 'just' a full update.
+
+RSRC_XFER <- supports download of resources.  Hopefully can set it up so anyone nearby can send you udp packets containing resource data.
+             Will be totally hash driven so that there is no possibility of corrupted transfer.  stuff like textures, .pyo's, music, sounds
+
+
+             does this mean that all differentiation between entities must be in the form of python code attached to specific parts?
+             i.e. no c++ code for entities... hrm.. maybe I should see how that will work out
+
+GOODBYE

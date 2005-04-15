@@ -1,0 +1,49 @@
+sector handling:
+
+1st pass:
+
+
++--------+--------+--------+
+|        |        |        |
+|   a    |   b    |   c    |
++--------X--------X--------+
+|        |        |        |
+|   d    |   e    |   f    |
++--------X--------X--------+
+|        |        |        |
+|   g    |   h    |   i    |
++--------+--------+--------+
+
+
+which means:
+for an entity at e, all sectors surrounding it must be checked.
+
+there are only 4 sectors displayed here, abde bcef degh and efhi
+
+global vs local coords
+
+
+maybe a collision detecting test program is in order?
+
+How many objects is it really reasonable to collision check anyways, at what framerate?
+
+what framerate do I want the engine ticks to run at?
+
+How many update packets can I send / sec to a client and not have it get overwhelmed?
+
+What kind of bandwidth is reasonable to use?
+
+How hard is it going to be, to be able to have multiple physical servers working together to serve one game?
+
+How many sectors can a server reliably support?  Where is the bottleneck, the memory or the processing for all the entities?  should this question really be how many entities?
+
+How many sectors will be onscreen at the same time?
+
+rand() cannot be called.  everything must be precalculated (i.e. multi missle weapons will always have a set number of firing patterns, pregenerated and known at runtime)
+
+how many layers of rendering will there be?
+
+* background (2-3)
+* undereffects
+* playfield
+* overeffects
