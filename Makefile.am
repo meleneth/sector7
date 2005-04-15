@@ -1,2 +1,2 @@
-EXTRA_DIST = reconf graphics 
+EXTRA_DIST = reconf images 
 SUBDIRS = libs src 

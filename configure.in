@@ -5,7 +5,7 @@ AC_CANONICAL_HOST
 AC_CANONICAL_TARGET
 
 PROJ_NAME=sector7
-PROJ_VERSION=.01
+PROJ_VERSION=.08
 AM_INIT_AUTOMAKE($PROJ_NAME, $PROJ_VERSION)
 
 # Setup for automake
@@ -30,4 +30,6 @@ LIBS="$LIBS $SDL_LIBS"
 						
 
 # Finally create all the generated files
-AC_OUTPUT(Makefile libs/Makefile libs/glpng/Makefile src/base/Makefile src/weapons/Makefile src/projectiles/Makefile src/entities/Makefile src/engine/Makefile src/Makefile src/include/Makefile src/tests/Makefile src/levels/Makefile)
+AC_OUTPUT(Makefile libs/Makefile libs/glpng/Makefile src/Makefile)
+
+#src/weapons/Makefile src/projectiles/Makefile src/entities/Makefile src/engine/Makefile src/Makefile src/include/Makefile src/tests/Makefile src/levels/Makefile)
