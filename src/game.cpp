@@ -8,7 +8,6 @@
 
 #include<math.h>
 
-#include"asteroidfield.hpp"
 #include"titlescreen.hpp"
 
 // Public data members go here.
@@ -25,7 +24,7 @@ Game::~Game ()			// Destructor
 int
 Game::init (void)
 {
-  level = new AsteroidField();
+//  level = new AsteroidField();
   return true;
 }
 
@@ -49,7 +48,7 @@ int Game::run (void)
             entmgr->run_event();
             renderer->RenderFrame ();
             entmgr->frameupdate();
-            level->frameupdate();
+    //        level->frameupdate();
             bg_particles->frameupdate();
             fg_particles->frameupdate();
         }
@@ -97,6 +96,7 @@ int Game::run (void)
 
 void Game::handle_user_input()
 {
+/*
     int x, y;
     if(!player1)
         return;
@@ -106,7 +106,7 @@ void Game::handle_user_input()
     player1->cursor->set_from_screen_coords(x, y);
 
     if (mbuttons & 1)
-        player1->fire ();
+       player1->fire ();
     
     int this_state = mbuttons & 2;
     if (this_state && !middle_state)
@@ -119,7 +119,7 @@ void Game::handle_user_input()
     
     if (keys[SDLK_w] == SDL_PRESSED)
         player1->MvShip (0, -SHIP_SPEED);
-    
+   
     if (keys[SDLK_a] == SDL_PRESSED)
         player1->MvShip (-SHIP_SPEED, 0);
 
@@ -128,14 +128,15 @@ void Game::handle_user_input()
 
     if (keys[SDLK_d] == SDL_PRESSED)
         player1->MvShip (SHIP_SPEED, 0);
-    
+*/    
     if (keys[SDLK_ESCAPE] == SDL_PRESSED)
         quit = true;
+ 
 }
 
 void Game::shutdown()
 {
-    printf ("\n\nYour score was: %d\nMaximum ent_id was %d\n\n ", scoreboard->score, entmgr->ent_id);
+ //   printf ("\n\nYour score was: %d\nMaximum ent_id was %d\n\n ", scoreboard->score, entmgr->ent_id);
     SDL_PumpEvents ();
     int x,y;
     mbuttons = SDL_GetMouseState (&y, &x);

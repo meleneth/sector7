@@ -17,7 +17,7 @@
 
 #define MAXBUFLEN 100
 
-#include"ncu.hpp"
+//#include"ncu.hpp"
 
 // Public data members go here.
 NetServer::NetServer(int port) // Constructor

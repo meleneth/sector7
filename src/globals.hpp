@@ -3,7 +3,7 @@
 
 #include<stdlib.h>
 #include<math.h>
-
+#include"console.hpp"
 #include"types.hpp"
 
 #define XRES 1024
@@ -21,6 +21,7 @@
 #define M_PI 3.14159265
 #endif
 
+extern Console *console;
 Sint32 m_round(double value);
 
 #endif

@@ -4,7 +4,7 @@
 #include"sounds.hpp"
 
 #include"SDL.h"
-#include"SDL_mixer.h"
+//#include"SDL_mixer.h"
 
 class SoundFile {
     public:
@@ -15,7 +15,7 @@ class SoundFile {
         void stop(void);
 
         sound_id sid;
-        Mix_Chunk *sound;
+        //Mix_Chunk *sound;
         int channel;
     private:
         // Private members go here.

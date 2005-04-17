@@ -4,7 +4,6 @@
 
 
 #include"SDL.h"
-#include"weapon.hpp"
 
 #include"entity.hpp"
 
@@ -16,7 +15,7 @@ class Robot :public Entity{
         Robot::Robot();
         Robot::~Robot(); // Destructor
 
-        Weapon *primary_weapon;
+        //Weapon *primary_weapon;
 
         virtual int chkCollision(Entity *check);
 

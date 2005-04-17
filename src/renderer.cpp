@@ -47,9 +47,9 @@ int Renderer::RenderFrame(void)
         get_tex_id(TILE_RETICLE)->DrawGLSquare(16);
 
         glColor4f(0, 1, 0, 1);
-        scoreboard->render();
-        scoreboard->DrawNumAt(player1->level, 3, -HALFXRES+50, 10);
-        scoreboard->DrawNumAt(player1->health, 6, 0, 10);
+        //scoreboard->render();
+        //scoreboard->DrawNumAt(player1->level, 3, -HALFXRES+50, 10);
+        //scoreboard->DrawNumAt(player1->health, 6, 0, 10);
         glColor4f(1, 1, 1, 1);
     player1->render();
     }

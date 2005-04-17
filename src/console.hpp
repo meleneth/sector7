@@ -13,6 +13,7 @@
 class Console {
     public:
         // Public data members go here.
+        Console::Console(); // Constructor
         Console::Console(Uint16 x, Uint16 y); // Constructor
         Console::~Console(); // Destructor
 

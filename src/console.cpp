@@ -3,6 +3,13 @@
 
 
 // Public data members go here.
+Console::Console() // Constructor
+{
+    xres=100;
+    yres=10;
+    box_log("Console Initialized");
+}
+
 Console::Console(Uint16 x, Uint16 y) // Constructor
 {
     xres=x;

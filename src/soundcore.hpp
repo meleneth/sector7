@@ -14,7 +14,7 @@ class SoundCore {
         void change_music(char *filename);
         void load_files(void);
         SoundFile *get_sound_id(sound_id sid);
-        Mix_Music *music;
+        //Mix_Music *music;
 
         std::list<SoundFile *> sounds; 
     private:
