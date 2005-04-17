@@ -19,6 +19,8 @@
 
 //#include"ncu.hpp"
 
+#include<sstream>
+
 // Public data members go here.
 NetServer::NetServer(int port) // Constructor
 {
