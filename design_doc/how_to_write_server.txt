@@ -1,0 +1,12 @@
+1) write net server that can serve 1 sector, and populate it with some frozen asteroids.  Multiple clients must be able to connect.
+
+    * hardcode asteroid ent type ID in the net protocol for now
+    * Worry about the asteroids moving later, don't want to have to define what happens on sector edges yet
+
+2) Sectors need ID's.  Call it sector_id or something.  Servers will be authoritative for what happens in their region of space, and can act as a client to read neighboring sectors.  This is only neccesary if the sector is being served from a different process, and the daemon should be smart enough to know the difference.
+
+3) the client itself can only render from a local server - that server will be worrying about connecting to other servers as neccesary.  For the renderer's sake, sectors should probably be smaller than a screen.
+
+4) sector entries on sectors themselves need to be smart.  This means that for local sectors, they should be marked read-only - they will be updated by the server.  In the case of writeable sectors, we need to call update() on them as part of ourselves.  Only movement / position updates will be done for this type of connection on the client server end, the server it is connected to will send events when new entities are created or things are destroyed.
+
+5) need a GFX class of some kind for storing programmatic flashy bits.  Doesn't have much to do with servers tho ;)
