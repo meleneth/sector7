@@ -17,6 +17,10 @@
 
 #define MAXBUFLEN 100
 
+#include"console.hpp"
+
+extern Console *console;
+
 //#include"ncu.hpp"
 
 #include<sstream>
