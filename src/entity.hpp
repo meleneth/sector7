@@ -5,7 +5,6 @@
 #include"SDL.h"
 #include"texture.hpp"
 #include"vector.hpp"
-#include"ent_squad.hpp"
 
 #define E_PLAYER 1
 #define E_ENEMY 2
@@ -36,7 +35,6 @@ class Entity {
         Uint8 size; // 1/2 value always.. gl :)
         int taken_damage;
         Vector *v;
-        EntSquad *squad;
 
         // Public data members go here.
         Entity::Entity(); // Constructor

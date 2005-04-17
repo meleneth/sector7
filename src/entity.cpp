@@ -31,7 +31,6 @@ Entity::~Entity() // Destructor
 void Entity::setup_entity(void)
 {
     v = new Vector();
-    squad = NULL;
     size=32;
     taken_damage = 0;
     texture = get_tex_id(TILE_NOTILE);
@@ -114,11 +113,6 @@ void Entity::has_killed(Entity *victim)
 
 void Entity::death()
 {
-    if(squad){
-        squad->member_death(this);
-        if(squad->num_ents == 0)
-            delete squad; // Kinda weird placement
-    }
 
 }
 

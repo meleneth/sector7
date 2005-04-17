@@ -1,5 +1,7 @@
 #include"sector7.hpp"
 
+Console *console;
+
 int main(int argc, char *argv[])
 {
     quit = false;

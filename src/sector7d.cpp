@@ -1,11 +1,14 @@
 #include"sector7d.hpp"
+#include"globals.hpp"
+
+Console *console;
 
 int main(int argc, char *argv[])
 {
     quit = false;
     servername = "localhost";
 
-    sysconsole = new Console();
+    console = new Console();
     
 //    soundmgr = new SoundCore();
     renderer = new Renderer();

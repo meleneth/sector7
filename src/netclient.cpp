@@ -12,6 +12,7 @@
 #include <netdb.h>
 
 #include"console.hpp"
+#include"globals.hpp"
 
 extern Console *console;
 
