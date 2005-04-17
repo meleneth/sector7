@@ -135,7 +135,6 @@ void Player::add_health(Sint32 amount)
 void Player::has_killed(Entity *victim)
 {
     add_xp(victim->experiance_value);
-    scoreboard->add(victim->score_value);
 }
 
 int Player::chkDeath()
