@@ -14,11 +14,9 @@
 
 #define ENT_ALIGNMENT Sint16
 
-enum ENT_TYPE { ENT_ASTEROID, ENT_WEP_POWERUP, ENT_SHLD_POWERUP, ENT_PLAYER, ENT_PLAYERSHOT, ENT_TITLESCREEN, ENT_ROBOT };
+enum ENT_TYPE { ENT_ASTEROID, ENT_PLAYER, ENT_PLAYERSHOT };
 
 #define ENTID_TYPE Uint32
-
-class EntSquad;
 
 class Entity {
     public:
@@ -58,7 +56,9 @@ class Entity {
         virtual int takeDamage(Sint16 dmg, Entity *who_was_holding_the_gun);
         virtual void death();
         void kill_me_now(void); 
-
+		
+		
+		
     private:
         // Private members go here.
 
