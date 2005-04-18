@@ -43,50 +43,57 @@ int Game::run (void)
             handle_user_input();
             SDL_Delay (5);
             framecount++;
-            entmgr->run_event();
-            renderer->RenderFrame ();
-            entmgr->frameupdate();
-    //        level->frameupdate();
-            bg_particles->frameupdate();
-            fg_particles->frameupdate();
+            if(renderer){
+                renderer->RenderFrame ();
+            }
+
+            std::list < Sector * >::iterator i;
+            for(i = sectors.begin(); i != sectors.end(); ++i){
+                (*i)->frameupdate();
+            }
         }
-        switch (event.type)
-        {
-            case SDL_ACTIVEEVENT:
+
+    }
+
+}
+
+void Game::handle_event(SDL_Event event)
+{
+    switch (event.type)
+    {
+        case SDL_ACTIVEEVENT:
+            {
+                if (event.active.state & SDL_APPACTIVE)
                 {
-                    if (event.active.state & SDL_APPACTIVE)
+                    if (event.active.gain)
                     {
-                        if (event.active.gain)
-                        {
-                            printf ("App activated\n");
-                        }
-                        else
-                        {
-                            printf ("App iconified\n");
-                        }
+                        printf ("App activated\n");
+                    }
+                    else
+                    {
+                        printf ("App iconified\n");
                     }
                 }
-                break;
+            }
+            break;
 
-            case SDL_QUIT:
-                {
-                    printf ("Quit requested, quitting.\n");
-                    quit=true;
-                }
-                break;
-            case SDL_KEYUP:
-                //Keyboard handler
-                //      printf("-Value: %d\n",event.key.keysym.sym);
+        case SDL_QUIT:
+            {
+                printf ("Quit requested, quitting.\n");
+                quit=true;
+            }
+            break;
+        case SDL_KEYUP:
+            //Keyboard handler
+            //      printf("-Value: %d\n",event.key.keysym.sym);
 
-                keys[event.key.keysym.sym] = 0;
-                break;
+            keys[event.key.keysym.sym] = 0;
+            break;
 
-            case SDL_KEYDOWN:
-                //              printf("Value: %d\n",event.key.keysym.sym);
-                keys[event.key.keysym.sym] = SDL_PRESSED;
-                break;
-
-        }
+        case SDL_KEYDOWN:
+            //              printf("Value: %d\n",event.key.keysym.sym);
+            keys[event.key.keysym.sym] = SDL_PRESSED;
+            break;
 
     }
 

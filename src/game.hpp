@@ -19,6 +19,7 @@ class Game {
         void add_sector(Sector *sector);
         void shutdown(void);
         void handle_user_input(void);
+        void handle_event(SDL_Event event);
 
         Uint32 framecount;
     private:
