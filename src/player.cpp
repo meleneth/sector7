@@ -1,5 +1,4 @@
 #include "stdutil.hpp"
-#include"w_allinclude.hpp"
 #include<math.h>
 
 #include"player.hpp"

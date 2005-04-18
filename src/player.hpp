@@ -7,6 +7,7 @@
 #include"physics.hpp"
 #include"entity.hpp"
 #include"weapon.hpp"
+#include"w_plasmacannon.hpp"
 
 #include"SDL.h"
 

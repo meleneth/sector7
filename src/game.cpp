@@ -8,8 +8,6 @@
 
 #include<math.h>
 
-#include"titlescreen.hpp"
-
 // Public data members go here.
 Game::Game ()			// Constructor
 {
