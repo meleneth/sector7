@@ -47,6 +47,11 @@ int main(int argc, char *argv[])
 
     std::list<Sector *>::iterator i;
 
+    Sector *main_sector = new Sector("initialD");
+    main_sector->setup_master();
+    sectors.push_front(main_sector);
+
+
     while(1){
         // Select loop here
 

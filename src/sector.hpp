@@ -16,6 +16,7 @@ class Sector {
         
         EntityMgr *entmgr;
         std::string sector_id;
+        int is_master;
     private:
         // Private members go here.
     protected:
