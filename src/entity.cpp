@@ -120,6 +120,43 @@ void Entity::kill_me_now(void)
     health=0;
 }
 
+
+void Entity::inflateLoc(EntLoc *newLoc)
+{
+   v->x = (double) ntohl (newLoc->x);
+   v->y = (double) ntohl (newLoc->y);
+   v->angle = (double) ntohl (newLoc->angle);
+   v->power = (double) ntohl (newLoc->power);
+   v->rotation = (double) ntohl (newLoc->rotation);
+}     
+
+void Entity::inflateFull(EntFull *newFull)
+{
+   v->x = (double) ntohl (newFull->x);
+   v->y = (double) ntohl (newFull->y);
+   v->angle = (double) ntohl (newFull->angle);
+   v->power = (double) ntohl (newFull->power);
+   v->rotation = (double) ntohl (newFull->rotation);
+}
+
+void Entity::deflateLoc(EntLoc *currentLoc)
+{
+   currentLoc->x = htonl ((Uint32) floor (v->x));
+   currentLoc->y = htonl ((Uint32) floor (v->y));
+   currentLoc->angle = ((Uint32) floor (v->angle));
+   currentLoc->power = ((Uint32) floor (v->power));
+   currentLoc->rotation = ((Uint32) floor (v->rotation));
+}
+
+void Entity::deflateFull(EntFull *currentFull)
+{
+   currentFull->x = htonl ((Uint32) floor (v->x));
+   currentFull->y = htonl ((Uint32) floor (v->y));
+   currentFull->angle = ((Uint32) floor (v->angle));
+   currentFull->power = ((Uint32) floor (v->power));
+   currentFull->rotation = ((Uint32) floor (v->rotation));
+}
+
 // Private members go here.
 
 // Protected members go here.

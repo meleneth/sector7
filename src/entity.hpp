@@ -5,6 +5,7 @@
 #include"SDL.h"
 #include"texture.hpp"
 #include"vector.hpp"
+#include"netpacket.hpp"
 
 #define E_PLAYER 1
 #define E_ENEMY 2
@@ -17,6 +18,26 @@
 enum ENT_TYPE { ENT_ASTEROID, ENT_PLAYER, ENT_PLAYERSHOT };
 
 #define ENTID_TYPE Uint32
+typedef struct {
+        ENTID_TYPE entID;
+        NetCmd cmd;
+        Sint32 x;
+        Sint32 y;
+        Sint32 angle;
+        Sint32 power;
+        Sint32 rotation;
+} EntLoc;
+
+typedef struct {
+        ENTID_TYPE entID;
+        NetCmd cmd;
+        Sint32 x;
+        Sint32 y;
+        Sint32 angle;
+        Sint32 power;
+        Sint32 rotation;
+        Sint32 other_stuff;
+} EntFull;
 
 class Entity {
     public:
@@ -56,7 +77,11 @@ class Entity {
         virtual int takeDamage(Sint16 dmg, Entity *who_was_holding_the_gun);
         virtual void death();
         void kill_me_now(void); 
-		
+
+        void inflateLoc(EntLoc *newLoc);
+        void inflateFull(EntFull *newFull);
+        void deflateLoc(EntLoc *currentLoc);
+        void deflateFull(EntFull *currentFull);
 		
 		
     private:
