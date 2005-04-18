@@ -3,7 +3,7 @@
 #include<math.h>
 #include"engine.hpp"
 
-
+//extraneous comm3nt
 Weapon::Weapon(Entity *owner_ent)	// Constructor
 {
     range = 50;
