@@ -18,10 +18,12 @@ class Console {
         Console::~Console(); // Destructor
 
         void render(void);
+        void check_input(char key);
         void log(std::string line);
         void box_log(std::string line);
 
         std::list<std::string> loglines;
+        std::string input;
         Uint16 xres, yres;
     private:
         // Private members go here.

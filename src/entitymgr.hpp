@@ -8,7 +8,6 @@
 
 #include"entity.hpp"
 #include"asteroid.hpp"
-#include"event.hpp"
 
 
 class EntityMgr {
@@ -19,9 +18,6 @@ class EntityMgr {
         Entity *_new_ent_of_type(Uint16 ent_type, Sint16 size);
         Entity *add_entity(Entity *entity);
         void remove_ent(Entity *entity);
-        void delete_events_for_ent(Entity *entity);
-        void run_event(void);
-        void add_event(Event *event);
                  
         int frameupdate(void);
         int render(void);
@@ -29,7 +25,6 @@ class EntityMgr {
         Uint32 ent_id;
         
         std::list< Entity * > entities;
-        std::list< Event * > things_to_happen;
         Uint32 num_ents;
 
     private:

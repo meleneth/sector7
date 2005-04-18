@@ -8,6 +8,7 @@ Console::Console() // Constructor
     xres=100;
     yres=10;
     box_log("Console Initialized");
+    input = "";
 }
 
 Console::Console(Uint16 x, Uint16 y) // Constructor
@@ -32,6 +33,21 @@ void Console::render(void)
     {
         mvaddstr(counter, 0,  i->c_str());
         counter--;
+    }
+    refresh();
+}
+
+void Console::check_input(char key)
+{
+    if(key != ERR){
+        if(key == 13){
+            std::string line;
+            line = "> " + input;
+            log(line);
+            input = "";
+        }else {
+            input += (char)key;
+        }
     }
 }
 

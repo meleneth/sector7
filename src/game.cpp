@@ -46,6 +46,10 @@ int Game::run (void)
             if(renderer){
                 renderer->RenderFrame ();
             }
+            
+            if(console){
+                console->render();
+            }
 
             std::list < Sector * >::iterator i;
             for(i = sectors.begin(); i != sectors.end(); ++i){
@@ -93,6 +97,7 @@ void Game::handle_event(SDL_Event event)
         case SDL_KEYDOWN:
             //              printf("Value: %d\n",event.key.keysym.sym);
             keys[event.key.keysym.sym] = SDL_PRESSED;
+            console->check_input(event.key.keysym.sym);
             break;
 
     }
