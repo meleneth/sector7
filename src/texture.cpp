@@ -1,6 +1,6 @@
 #include "stdutil.hpp"
 #include "texture.hpp"
-#include<GL/gl.h>
+#include"SDL_opengl.h"
 #include "glpng.h"
 
 std::list < Texture * > textures;

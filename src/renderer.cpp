@@ -6,8 +6,7 @@
 #include"texture.hpp"
 #include"engine.hpp"
 
-#include <GL/gl.h>
-
+#include"SDL_opengl.h"
 
 // Public data members go here.
 Renderer::Renderer()		// Constructor

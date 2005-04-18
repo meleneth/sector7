@@ -2,7 +2,7 @@
 #ifndef ___video_inc
 #define ___video_inc 1
 
-#include <GL/gl.h>
+#include"SDL_opengl.h"
 
 #include"SDL.h"
 
