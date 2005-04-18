@@ -6,7 +6,6 @@
 
 #define SHIP_SPEED 3
 
-#include"level.hpp"
 
 class Game {
     public:
@@ -18,7 +17,6 @@ class Game {
         void shutdown(void);
         void handle_user_input(void);
 
-        Level *level;
         Uint32 framecount;
     private:
         Uint8 keys[1024];
