@@ -6,6 +6,8 @@
 
 #define SHIP_SPEED 3
 
+#include"sector.hpp"
+#include<list>
 
 class Game {
     public:
@@ -14,6 +16,7 @@ class Game {
         Game::~Game(); // Destructor
         int init(void);
         int run(void);
+        void add_sector(Sector *sector);
         void shutdown(void);
         void handle_user_input(void);
 
@@ -22,6 +25,8 @@ class Game {
         Uint8 keys[1024];
         Uint8 mbuttons;
         Uint16 quit;
+
+        std::list< Sector * > sectors;
 
     protected:
         // Protected members go here.

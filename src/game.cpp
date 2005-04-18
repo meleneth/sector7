@@ -92,6 +92,11 @@ int Game::run (void)
 
 }
 
+void Game::add_sector(Sector *sector)
+{
+    sectors.push_front(sector);
+}
+
 void Game::handle_user_input()
 {
 /*

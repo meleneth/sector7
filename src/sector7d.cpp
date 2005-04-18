@@ -1,5 +1,6 @@
 #include"sector7d.hpp"
 #include"globals.hpp"
+#include"sector.hpp"
 
 Console *console;
 
@@ -11,17 +12,17 @@ int main(int argc, char *argv[])
     console = new Console();
     
 //    soundmgr = new SoundCore();
-    renderer = new Renderer();
-    bg_particles = new EntityMgr();
-    fg_particles = new EntityMgr();
+    renderer = NULL;
+    bg_particles = NULL;
+    fg_particles = NULL;
 //    scoreboard = new ScoreBoard();
-    entmgr = new EntityMgr();
-    player1 = new Player();
-
-    entmgr->add_entity(player1);
+    
+    Sector *sector = new Sector("master");
+    sector->setup_master();
 
     game = new Game();
     game->init();
+    game->add_sector(sector);
     game->run();
 }
 
