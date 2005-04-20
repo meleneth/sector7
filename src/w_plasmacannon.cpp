@@ -43,7 +43,7 @@ void PlasmaCannon::fire_shot(RESTYPE x, RESTYPE y){
     new_vec->power = projectile_velocity;
     new_vec->aim(x, y);
     Plasma *shot = new Plasma(damage, new_vec, owner);
-    entmgr->add_entity(shot);
+    ((Sector *)(owner->sector))->add_entity(shot);
 }
 
 // Private members go here.

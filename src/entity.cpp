@@ -5,7 +5,7 @@
 #include"renderer.hpp"
 #include"texture.hpp"
 #include"engine.hpp"
-
+#include"sector.hpp"
 
 #include"math.h"
 
@@ -30,6 +30,7 @@ Entity::~Entity() // Destructor
 void Entity::setup_entity(void)
 {
     v = new Vector();
+    sector = NULL;
     size=32;
     taken_damage = 0;
     texture = get_tex_id(TILE_NOTILE);
@@ -49,7 +50,7 @@ void Entity::update_location(void){
 int Entity::frameupdate(void){
 
 	update_location();
-    entmgr->chkCollision(this);
+    ((Sector *)sector)->chkCollision(this);
     return !chkDeath();
 }
 

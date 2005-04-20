@@ -15,8 +15,7 @@ EntityMgr::~EntityMgr ()	// Destructor
 {
 }
 
-Entity *
-EntityMgr::add_entity (Entity * entity)
+Entity *EntityMgr::add_entity (Entity * entity)
 {
   entities.push_front (entity);
 

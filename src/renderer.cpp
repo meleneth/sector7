@@ -31,27 +31,27 @@ int Renderer::RenderFrame(void)
     glColor4f(1, 1, 1, 1);
     //entmgr->render();
     //fg_particles->render();
-    if(player1){
-        glLoadIdentity();
-        glTranslatef(player1->v->x, player1->v->y, 0);
-        glRotatef(player1->v->angle, 0.0, 0.0, 1.0);
-        glLoadIdentity();
-        glTranslatef(player1->cursor->x, player1->cursor->y, 0);
+    //if(player1){
+    //    glLoadIdentity();
+    //    glTranslatef(player1->v->x, player1->v->y, 0);
+    //    glRotatef(player1->v->angle, 0.0, 0.0, 1.0);
+    //    glLoadIdentity();
+    //    glTranslatef(player1->cursor->x, player1->cursor->y, 0);
 
-        reticle_angle += 4;
-        if (reticle_angle > 360)
-            reticle_angle = 0;
-        glRotatef(reticle_angle, 0, 0, 1);
-        glColor4f(0, 1, 0, .65);
-        get_tex_id(TILE_RETICLE)->DrawGLSquare(16);
+    //    reticle_angle += 4;
+    //    if (reticle_angle > 360)
+    //        reticle_angle = 0;
+    //    glRotatef(reticle_angle, 0, 0, 1);
+    //    glColor4f(0, 1, 0, .65);
+    //    get_tex_id(TILE_RETICLE)->DrawGLSquare(16);
 
-        glColor4f(0, 1, 0, 1);
-        //scoreboard->render();
-        //scoreboard->DrawNumAt(player1->level, 3, -HALFXRES+50, 10);
-        //scoreboard->DrawNumAt(player1->health, 6, 0, 10);
-        glColor4f(1, 1, 1, 1);
-    player1->render();
-    }
+    //    glColor4f(0, 1, 0, 1);
+    //    //scoreboard->render();
+    //    //scoreboard->DrawNumAt(player1->level, 3, -HALFXRES+50, 10);
+    //    //scoreboard->DrawNumAt(player1->health, 6, 0, 10);
+    //    glColor4f(1, 1, 1, 1);
+    //player1->render();
+    //}
     SDL_GL_SwapBuffers();
 
     /* Check for error conditions. */

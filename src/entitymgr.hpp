@@ -7,8 +7,8 @@
 #include"SDL.h"
 
 #include"entity.hpp"
-#include"asteroid.hpp"
 
+class Entity;
 
 class EntityMgr {
     public:
@@ -33,9 +33,5 @@ class EntityMgr {
     protected:
         // Protected members go here.
 };
-
-extern EntityMgr *entmgr;
-extern EntityMgr *bg_particles;
-extern EntityMgr *fg_particles;
 
 #endif

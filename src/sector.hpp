@@ -5,6 +5,8 @@
 #include"entitymgr.hpp"
 #include<string>
 
+class EntityMgr;
+
 class Sector : public EntityMgr {
     public:
         // Public data members go here.
@@ -13,7 +15,6 @@ class Sector : public EntityMgr {
         
         void setup_master(void);
         
-        EntityMgr *entmgr;
         std::string sector_id;
         int is_master;
     private:

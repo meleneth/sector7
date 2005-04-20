@@ -54,6 +54,8 @@ class Entity {
         Uint8 size; // 1/2 value always.. gl :)
         int taken_damage;
         Vector *v;
+        
+        void *sector;
 
         // Public data members go here.
         Entity::Entity(); // Constructor
