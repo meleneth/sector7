@@ -5,13 +5,12 @@
 #include"entitymgr.hpp"
 #include<string>
 
-class Sector {
+class Sector : public EntityMgr {
     public:
         // Public data members go here.
         Sector::Sector(std::string sector_id); // Constructor
         Sector::~Sector(); // Destructor
         
-        int frameupdate(void);
         void setup_master(void);
         
         EntityMgr *entmgr;

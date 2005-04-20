@@ -7,9 +7,12 @@ int main(int argc, char *argv[])
     quit = false;
     servername = "localhost";
 
-    sysconsole = new Console();
-    client = new NetClient(servername, DEFAULT_PORT, nickname);
+    NetClient *client;
 
+    sysconsole = new Console();
+
+    client = new NetClient(servername, DEFAULT_PORT, "netclient");
+    
 	
 	
 //    soundmgr = new SoundCore();

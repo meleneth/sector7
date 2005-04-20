@@ -26,11 +26,11 @@ int Renderer::RenderFrame(void)
 
     ClearScreen();
     glColor4f(1, 1, 1, .9);
-    bg_particles->render();
+    //bg_particles->render();
 
     glColor4f(1, 1, 1, 1);
-    entmgr->render();
-    fg_particles->render();
+    //entmgr->render();
+    //fg_particles->render();
     if(player1){
         glLoadIdentity();
         glTranslatef(player1->v->x, player1->v->y, 0);
