@@ -16,7 +16,6 @@
 
 extern Console *console;
 
-#define MYPORT 4950    // the port users will be connecting to
 
 // Public data members go here.
 NetClient::NetClient(std::string servername, int port, std::string nickname) // Constructor

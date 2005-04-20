@@ -6,6 +6,10 @@
 #include"console.hpp"
 #include"types.hpp"
 
+#ifndef DEFAULT_PORT
+#define DEFAULT_PORT 31337
+#endif
+
 #define XRES 1024
 #define YRES 768
 

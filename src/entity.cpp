@@ -143,18 +143,18 @@ void Entity::deflateLoc(EntLoc *currentLoc)
 {
    currentLoc->x = htonl ((Uint32) floor (v->x));
    currentLoc->y = htonl ((Uint32) floor (v->y));
-   currentLoc->angle = ((Uint32) floor (v->angle));
-   currentLoc->power = ((Uint32) floor (v->power));
-   currentLoc->rotation = ((Uint32) floor (v->rotation));
+   currentLoc->angle = htonl ((Uint32) floor (v->angle));
+   currentLoc->power = htonl ((Uint32) floor (v->power));
+   currentLoc->rotation = htonl ((Uint32) floor (v->rotation));
 }
 
 void Entity::deflateFull(EntFull *currentFull)
 {
    currentFull->x = htonl ((Uint32) floor (v->x));
    currentFull->y = htonl ((Uint32) floor (v->y));
-   currentFull->angle = ((Uint32) floor (v->angle));
-   currentFull->power = ((Uint32) floor (v->power));
-   currentFull->rotation = ((Uint32) floor (v->rotation));
+   currentFull->angle = htonl ((Uint32) floor (v->angle));
+   currentFull->power = htonl ((Uint32) floor (v->power));
+   currentFull->rotation = htonl ((Uint32) floor (v->rotation));
 }
 
 // Private members go here.

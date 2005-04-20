@@ -8,19 +8,19 @@ int main(int argc, char *argv[])
     servername = "localhost";
 
     sysconsole = new Console();
-    
+    client = new NetClient(servername, DEFAULT_PORT, nickname);
+
+	
+	
 //    soundmgr = new SoundCore();
-    renderer = new Renderer();
-    bg_particles = new EntityMgr();
-    fg_particles = new EntityMgr();
+//    renderer = new Renderer();
+//    bg_particles = new EntityMgr();
+//    fg_particles = new EntityMgr();
 //    scoreboard = new ScoreBoard();
-    entmgr = new EntityMgr();
-    player1 = new Player();
+//    entmgr = new EntityMgr();
+//    player1 = new Player();
 
-//    entmgr->add_entity(player1);
+  //  entmgr->add_entity(player1);
 
-    game = new Game();
-    game->init();
-    game->run();
 }
 
