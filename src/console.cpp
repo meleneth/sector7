@@ -7,6 +7,7 @@ Console::Console() // Constructor
 {
     xres=100;
     yres=10;
+    print_logs = 0;
     box_log("Console Initialized");
     input = "";
 }
@@ -54,6 +55,9 @@ void Console::check_input(char key)
 void Console::log(std::string line)
 {
     loglines.push_front(line);
+    if(print_logs){
+        printf("%s\n", line.c_str());
+    }
 }
 
 void Console::box_log(std::string line)

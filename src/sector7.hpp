@@ -17,7 +17,7 @@
 Renderer *renderer = NULL;
 Game *game = NULL;
 //Player *player1 = NULL;
-Console *sysconsole = NULL;
+extern Console *console;
 //EntityMgr *bg_particles = NULL;
 //EntityMgr *fg_particles = NULL;
 //EntityMgr *entmgr = NULL;

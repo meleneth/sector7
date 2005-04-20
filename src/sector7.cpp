@@ -9,7 +9,9 @@ int main(int argc, char *argv[])
 
     NetClient *client;
 
-    sysconsole = new Console();
+    console = new Console();
+    
+    console->print_logs = 1;
 
     client = new NetClient(servername, DEFAULT_PORT, "netclient");
     

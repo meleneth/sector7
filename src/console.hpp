@@ -25,6 +25,7 @@ class Console {
         std::list<std::string> loglines;
         std::string input;
         Uint16 xres, yres;
+        Uint32 print_logs;
     private:
         // Private members go here.
     protected:
