@@ -35,6 +35,11 @@ struct NetCmd_ChatMsg {
     char message[255];
 };
 
+struct NetCmd_DataMsg {
+    NetCmd command;
+    void *message;
+};
+
 struct NetCmd_GoodBye {
     NetCmd command;
     char quitmsg[255];
