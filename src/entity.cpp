@@ -13,6 +13,7 @@
 Entity::Entity() // Constructor
 {
     setup_entity();
+    texture = NULL;
 }
 
 Entity::Entity(ENT_ALIGNMENT ent_alignment) // Constructor
@@ -55,7 +56,6 @@ int Entity::frameupdate(void){
 }
 
 void Entity::render(void){
-    console->log("Entity::render");
     glLoadIdentity();
     glTranslatef(v->x, v->y, 0);
     glRotatef(rotation, 0, 0, 1);

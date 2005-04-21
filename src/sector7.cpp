@@ -14,8 +14,6 @@ int main(int argc, char *argv[])
     console->print_logs = 1;
 
     client = new NetClient(servername, DEFAULT_PORT, "netclient");
-    Sector *sector = new Sector("connecting");
-    sector->setup_connecting();
     
 //    soundmgr = new SoundCore();
     Renderer  *renderer = new Renderer();
@@ -27,6 +25,9 @@ int main(int argc, char *argv[])
 
   //  entmgr->add_entity(player1);
     
+    Sector *sector = new Sector("connecting");
+    sector->setup_connecting();
+    
     SDL_Event event;
     Sint32 speed = 0;
     Uint8 keys[1024];
@@ -36,7 +37,7 @@ int main(int argc, char *argv[])
         keys[speed] = SDL_RELEASED;
   
     while(!quit){
-        while (SDL_PollEvent (&event) == 0)
+        while (SDL_PollEvent (&event) == 0 && !quit)
         {
             renderer->RenderFrame(sector);
             if (keys[SDLK_ESCAPE] == SDL_PRESSED)

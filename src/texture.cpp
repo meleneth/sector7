@@ -39,9 +39,6 @@ int Texture::LoadImage (char *filename)
 
 void Texture::DrawGLSquare (Sint16 size)
 {
-    std::stringstream logmsg;
-    logmsg << "drawing glID: " << GLtexID;
-    console->log(logmsg.str());
     glBindTexture (GL_TEXTURE_2D, GLtexID);	// Bind Our Texture
     glBegin(GL_QUADS);
     glTexCoord2f(0.0, 1.0); glVertex3f(-size, -size, 0.0);
@@ -101,7 +98,10 @@ Texture *get_tex_id(TileNum tile_id)
 {
     std::list < Texture * >::iterator i;
     for(i = textures.begin(); i != textures.end(); ++i){
-        if((*i)->tilenum == tile_id) return *i;
+        if((*i)->tilenum == tile_id){
+            console->log("Looked up texture");
+            return *i;
+        }
     }
     console->fatal("could not find texture in get_tex_id");
 
