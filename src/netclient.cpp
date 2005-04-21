@@ -29,12 +29,9 @@ NetClient::NetClient(std::string servername, int port, std::string nickname) // 
     
 NetClient::~NetClient() // Destructor
 {
-    if(talker == listener)
-        talker = NULL;
-    if(talker)
-        delete talker;
-    if(listener)
-        delete listener;
+    if(talker == listener) talker = NULL;
+    if(talker)             delete talker;
+    if(listener)           delete listener;
 }
 
 void NetClient::do_frame(void)
@@ -52,8 +49,8 @@ void NetClient::do_frame(void)
                 talker->setup_reply_socket(&packet->their_addr);
                 break;
             case CHATMSG:
-                buf << "<client> Recieved: [" << packet->command.chatmsg.message << "] on port " << packet->their_addr.sin_port 
-                    << " from " << inet_ntoa(packet->their_addr.sin_addr);
+//                buf << "<client> Recieved: [" << packet->command.chatmsg.message << "] on port " << packet->their_addr.sin_port 
+//                    << " from " << inet_ntoa(packet->their_addr.sin_addr);
 //                console->log(buf.str());
                 console->log(packet->command.chatmsg.message);
                 console->render();
