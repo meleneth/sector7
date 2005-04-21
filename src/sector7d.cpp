@@ -7,13 +7,14 @@
 #include"netserver.hpp"
 #include"sector.hpp"
 #include"entitymgr.hpp"
+#include"globals.hpp"
 
 #include"SDL.h"
 
 void do_init(void);
 static void finish(int sig);
 
-#define DEFAULT_PORT 6565
+//#define DEFAULT_PORT 6565
 
 Console *console;
 
