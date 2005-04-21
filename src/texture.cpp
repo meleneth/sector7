@@ -31,12 +31,17 @@ int Texture::LoadImage (char *filename)
     }
     width = tmpInfo.Width/2;
     height = tmpInfo.Height/2;
-//    printf ("Loaded (%dx%d)[%s] \n", width, height, filename);
+    std::stringstream logmsg;
+    logmsg << "Loaded (" << width << "x" << height << ") into glID " << GLtexID << " from " << filename;
+    console->log(logmsg.str());
     return true;
 }
 
 void Texture::DrawGLSquare (Sint16 size)
 {
+    std::stringstream logmsg;
+    logmsg << "drawing glID: " << GLtexID;
+    console->log(logmsg.str());
     glBindTexture (GL_TEXTURE_2D, GLtexID);	// Bind Our Texture
     glBegin(GL_QUADS);
     glTexCoord2f(0.0, 1.0); glVertex3f(-size, -size, 0.0);
@@ -98,6 +103,7 @@ Texture *get_tex_id(TileNum tile_id)
     for(i = textures.begin(); i != textures.end(); ++i){
         if((*i)->tilenum == tile_id) return *i;
     }
+    console->fatal("could not find texture in get_tex_id");
 
 }
 // Private members go here.

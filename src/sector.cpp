@@ -29,7 +29,6 @@ void Sector::setup_connecting(void)
     ship->texture = get_tex_id(TILE_SHIP);
 
     add_entity(ship);
-
 }
 
 // Private members go here.

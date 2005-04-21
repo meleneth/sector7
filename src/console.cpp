@@ -60,6 +60,12 @@ void Console::log(std::string line)
     }
 }
 
+void Console::fatal(std::string line)
+{
+    log(line);
+    SDL_Quit();
+}
+
 void Console::box_log(std::string line)
 {
     std::string Border(line.length() + 2, '-');

@@ -55,6 +55,7 @@ int Entity::frameupdate(void){
 }
 
 void Entity::render(void){
+    console->log("Entity::render");
     glLoadIdentity();
     glTranslatef(v->x, v->y, 0);
     glRotatef(rotation, 0, 0, 1);

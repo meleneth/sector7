@@ -20,6 +20,7 @@ class Console {
         void render(void);
         void check_input(char key);
         void log(std::string line);
+        void fatal(std::string line);
         void box_log(std::string line);
 
         std::list<std::string> loglines;
