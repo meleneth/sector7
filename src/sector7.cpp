@@ -15,10 +15,8 @@ int main(int argc, char *argv[])
 
     client = new NetClient(servername, DEFAULT_PORT, "netclient");
     
-	
-	
 //    soundmgr = new SoundCore();
-//    renderer = new Renderer();
+    Renderer  *renderer = new Renderer();
 //    bg_particles = new EntityMgr();
 //    fg_particles = new EntityMgr();
 //    scoreboard = new ScoreBoard();
@@ -26,6 +24,8 @@ int main(int argc, char *argv[])
 //    player1 = new Player();
 
   //  entmgr->add_entity(player1);
-
+    while(!quit){
+        renderer->RenderFrame();
+    }
 }
 
