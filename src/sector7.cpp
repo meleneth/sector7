@@ -40,6 +40,7 @@ int main(int argc, char *argv[])
         while (SDL_PollEvent (&event) == 0 && !quit)
         {
             renderer->RenderFrame(sector);
+            client->do_frame();
             if (keys[SDLK_ESCAPE] == SDL_PRESSED)
                 quit = true;
       //      handle_user_input();
