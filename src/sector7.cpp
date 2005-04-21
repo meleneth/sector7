@@ -14,6 +14,8 @@ int main(int argc, char *argv[])
     console->print_logs = 1;
 
     client = new NetClient(servername, DEFAULT_PORT, "netclient");
+    Sector *sector = new Sector("connecting");
+    sector->setup_connecting();
     
 //    soundmgr = new SoundCore();
     Renderer  *renderer = new Renderer();
@@ -25,7 +27,7 @@ int main(int argc, char *argv[])
 
   //  entmgr->add_entity(player1);
     while(!quit){
-        renderer->RenderFrame();
+        renderer->RenderFrame(sector);
     }
 }
 

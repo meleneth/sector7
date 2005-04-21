@@ -19,7 +19,7 @@ Renderer::~Renderer()		// Destructor
 {
 }
 
-int Renderer::RenderFrame(void)
+int Renderer::RenderFrame(Sector *sector)
 {
     GLenum gl_error;
     static int reticle_angle = 0;
@@ -29,7 +29,7 @@ int Renderer::RenderFrame(void)
     //bg_particles->render();
 
     glColor4f(1, 1, 1, 1);
-    //entmgr->render();
+    sector->render();
     //fg_particles->render();
     //if(player1){
     //    glLoadIdentity();

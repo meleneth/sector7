@@ -17,10 +17,11 @@ class EntityMgr {
         EntityMgr::~EntityMgr(); // Destructor
         Entity *_new_ent_of_type(Uint16 ent_type, Sint16 size);
         Entity *add_entity(Entity *entity);
+
         void remove_ent(Entity *entity);
-                 
         int frameupdate(void);
         int render(void);
+
         Entity *chkCollision(Entity *check);
         Uint32 ent_id;
         

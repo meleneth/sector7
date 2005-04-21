@@ -14,6 +14,7 @@ class Sector : public EntityMgr {
         Sector::~Sector(); // Destructor
         
         void setup_master(void);
+        void setup_connecting(void);
         
         std::string sector_id;
         int is_master;

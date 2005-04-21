@@ -7,12 +7,14 @@
 #include"video.hpp"
 #include"texture.hpp"
 
+#include"sector.hpp"
+
 class Renderer {
     public:
         // Public data members go here.
         Renderer::Renderer(); // Constructor
         Renderer::~Renderer(); // Destructor
-        int RenderFrame(void);
+        int RenderFrame(Sector *sector);
         void ClearScreen(void);
 
     private:
