@@ -47,3 +47,7 @@ how many layers of rendering will there be?
 * undereffects
 * playfield
 * overeffects
+
+
+on collision detection:
+in order to speed up collision detection for a sector, it needs to build a collision list (all entities in itself and neighboring sectors) and use that list, not it's main list, to check against
