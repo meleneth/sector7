@@ -57,29 +57,17 @@ void send_net_cmd(UDPSocket *socket, NetCmd command, Uint32 length, void *data)
 
 void send_chat_message(UDPSocket *socket, std::string line)
 {
-    NetPacket *packet = new NetPacket(line.length() + sizeof(NetCmd));
-    packet->set_command(CHATMSG);
-    strcpy((char *)&packet->command.chatmsg.message, line.c_str());
-    socket->send(packet);
-    delete packet;
+    send_net_cmd(socket, CHATMSG, line.length(), line.c_str());
 }
 
 void send_hello(UDPSocket *socket, std::string nickname)
 {
-    NetPacket *packet = new NetPacket(nickname.length() + sizeof(NetCmd));
-    packet->set_command(HELLO);
-    strcpy((char *)&packet->command.hello.nickname, nickname.c_str());
-    socket->send(packet);
-    delete packet;
+    send_net_cmd(socket, HELLO, nickname.length(), nickname.c_str()); 
 }
 
 void send_goodbye(UDPSocket *socket, std::string quitmsg)
 {
-    NetPacket *packet = new NetPacket(quitmsg.length() + sizeof(NetCmd));
-    packet->set_command(GOODBYE);
-    strcpy((char *)&packet->command.goodbye.quitmsg, quitmsg.c_str());
-    socket->send(packet);
-    delete packet;
+    send_net_cmd(socket, GOODBYE, quitmsg.length(), quitmsg.c_str()); 
 }
 
 
