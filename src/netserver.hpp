@@ -3,8 +3,10 @@
 
 #include"SDL.h"
 
+
 #include"udpsocket.hpp"
 #include<list>
+#include"sector.hpp"
 
 class NetServer {
     public:
@@ -18,6 +20,7 @@ class NetServer {
         
         UDPSocket *listener;
         std::list<UDPSocket *> clients;
+        Sector *sector;
     private:
         // Private members go here.
     protected:

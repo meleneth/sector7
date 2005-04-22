@@ -55,7 +55,7 @@ void NetServer::handle_packet(NetPacket *packet)
             case HELLO:
                 buf << packet->command.hello.nickname << " connected.";
                 console->log(buf.str());
-                send_hello(add_client_socket(&packet->their_addr), "HIYA");
+                send_hello(add_client_socket(&packet->their_addr), sector->sector_id);
                 break;
             case CHATMSG:
                 buf << "<server> Recieved: [" << packet->command.chatmsg.message << "] on port " << packet->their_addr.sin_port 

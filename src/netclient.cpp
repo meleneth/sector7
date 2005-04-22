@@ -45,6 +45,7 @@ void NetClient::do_frame(void)
         {
             case HELLO:
                 console->log("Client got HELLO");
+                console->log(packet->command.chatmsg.message);
                 talker = new UDPSocket();
                 talker->setup_reply_socket(&packet->their_addr);
                 break;
