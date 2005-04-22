@@ -48,6 +48,7 @@ struct NetCmd_GoodBye {
 union NetCommand { 
     NetCmd command;
     NetCmd_Hello hello;
+    NetCmd_DataMsg datamsg;
     NetCmd_ChatMsg chatmsg;
     NetCmd_GoodBye goodbye;
     char buf[MAX_NET_BUFFER_LENGTH];
@@ -76,5 +77,6 @@ class NetPacket {
 void send_chat_message(UDPSocket *socket, std::string line);
 void send_hello(UDPSocket *socket, std::string nickname);
 void send_goodbye(UDPSocket *socket, std::string quitmsg);
+void send_net_cmd(UDPSocket *socket, NetCmd command, Uint32 length, void *data);
 
 #endif

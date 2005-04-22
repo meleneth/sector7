@@ -46,6 +46,15 @@ void NetPacket::recv(UDPSocket *socket)
 // Private members go here.
 // Protected members go here.
 
+void send_net_cmd(UDPSocket *socket, NetCmd command, Uint32 length, void *data)
+{
+    NetPacket *packet = new NetPacket(length + sizeof(NetCmd));
+    packet->set_command(command);
+    memcpy(&packet->command.datamsg.message, data, length);
+    socket->send(packet);
+    delete packet;
+}
+
 void send_chat_message(UDPSocket *socket, std::string line)
 {
     NetPacket *packet = new NetPacket(line.length() + sizeof(NetCmd));
