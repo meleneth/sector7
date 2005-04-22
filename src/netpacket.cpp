@@ -46,7 +46,7 @@ void NetPacket::recv(UDPSocket *socket)
 // Private members go here.
 // Protected members go here.
 
-void send_net_cmd(UDPSocket *socket, NetCmd command, Uint32 length, void *data)
+void send_net_cmd(UDPSocket *socket, NetCmd command, Uint32 length, const void *data)
 {
     NetPacket *packet = new NetPacket(length + sizeof(NetCmd));
     packet->set_command(command);

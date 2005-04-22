@@ -77,6 +77,6 @@ class NetPacket {
 void send_chat_message(UDPSocket *socket, std::string line);
 void send_hello(UDPSocket *socket, std::string nickname);
 void send_goodbye(UDPSocket *socket, std::string quitmsg);
-void send_net_cmd(UDPSocket *socket, NetCmd command, Uint32 length, void *data);
+void send_net_cmd(UDPSocket *socket, NetCmd command, Uint32 length, const void *data);
 
 #endif
