@@ -35,7 +35,7 @@ typedef struct {
         Uint32 y;
         Uint32 angle;
         Uint32 power;
-        Uint32 size;
+        unsigned char size;
         Uint32 rotation;
         Uint32 textureID;
         Uint32 other_stuff;

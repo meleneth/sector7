@@ -89,12 +89,10 @@ int main(int argc, char *argv[])
 
 static void finish(int sig)
 {
-    delete console;
+    endwin();
     if(server)
         delete server;
-    delete client;
-    endwin();
-    printf("\n\n\nBomb out!\n\n\n");
+    delete console;
     exit(0);
 }
 

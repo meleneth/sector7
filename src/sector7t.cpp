@@ -32,7 +32,13 @@ int test_entity_marshalling(void)
     Entity *ent = new Entity();
     EntFull info;
 
-    ent->v->x = 20;
+    Sint32 foo = -50;
+
+    foo = ntohl(htonl(foo));
+
+    assert(foo == -50);
+    
+    ent->v->x = -20;
     ent->v->y = 20;
 
     ent->size = 48;
@@ -43,7 +49,7 @@ int test_entity_marshalling(void)
     ent = new Entity();
     ent->inflateFull(&info);
 
-    assert(ent->v->x == 20);
+    assert(ent->v->x == -20);
     assert(ent->v->y == 20);
 
     assert(ent->size == 48);

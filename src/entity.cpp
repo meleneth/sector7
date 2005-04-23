@@ -144,7 +144,7 @@ void Entity::inflateFull(EntFull *newFull)
    v->angle    = (double) ntohl(newFull->angle);
    v->power    = (double) ntohl(newFull->power);
    v->rotation = (double) ntohl(newFull->rotation);
-   size        = (unsigned char) ntohl(newFull->size);
+   size        = newFull->size;
    texture     = get_tex_id((TileNum) ntohl(newFull->textureID));
 }
 
@@ -167,13 +167,13 @@ void Entity::deflateFull(EntFull *currentFull)
     currentFull->power     = htonl((Uint32) floor(v->power));
     currentFull->rotation  = htonl((Uint32) floor(v->rotation));
     currentFull->textureID = htonl(texture->tilenum);
-    currentFull->size      = htonl((Uint32) floor(size));
+    currentFull->size      = size;
 }
 
 void Entity::log_info(void){
     std::stringstream buf;
     buf << "Entity [" << ent_id << "] Info: ";
-    buf << "x: " << v->x << " y: " << v->y << " size: " << size << " tid: " << texture->tilenum;
+    buf << "x: " << v->x << " y: " << v->y << " size: " << (int) size << " tid: " << (int)texture->tilenum;
     console->log(buf.str());
 }
 
