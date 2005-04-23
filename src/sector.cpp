@@ -21,15 +21,17 @@ void Sector::setup_master(void)
     Entity *ship;
 
     ship = new Entity();
-    ship->v->set_from_screen_coords(640, 200);
-    ship->size = 64;
+    ship->v->set_from_screen_coords(400, 200);
+    ship->size = 32;
     ship->texture = get_tex_id(TILE_SHIP);
-
+	ship->sector = this;
+    add_entity(ship);
+	
     ship = new Entity();
     ship->v->set_from_screen_coords(320, 200);
-    ship->size = 64;
+    ship->size = 32;
     ship->texture = get_tex_id(TILE_SHIP);
-
+	ship->sector = this;
     add_entity(ship);
 }
 
@@ -41,7 +43,7 @@ void Sector::setup_connecting(void)
     ship->v->set_from_screen_coords(320, 200);
     ship->size = 128;
     ship->texture = get_tex_id(TILE_SHIP);
-
+	ship->sector = this;
     add_entity(ship);
 }
 
