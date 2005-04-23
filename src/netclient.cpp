@@ -61,7 +61,9 @@ void NetClient::do_frame(void)
                 break;
             case INFO_ENT_FULL:
                 console->log("Client got info ent full");
-                ent_id = ntohl((Uint32)packet->command.chatmsg.message);
+                EntFull *entdata;
+                entdata = (EntFull *) &packet->command;
+                ent_id = ntohl(entdata->entID);
                 ent =  sector->ent_for_id(ent_id);
                 ent->inflateFull((EntFull *) packet->command.datamsg.message);
                 console->log("dingity fang");
