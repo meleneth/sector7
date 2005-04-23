@@ -66,6 +66,7 @@ void NetClient::do_frame(void)
                 ent_id = ntohl(entdata->entID);
                 ent =  sector->ent_for_id(ent_id);
                 ent->inflateFull(entdata);
+                ent->log_info();
                 console->log("dingity fang");
                 break;
             case CHATMSG:

@@ -39,10 +39,13 @@ int test_entity_marshalling(void)
     ent->texture = get_tex_id(TILE_SHIP);
 
     ent->deflateFull(&info);
+
+    ent = new Entity();
     ent->inflateFull(&info);
 
     assert(ent->v->x == 20);
     assert(ent->v->y == 20);
 
     assert(ent->size == 48);
+    assert(ent->texture == get_tex_id(TILE_SHIP));
 }

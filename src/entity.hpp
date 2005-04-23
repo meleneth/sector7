@@ -81,6 +81,7 @@ class Entity {
         virtual int takeDamage(Sint16 dmg, Entity *who_was_holding_the_gun);
         virtual void death();
         void kill_me_now(void); 
+        void log_info(void);
 
         void inflateLoc(EntLoc *newLoc);
         void inflateFull(EntFull *newFull);
