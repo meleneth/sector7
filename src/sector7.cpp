@@ -30,6 +30,7 @@ int main(int argc, char *argv[])
     
     Sector *sector = new Sector("connecting");
     sector->setup_connecting();
+    sectors.push_front(sector);
     
     SDL_Event event;
     Sint32 speed = 0;

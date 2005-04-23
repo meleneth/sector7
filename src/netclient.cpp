@@ -48,10 +48,9 @@ void NetClient::do_frame(void)
             case HELLO:
                 console->log("Client got HELLO");
                 console->log(packet->command.chatmsg.message);
-                talker = new UDPSocket();
-                talker->setup_reply_socket(&packet->their_addr);
                 sector = new Sector(packet->command.chatmsg.message);
                 sectors.push_front(sector);
+                console->log("sending net full ent req");
                 send_net_cmd(talker, REQ_ENT_FULL_UPDATE, 0, NULL);
                 break;
             case INFO_ENT_FULL:
