@@ -50,7 +50,7 @@ void NetServer::handle_packet(NetPacket *packet)
         switch(packet->get_command())
         {
             case HELLO:
-                buf << packet->command.hello.nickname << " connected.";
+                buf << packet->command.hello.nickname << " connected.  Directing it to sector: " << sector->sector_id;
                 console->log(buf.str());
                 send_hello(add_client_socket(&packet->their_addr), sector->sector_id);
                 break;

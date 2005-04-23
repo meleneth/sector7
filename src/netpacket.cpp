@@ -62,7 +62,7 @@ void send_chat_message(UDPSocket *socket, std::string line)
 
 void send_hello(UDPSocket *socket, std::string nickname)
 {
-    send_net_cmd(socket, HELLO, nickname.length()+1, nickname.c_str()); 
+    send_net_cmd(socket, HELLO, nickname.length(), nickname.c_str()); 
 }
 
 void send_goodbye(UDPSocket *socket, std::string quitmsg)
