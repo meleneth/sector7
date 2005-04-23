@@ -30,7 +30,6 @@ int main(int argc, char *argv[])
     
     Sector *sector = new Sector("connecting");
     sector->setup_connecting();
-    send_net_cmd(client->talker, REQ_ENT_FULL_UPDATE, 0, NULL);
     
     SDL_Event event;
     Sint32 speed = 0;
@@ -44,7 +43,7 @@ int main(int argc, char *argv[])
     while(!quit){
         while (SDL_PollEvent (&event) == 0 && !quit)
         {
-            renderer->RenderFrame(sector);
+            renderer->RenderFrame(*sectors.begin());
             client->do_frame();
             if (keys[SDLK_ESCAPE] == SDL_PRESSED)
                 quit = true;

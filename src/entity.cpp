@@ -41,7 +41,6 @@ void Entity::setup_entity(void)
     rotation=0;
 }
 
-
 void Entity::update_location(void){
     v->update_location();
     v->bounds_check();
@@ -139,6 +138,7 @@ void Entity::inflateFull(EntFull *newFull)
    v->angle = (double) ntohl (newFull->angle);
    v->power = (double) ntohl (newFull->power);
    v->rotation = (double) ntohl (newFull->rotation);
+   texture = get_tex_id((TileNum) ntohl (newFull->textureID));
 }
 
 void Entity::deflateLoc(EntLoc *currentLoc)

@@ -13,6 +13,7 @@
 
 #include"console.hpp"
 #include"globals.hpp"
+#include"entity.hpp"
 
 extern Console *console;
 
@@ -51,10 +52,12 @@ void NetClient::do_frame(void)
                 talker->setup_reply_socket(&packet->their_addr);
                 sector = new Sector(packet->command.chatmsg.message);
                 sectors.push_front(sector);
+                send_net_cmd(talker, REQ_ENT_FULL_UPDATE, 0, NULL);
                 break;
             case INFO_ENT_FULL:
                 console->log("Client got info ent full");
-                console->log(packet->command.chatmsg.message);
+                sector->ent_for_id(*((int *) packet->command.datamsg.message))
+                      ->inflateFull((EntFull *) packet->command.datamsg.message);
                 break;
             case CHATMSG:
 //                buf << "<client> Recieved: [" << packet->command.chatmsg.message << "] on port " << packet->their_addr.sin_port 

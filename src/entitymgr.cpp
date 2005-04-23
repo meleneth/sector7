@@ -66,6 +66,19 @@ void EntityMgr::remove_ent (Entity *ent)
         delete ent;
 }
 
+Entity *EntityMgr::ent_for_id(Uint32 id)
+{
+    std::list < Entity * >::iterator i;
+    Entity * newEnt;
+
+    for (i = entities.begin (); i != entities.end (); ++i) {
+        if ((*i)->ent_id == id) return *i;
+    }
+    newEnt = new Entity();
+    newEnt->ent_id = id;
+    return newEnt;
+}
+
 Entity *EntityMgr::chkCollision (Entity *check)
 {
     std::list < Entity * >::iterator i;
