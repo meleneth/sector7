@@ -1,6 +1,9 @@
 #include"sector7.hpp"
+#include"netserver.hpp"
 
+NetServer *server = NULL;
 Console *console;
+std::list<Sector *> sectors;
 
 int main(int argc, char *argv[])
 {
@@ -27,11 +30,13 @@ int main(int argc, char *argv[])
     
     Sector *sector = new Sector("connecting");
     sector->setup_connecting();
+    send_net_cmd(client->talker, REQ_ENT_FULL_UPDATE, 0, NULL);
     
     SDL_Event event;
     Sint32 speed = 0;
     Uint8 keys[1024];
     Uint32 framecount = 0;
+    std::list< Sector * >::iterator i;
 
     for (speed = 0; speed < 256; speed++)
         keys[speed] = SDL_RELEASED;
@@ -44,6 +49,9 @@ int main(int argc, char *argv[])
             if (keys[SDLK_ESCAPE] == SDL_PRESSED)
                 quit = true;
       //      handle_user_input();
+            for(i = sectors.begin() ; i != sectors.end(); ++i){
+                (*i)->frameupdate();
+            }
             SDL_Delay (5);
             framecount++;
         }
@@ -89,5 +97,4 @@ int main(int argc, char *argv[])
     SDL_Quit();
     exit (0);
 }
-
 

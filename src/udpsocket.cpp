@@ -122,5 +122,12 @@ void UDPSocket::send(NetPacket *packet)
     send(packet->data_length, &packet->command);
 }
 
+int UDPSocket::is_reply_to(struct sockaddr_in *addr)
+{
+    return (((short)their_addr.sin_port == (short)addr->sin_port)
+            &&
+            (their_addr.sin_addr.s_addr == addr->sin_addr.s_addr) );
+} 
+
 // Private members go here.
 // Protected members go here.

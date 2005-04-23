@@ -12,7 +12,7 @@
 Renderer::Renderer()		// Constructor
 {
     board = new Video();
-    load_textures();
+    load_textures(0);
 }
 
 Renderer::~Renderer()		// Destructor

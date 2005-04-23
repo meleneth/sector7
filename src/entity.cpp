@@ -157,6 +157,7 @@ void Entity::deflateFull(EntFull *currentFull)
    currentFull->angle = htonl ((Uint32) floor (v->angle));
    currentFull->power = htonl ((Uint32) floor (v->power));
    currentFull->rotation = htonl ((Uint32) floor (v->rotation));
+   currentFull->textureID = htonl (texture->tilenum);
 }
 
 // Private members go here.

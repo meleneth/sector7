@@ -2,6 +2,7 @@
 #include<signal.h>
 #include<ncurses.h>
 
+#include"texture.hpp"
 #include"console.hpp"
 #include"netclient.hpp"
 #include"netserver.hpp"
@@ -39,6 +40,7 @@ int main(int argc, char *argv[])
     nodelay(stdscr, 1);
     server = NULL;
     console = new Console(COLS, LINES);
+    load_textures(1);
 
     server = new NetServer(DEFAULT_PORT);
     nickname = "SERVER";

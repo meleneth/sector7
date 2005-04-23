@@ -36,6 +36,7 @@ NetClient::~NetClient() // Destructor
 
 void NetClient::do_frame(void)
 {
+    static Sector *sector;
     NetPacket *packet = listener->get_next_packet();
     if(packet)
     {
@@ -48,6 +49,12 @@ void NetClient::do_frame(void)
                 console->log(packet->command.chatmsg.message);
                 talker = new UDPSocket();
                 talker->setup_reply_socket(&packet->their_addr);
+                sector = new Sector(packet->command.chatmsg.message);
+                sectors.push_front(sector);
+                break;
+            case INFO_ENT_FULL:
+                console->log("Client got info ent full");
+                console->log(packet->command.chatmsg.message);
                 break;
             case CHATMSG:
 //                buf << "<client> Recieved: [" << packet->command.chatmsg.message << "] on port " << packet->their_addr.sin_port 

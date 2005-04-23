@@ -1,8 +1,5 @@
 #include "netserver.hpp"
-/*
-** Listener.c -- a datagram sockets "server" demo
-*/
-
+#include "globals.hpp"
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -67,6 +64,10 @@ void NetServer::handle_packet(NetPacket *packet)
             case GOODBYE:
                 console->log("Server got GOODBYE");
                 break;
+            case REQ_ENT_FULL_UPDATE:
+                console->log("Server got REQ_ENT_FULL_UPDATE");
+                (*sectors.begin())->dump(packet);
+
             default:
                 console->log("Server got unknown msg!");
             break;

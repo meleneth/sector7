@@ -22,7 +22,7 @@ class UDPSocket {
         void send(int length, const void *data);
         void send(NetPacket *packet);
         void setup_socket(int port);
-
+        int is_reply_to(struct sockaddr_in *addr);
         int sockfd;
         struct sockaddr_in my_addr;    // my address information
         struct sockaddr_in their_addr; // connector's address information

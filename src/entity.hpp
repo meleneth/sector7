@@ -21,22 +21,23 @@ enum ENT_TYPE { ENT_ASTEROID, ENT_PLAYER, ENT_PLAYERSHOT };
 typedef struct {
         ENTID_TYPE entID;
         NetCmd cmd;
-        Sint32 x;
-        Sint32 y;
-        Sint32 angle;
-        Sint32 power;
-        Sint32 rotation;
+        Uint32 x;
+        Uint32 y;
+        Uint32 angle;
+        Uint32 power;
+        Uint32 rotation;
 } EntLoc;
 
 typedef struct {
         ENTID_TYPE entID;
         NetCmd cmd;
-        Sint32 x;
-        Sint32 y;
-        Sint32 angle;
-        Sint32 power;
-        Sint32 rotation;
-        Sint32 other_stuff;
+        Uint32 x;
+        Uint32 y;
+        Uint32 angle;
+        Uint32 power;
+        Uint32 rotation;
+        Uint32 textureID;
+        Uint32 other_stuff;
 } EntFull;
 
 class Entity {

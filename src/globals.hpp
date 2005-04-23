@@ -3,8 +3,10 @@
 
 #include<stdlib.h>
 #include<math.h>
+#include<list>
 #include"console.hpp"
 #include"types.hpp"
+#include"sector.hpp"
 
 #ifndef DEFAULT_PORT
 #define DEFAULT_PORT 31337
@@ -25,6 +27,7 @@
 #define M_PI 3.14159265
 #endif
 
+extern std::list<Sector *> sectors;
 extern Console *console;
 Sint32 m_round(double value);
 

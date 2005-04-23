@@ -21,7 +21,7 @@ class Texture {
         Uint16 height;
 
         Texture::Texture(void);
-        Texture::Texture(char *filename, TileNum tilenum); // Constructor
+        Texture::Texture(int dummy, char *filename, TileNum tilenum); // Constructor
         int Texture::LoadImage(char *filename);
         Texture::~Texture(); // Destructor
         int generate(void);
@@ -35,7 +35,7 @@ class Texture {
 };
 
 
-void load_textures(void);
+void load_textures(int dummy);
 
 Texture *get_tex_id(TileNum tile_id);
 

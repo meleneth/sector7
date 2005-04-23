@@ -15,6 +15,7 @@ class NetClient {
         void do_frame(void);
         void send_line(std::string line);
 
+
         std::string nickname;
         
         UDPSocket *talker;

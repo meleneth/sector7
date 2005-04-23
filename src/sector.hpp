@@ -15,9 +15,10 @@ class Sector : public EntityMgr {
         
         void setup_master(void);
         void setup_connecting(void);
-        
+        void dump(NetPacket *packet);
         std::string sector_id;
         int is_master;
+        UDPSocket * get_client(NetPacket *packet);
     private:
         // Private members go here.
     protected:
