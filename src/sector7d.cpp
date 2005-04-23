@@ -52,8 +52,7 @@ int main(int argc, char *argv[])
     main_sector->setup_master();
     sectors.push_front(main_sector);
     server->sector = main_sector;
-
-
+    
     while(1){
         // Select loop here
 

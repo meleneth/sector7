@@ -17,6 +17,20 @@ void Sector::setup_master(void)
 {
     is_master = 1;
     console->log("Master sector initialized.");
+
+    Entity *ship;
+
+    ship = new Entity();
+    ship->v->set_from_screen_coords(640, 200);
+    ship->size = 64;
+    ship->texture = get_tex_id(TILE_SHIP);
+
+    ship = new Entity();
+    ship->v->set_from_screen_coords(320, 200);
+    ship->size = 64;
+    ship->texture = get_tex_id(TILE_SHIP);
+
+    add_entity(ship);
 }
 
 void Sector::setup_connecting(void)
