@@ -130,44 +130,44 @@ void Entity::kill_me_now(void)
 void Entity::inflateLoc(EntLoc *newLoc)
 {
    
-   v->x = (double) ntohl (newLoc->x);
-   v->y = (double) ntohl (newLoc->y);
-   v->angle = (double) ntohl (newLoc->angle);
-   v->power = (double) ntohl (newLoc->power);
-   v->rotation = (double) ntohl (newLoc->rotation);
+   v->x        = (double) ntohl(newLoc->x);
+   v->y        = (double) ntohl(newLoc->y);
+   v->angle    = (double) ntohl(newLoc->angle);
+   v->power    = (double) ntohl(newLoc->power);
+   v->rotation = (double) ntohl(newLoc->rotation);
 }     
 
 void Entity::inflateFull(EntFull *newFull)
 {
-   v->x = (double) ntohl (newFull->x);
-   v->y = (double) ntohl (newFull->y);
-   v->angle = (double) ntohl (newFull->angle);
-   v->power = (double) ntohl (newFull->power);
-   v->rotation = (double) ntohl (newFull->rotation);
-   size = (double) ntohl (newFull->size);
-   texture = get_tex_id((TileNum) ntohl (newFull->textureID));
+   v->x        = (double) ntohl(newFull->x);
+   v->y        = (double) ntohl(newFull->y);
+   v->angle    = (double) ntohl(newFull->angle);
+   v->power    = (double) ntohl(newFull->power);
+   v->rotation = (double) ntohl(newFull->rotation);
+   size        = (double) ntohl(newFull->size);
+   texture     = get_tex_id((TileNum) ntohl(newFull->textureID));
 }
 
 void Entity::deflateLoc(EntLoc *currentLoc)
 {
-    currentLoc->entID = htonl (ent_id);
-    currentLoc->x = htonl ((Uint32) floor (v->x));
-    currentLoc->y = htonl ((Uint32) floor (v->y));
-    currentLoc->angle = htonl ((Uint32) floor (v->angle));
-    currentLoc->power = htonl ((Uint32) floor (v->power));
-    currentLoc->rotation = htonl ((Uint32) floor (v->rotation));
+    currentLoc->entID    = htonl(ent_id);
+    currentLoc->x        = htonl((Uint32) floor(v->x));
+    currentLoc->y        = htonl((Uint32) floor(v->y));
+    currentLoc->angle    = htonl((Uint32) floor(v->angle));
+    currentLoc->power    = htonl((Uint32) floor(v->power));
+    currentLoc->rotation = htonl((Uint32) floor(v->rotation));
 }
 
 void Entity::deflateFull(EntFull *currentFull)
 {
-    currentFull->entID = htonl (ent_id);
-    currentFull->x = htonl ((Uint32) floor (v->x));
-    currentFull->y = htonl ((Uint32) floor (v->y));
-    currentFull->angle = htonl ((Uint32) floor (v->angle));
-    currentFull->power = htonl ((Uint32) floor (v->power));
-    currentFull->rotation = htonl ((Uint32) floor (v->rotation));
-    currentFull->textureID = htonl (texture->tilenum);
-    currentFull->size = htonl ((Uint32) floor (size));
+    currentFull->entID = htonl(ent_id);
+    currentFull->x         = htonl((Uint32) floor(v->x));
+    currentFull->y         = htonl((Uint32) floor(v->y));
+    currentFull->angle     = htonl((Uint32) floor(v->angle));
+    currentFull->power     = htonl((Uint32) floor(v->power));
+    currentFull->rotation  = htonl((Uint32) floor(v->rotation));
+    currentFull->textureID = htonl(texture->tilenum);
+    currentFull->size      = htonl((Uint32) floor(size));
 }
 
 // Private members go here.
