@@ -22,6 +22,9 @@ Entity *EntityMgr::add_entity (Entity * entity)
   if(entity->ent_id == 0){
       ent_id++;
       entity->ent_id = ent_id;
+      std::stringstream buf;
+      buf << "Entity " << ent_id << "Reporting for Duty (SIR!!)";
+      console->log(buf.str());
   }
 
   return entity;

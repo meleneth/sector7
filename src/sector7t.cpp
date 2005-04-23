@@ -11,7 +11,7 @@ NetServer *server;
 
 int test_entity_marshalling(void);
 
-int main(char *argv[], int argc)
+int main(int argc, char *argv[])
 {
     console = new Console();
     console->print_logs = 1;
