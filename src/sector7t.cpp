@@ -36,6 +36,10 @@ int test_entity_marshalling(void)
 
     foo = ntohl(htonl(foo));
 
+    std::stringstream buf;
+    buf << "TILE_SHIP is " << (int) TILE_SHIP << " and TILE_NOTILE is " << (int) TILE_NOTILE;
+    console->log(buf.str());
+
     assert(foo == -50);
     
     ent->v->x = -20;
@@ -46,7 +50,9 @@ int test_entity_marshalling(void)
 
     ent->deflateFull(&info);
 
+    console->log("Calling new Entity()");
     ent = new Entity();
+    console->log("Calling inflateFull()");
     ent->inflateFull(&info);
 
     assert(ent->v->x == -20);

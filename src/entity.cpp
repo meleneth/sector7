@@ -67,10 +67,6 @@ void Entity::render(void){
     } else {
         texture->DrawGLSquare(size);
     }
-
-    std::stringstream buf;
-    buf << "render(" << this << ")";
-    console->log(buf.str());
 }
 
 int Entity::chkDeath(void){
@@ -173,7 +169,7 @@ void Entity::deflateFull(EntFull *currentFull)
 void Entity::log_info(void){
     std::stringstream buf;
     buf << "Entity [" << ent_id << "] Info: ";
-    buf << "x: " << v->x << " y: " << v->y << " size: " << (int) size << " tid: " << (int)texture->tilenum;
+    buf << "x: " << v->x << " y: " << v->y << " size: " << (int) size << " tid: " << (int)texture->tilenum << " sector: " << ((Sector *)sector)->sector_id;
     console->log(buf.str());
 }
 

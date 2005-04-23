@@ -37,7 +37,7 @@ NetClient::~NetClient() // Destructor
 
 void NetClient::do_frame(void)
 {
-    static Sector *sector;
+    Sector *sector;
     NetPacket *packet = listener->get_next_packet();
     Entity *ent;
     Uint32 ent_id;
@@ -61,6 +61,7 @@ void NetClient::do_frame(void)
                 break;
             case INFO_ENT_FULL:
                 console->log("Client got info ent full");
+                sector = *sectors.begin();
                 EntFull *entdata;
                 entdata = (EntFull *) &packet->command;
                 ent_id = ntohl(entdata->entID);

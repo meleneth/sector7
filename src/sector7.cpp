@@ -44,13 +44,13 @@ int main(int argc, char *argv[])
     while(!quit){
         while (SDL_PollEvent (&event) == 0 && !quit)
         {
-            renderer->RenderFrame(*sectors.begin());
+            renderer->RenderFrame((*sectors.begin()));
             client->do_frame();
             if (keys[SDLK_ESCAPE] == SDL_PRESSED)
                 quit = true;
       //      handle_user_input();
             for(i = sectors.begin() ; i != sectors.end(); ++i){
-                (*i)->frameupdate();
+      //          (*i)->frameupdate();
             }
             SDL_Delay (5);
             framecount++;
