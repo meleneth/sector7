@@ -55,11 +55,16 @@ void Sector::setup_connecting(void)
 
 void Sector::dump(NetPacket *packet)
 {
-    EntFull entData;
+    UDPSocket *client = get_client(packet);
+
+    NetPacket *dumper = new NetPacket(sizeof(EntFull));
+
+
+    EntFull *entData = dumper->buf;
     std::list< Entity * >::iterator i;
     for (i = entities.begin(); i != entities.end(); ++i) {
-        (*i)->deflateFull(&entData);
-        send_net_cmd(get_client(packet), INFO_ENT_FULL, sizeof(EntFull), &entData); 
+        (*i)->deflateFull(entData);
+        client->send(dumper);
     }    
 }
 

@@ -39,9 +39,15 @@ void NetClient::do_frame(void)
 {
     static Sector *sector;
     NetPacket *packet = listener->get_next_packet();
+    Entity *ent;
+    Uint32 ent_id;
+
     if(packet)
     {
         std::stringstream buf;
+
+        buf << "Client got packet of length " << packet->data_length;
+        console->log(buf.str());
 
         switch(packet->get_command())
         {
@@ -55,8 +61,10 @@ void NetClient::do_frame(void)
                 break;
             case INFO_ENT_FULL:
                 console->log("Client got info ent full");
-                sector->ent_for_id(*((int *) packet->command.datamsg.message))
-                      ->inflateFull((EntFull *) packet->command.datamsg.message);
+                ent_id = ntohl((Uint32)packet->command.chatmsg.message);
+                ent =  sector->ent_for_id(ent_id);
+                ent->inflateFull((EntFull *) packet->command.datamsg.message);
+                console->log("dingity fang");
                 break;
             case CHATMSG:
 //                buf << "<client> Recieved: [" << packet->command.chatmsg.message << "] on port " << packet->their_addr.sin_port 

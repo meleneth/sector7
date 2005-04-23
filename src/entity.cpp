@@ -30,6 +30,7 @@ Entity::~Entity() // Destructor
 
 void Entity::setup_entity(void)
 {
+    ent_id = 0;
     v = new Vector();
     sector = NULL;
     size=32;
@@ -66,6 +67,10 @@ void Entity::render(void){
     } else {
         texture->DrawGLSquare(size);
     }
+
+    std::stringstream buf;
+    buf << "render(" << this << ")";
+    console->log(buf.str());
 }
 
 int Entity::chkDeath(void){
@@ -124,6 +129,7 @@ void Entity::kill_me_now(void)
 
 void Entity::inflateLoc(EntLoc *newLoc)
 {
+   
    v->x = (double) ntohl (newLoc->x);
    v->y = (double) ntohl (newLoc->y);
    v->angle = (double) ntohl (newLoc->angle);
@@ -138,26 +144,30 @@ void Entity::inflateFull(EntFull *newFull)
    v->angle = (double) ntohl (newFull->angle);
    v->power = (double) ntohl (newFull->power);
    v->rotation = (double) ntohl (newFull->rotation);
+   size = (double) ntohl (newFull->size);
    texture = get_tex_id((TileNum) ntohl (newFull->textureID));
 }
 
 void Entity::deflateLoc(EntLoc *currentLoc)
 {
-   currentLoc->x = htonl ((Uint32) floor (v->x));
-   currentLoc->y = htonl ((Uint32) floor (v->y));
-   currentLoc->angle = htonl ((Uint32) floor (v->angle));
-   currentLoc->power = htonl ((Uint32) floor (v->power));
-   currentLoc->rotation = htonl ((Uint32) floor (v->rotation));
+    currentLoc->entID = htonl (ent_id);
+    currentLoc->x = htonl ((Uint32) floor (v->x));
+    currentLoc->y = htonl ((Uint32) floor (v->y));
+    currentLoc->angle = htonl ((Uint32) floor (v->angle));
+    currentLoc->power = htonl ((Uint32) floor (v->power));
+    currentLoc->rotation = htonl ((Uint32) floor (v->rotation));
 }
 
 void Entity::deflateFull(EntFull *currentFull)
 {
-   currentFull->x = htonl ((Uint32) floor (v->x));
-   currentFull->y = htonl ((Uint32) floor (v->y));
-   currentFull->angle = htonl ((Uint32) floor (v->angle));
-   currentFull->power = htonl ((Uint32) floor (v->power));
-   currentFull->rotation = htonl ((Uint32) floor (v->rotation));
-   currentFull->textureID = htonl (texture->tilenum);
+    currentFull->entID = htonl (ent_id);
+    currentFull->x = htonl ((Uint32) floor (v->x));
+    currentFull->y = htonl ((Uint32) floor (v->y));
+    currentFull->angle = htonl ((Uint32) floor (v->angle));
+    currentFull->power = htonl ((Uint32) floor (v->power));
+    currentFull->rotation = htonl ((Uint32) floor (v->rotation));
+    currentFull->textureID = htonl (texture->tilenum);
+    currentFull->size = htonl ((Uint32) floor (size));
 }
 
 // Private members go here.

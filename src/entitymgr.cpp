@@ -19,8 +19,10 @@ Entity *EntityMgr::add_entity (Entity * entity)
 {
   entities.push_front (entity);
 
-  ent_id++;
-  entity->ent_id = ent_id;
+  if(entity->ent_id == 0){
+      ent_id++;
+      entity->ent_id = ent_id;
+  }
 
   return entity;
 }
@@ -70,6 +72,10 @@ Entity *EntityMgr::ent_for_id(Uint32 id)
 {
     std::list < Entity * >::iterator i;
     Entity * newEnt;
+
+    std::stringstream buf;
+    buf << "Looking up ent for ID " <<id;
+    console->log(buf.str());
 
     for (i = entities.begin (); i != entities.end (); ++i) {
         if ((*i)->ent_id == id) return *i;

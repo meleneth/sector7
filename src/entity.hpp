@@ -19,8 +19,8 @@ enum ENT_TYPE { ENT_ASTEROID, ENT_PLAYER, ENT_PLAYERSHOT };
 
 #define ENTID_TYPE Uint32
 typedef struct {
-        ENTID_TYPE entID;
         NetCmd cmd;
+        ENTID_TYPE entID;
         Uint32 x;
         Uint32 y;
         Uint32 angle;
@@ -29,12 +29,13 @@ typedef struct {
 } EntLoc;
 
 typedef struct {
-        ENTID_TYPE entID;
         NetCmd cmd;
+        ENTID_TYPE entID;
         Uint32 x;
         Uint32 y;
         Uint32 angle;
         Uint32 power;
+        Uint32 size;
         Uint32 rotation;
         Uint32 textureID;
         Uint32 other_stuff;
