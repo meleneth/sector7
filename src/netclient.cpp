@@ -65,7 +65,7 @@ void NetClient::do_frame(void)
                 entdata = (EntFull *) &packet->command;
                 ent_id = ntohl(entdata->entID);
                 ent =  sector->ent_for_id(ent_id);
-                ent->inflateFull((EntFull *) packet->command.datamsg.message);
+                ent->inflateFull(entdata);
                 console->log("dingity fang");
                 break;
             case CHATMSG:

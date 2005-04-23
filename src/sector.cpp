@@ -61,7 +61,7 @@ void Sector::dump(NetPacket *packet)
 
 
     EntFull *entData = (EntFull *) &dumper->command;
-    entData->cmd = INFO_ENT_FULL;
+    entData->cmd = (NetCmd) htonl(INFO_ENT_FULL);
     std::list< Entity * >::iterator i;
     for (i = entities.begin(); i != entities.end(); ++i) {
         (*i)->deflateFull(entData);
