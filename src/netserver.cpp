@@ -32,7 +32,7 @@ NetServer::NetServer(int port) // Constructor
     
 NetServer::~NetServer() // Destructor
 {
-    std::list<UDPSocket *>::iterator i;
+    std::list< NetServerClient * >::iterator i;
 
     for(i = clients.begin() ; i!=clients.end(); i++)
     {
@@ -52,7 +52,7 @@ void NetServer::handle_packet(NetPacket *packet)
             case HELLO:
                 buf << packet->command.hello.nickname << " connected.  Directing it to sector: " << sector->sector_id;
                 console->log(buf.str());
-                send_hello(add_client_socket(&packet->their_addr), sector->sector_id);
+                send_hello((add_client_socket(&packet->their_addr))->socket, sector->sector_id);
                 break;
             case CHATMSG:
                 buf << "<server> Recieved: [" << packet->command.chatmsg.message << "] on port " << packet->their_addr.sin_port 
@@ -82,11 +82,11 @@ void NetServer::do_frame(void)
         delete packet;
     }
 
-    std::list<UDPSocket *>::iterator i;
+    std::list< NetServerClient * >::iterator i;
 
     for(i = clients.begin() ; i!=clients.end(); i++)
     {
-        packet = (*i)->get_next_packet();
+        packet = (*i)->socket->get_next_packet();
         if(packet){
             handle_packet(packet);
             delete packet;
@@ -98,20 +98,20 @@ void NetServer::do_frame(void)
 
 void NetServer::send_all_clients(int length, void *data)
 {
-    std::list<UDPSocket *>::iterator i;
+    std::list< NetServerClient * >::iterator i;
 
     for(i = clients.begin() ; i!=clients.end(); i++)
     {
-        (*i)->send(length, data);
+        (*i)->socket->send(length, data);
     }
 }
 
-UDPSocket *NetServer::add_client_socket(struct sockaddr_in *sock)
+NetServerClient *NetServer::add_client_socket(struct sockaddr_in *sock)
 {
     UDPSocket *reply = new UDPSocket();
     reply->setup_reply_socket(sock);
-    clients.push_front(reply);
-    return reply;
+    clients.push_front(new NetServerClient(reply));
+    return (*clients.begin());
 }
 
 // Private members go here.

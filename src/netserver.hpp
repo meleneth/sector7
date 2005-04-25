@@ -7,6 +7,7 @@
 #include"udpsocket.hpp"
 #include<list>
 #include"sector.hpp"
+#include"netserverclient.hpp"
 
 class NetServer {
     public:
@@ -14,13 +15,13 @@ class NetServer {
         NetServer::NetServer(int bar); // Constructor
         NetServer::~NetServer(); // Destructor
         void send_all_clients(int length, void *data);
-        UDPSocket *add_client_socket(struct sockaddr_in *sock); // Adds new client to the list, and returns it
+        NetServerClient *add_client_socket(struct sockaddr_in *sock); // Adds new client to the list, and returns it
         void do_frame(void);
         void handle_packet(NetPacket *packet);
-        UDPSocket * get_client(NetPacket *packet);
+        NetServerClient * get_client(NetPacket *packet);
         
         UDPSocket *listener;
-        std::list<UDPSocket *> clients;
+        std::list< NetServerClient * > clients;
         Sector *sector;
     private:
         // Private members go here.

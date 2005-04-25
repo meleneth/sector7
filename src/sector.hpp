@@ -3,6 +3,7 @@
 
 #include"SDL.h"
 #include"entitymgr.hpp"
+#include"netserverclient.hpp"
 #include<string>
 
 class EntityMgr;
@@ -18,7 +19,7 @@ class Sector : public EntityMgr {
         void dump(NetPacket *packet);
         std::string sector_id;
         int is_master;
-        UDPSocket * get_client(NetPacket *packet);
+        NetServerClient * get_client(NetPacket *packet);
     private:
         // Private members go here.
     protected:

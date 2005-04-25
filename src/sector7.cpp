@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
     console->print_logs = 1;
 
     client = new NetClient(servername, DEFAULT_PORT, "netclient");
-    
+ 
 //    soundmgr = new SoundCore();
     Renderer  *renderer = new Renderer();
 //    bg_particles = new EntityMgr();

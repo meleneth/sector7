@@ -57,7 +57,7 @@ void Sector::setup_connecting(void)
 
 void Sector::dump(NetPacket *packet)
 {
-    UDPSocket *client = get_client(packet);
+    NetServerClient *client = get_client(packet);
 
     NetPacket *dumper = new NetPacket(sizeof(EntFull));
 
@@ -67,15 +67,15 @@ void Sector::dump(NetPacket *packet)
     std::list< Entity * >::iterator i;
     for (i = entities.begin(); i != entities.end(); ++i) {
         (*i)->deflateFull(entData);
-        client->send(dumper);
+        client->socket->send(dumper);
     }    
 }
 
-UDPSocket * Sector::get_client(NetPacket *packet)
+NetServerClient * Sector::get_client(NetPacket *packet)
 {
-    std::list< UDPSocket * >::iterator i;
+    std::list< NetServerClient * >::iterator i;
     for (i = server->clients.begin(); i != server->clients.end(); ++i) {
-        if ((*i)->is_reply_to(&packet->their_addr)) {
+        if ((*i)->socket->is_reply_to(&packet->their_addr)) {
             return *i;
         }
     }

@@ -1,2 +1,2 @@
-EXTRA_DIST = reconf images 
+EXTRA_DIST = reconf images genclassfile.pl
 SUBDIRS = libs src 
