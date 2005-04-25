@@ -137,11 +137,11 @@ void Entity::inflateLoc(EntLoc *newLoc)
 
 void Entity::inflateFull(EntFull *newFull)
 {
-   v->x        = (double) ntohl(newFull->x);
-   v->y        = (double) ntohl(newFull->y);
-   v->angle    = (double) ntohl(newFull->angle);
-   v->power    = (double) ntohl(newFull->power);
-   v->rotation = (double) ntohl(newFull->rotation);
+   v->x        = (double) ntohl(newFull->x) - SIGNED_OFFSET;
+   v->y        = (double) ntohl(newFull->y) - SIGNED_OFFSET;
+   v->angle    = (double) ntohl(newFull->angle) - SIGNED_OFFSET;
+   v->power    = (double) ntohl(newFull->power) - SIGNED_OFFSET;
+   v->rotation = (double) ntohl(newFull->rotation) - SIGNED_OFFSET;
    size        = newFull->size;
    texture     = get_tex_id((TileNum) ntohl(newFull->textureID));
 }
