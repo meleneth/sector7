@@ -8,7 +8,7 @@
 class NetServerClient {
     public:
         // Public data members go here.
-        NetServerClient::NetServerClient(UDPSocket *clientSocket); // Constructor
+        NetServerClient::NetServerClient(UDPSocket *clientSocket, Entity *entity); // Constructor
         NetServerClient::~NetServerClient(); // Destructor
         int Foo(void);
 

@@ -47,12 +47,11 @@ void NetServer::handle_packet(NetPacket *packet)
     NetPacket *replypacket;
 
     std::stringstream buf;
+
         switch(packet->get_command())
         {
             case HELLO:
-                buf << packet->command.hello.nickname << " connected.  Directing it to sector: " << sector->sector_id;
-                console->log(buf.str());
-                send_hello((add_client_socket(&packet->their_addr))->socket, sector->sector_id);
+                handle_hello(packet);
                 break;
             case CHATMSG:
                 buf << "<server> Recieved: [" << packet->command.chatmsg.message << "] on port " << packet->their_addr.sin_port 
@@ -72,6 +71,24 @@ void NetServer::handle_packet(NetPacket *packet)
                 console->log("Server got unknown msg!");
             break;
         }
+}
+   
+void NetServer::handle_hello(NetPacket *packet)
+{
+     std::stringstream buf;
+
+     Entity * newEnt = new Entity();
+     newEnt->v->set_from_screen_coords(300,400);
+     newEnt->texture = get_tex_id(TILE_SHIP);
+     (*sectors.begin())->add_entity(newEnt); 
+
+     buf << packet->command.hello.nickname << " connected.  Directing it to sector: " << (*sectors.begin())->sector_id
+         << " ent_id: " << newEnt->ent_id;
+     console->log(buf.str());
+
+     NetServerClient *netserverclient = new NetServerClient(add_client_socket(&packet->their_addr), newEnt);
+     clients.push_front(netserverclient);
+     send_hello(netserverclient->socket, sector->sector_id);
 }
 
 void NetServer::do_frame(void)
@@ -106,12 +123,11 @@ void NetServer::send_all_clients(int length, void *data)
     }
 }
 
-NetServerClient *NetServer::add_client_socket(struct sockaddr_in *sock)
+UDPSocket *NetServer::add_client_socket(struct sockaddr_in *sock)
 {
     UDPSocket *reply = new UDPSocket();
     reply->setup_reply_socket(sock);
-    clients.push_front(new NetServerClient(reply));
-    return (*clients.begin());
+    return reply;
 }
 
 // Private members go here.
