@@ -86,9 +86,12 @@ void NetServer::handle_hello(NetPacket *packet)
          << " ent_id: " << newEnt->ent_id;
      console->log(buf.str());
 
+     ENTID_TYPE entid = htonl(newEnt->ent_id);
+
      NetServerClient *netserverclient = new NetServerClient(add_client_socket(&packet->their_addr), newEnt);
      clients.push_front(netserverclient);
      send_hello(netserverclient->socket, sector->sector_id);
+     send_net_cmd(netserverclient->socket, GRANT_ENT_WRITE, sizeof(ENTID_TYPE), &entid);
 }
 
 void NetServer::do_frame(void)

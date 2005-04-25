@@ -8,6 +8,7 @@
 
 Console *console;
 NetServer *server;
+Entity *my_ship;
 
 int test_entity_marshalling(void);
 
@@ -17,6 +18,7 @@ int main(int argc, char *argv[])
     console->print_logs = 1;
 
     load_textures(1);
+    my_ship = NULL;
 
     std::string foo;
     foo = "Bar";

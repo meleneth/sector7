@@ -20,10 +20,10 @@
 class UDPSocket;
 
 enum NetCmd { HELLO, CHATMSG, GOODBYE, 
-				INFO_ENT_LOC,
-				INFO_ENT_FULL,
-				REQ_ENT_FULL_UPDATE,
-				REQ_ENT_LOC_UPDATE}; 
+            GRANT_ENT_WRITE, 
+            INFO_ENT_LOC, INFO_ENT_FULL,
+				REQ_ENT_FULL_UPDATE, REQ_ENT_LOC_UPDATE
+}; 
 
 struct NetCmd_Hello {
     NetCmd command;

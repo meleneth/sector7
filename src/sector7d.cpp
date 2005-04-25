@@ -23,6 +23,7 @@ NetClient *client;
 NetServer *server;
 
 EntityMgr *entmgr;
+Entity *my_ship;
 
 std::list< Sector * > sectors;
 
@@ -41,6 +42,7 @@ int main(int argc, char *argv[])
     server = NULL;
     console = new Console(COLS, LINES);
     load_textures(1);
+    my_ship = NULL;
 
     server = new NetServer(DEFAULT_PORT);
     nickname = "SERVER";

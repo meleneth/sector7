@@ -35,6 +35,8 @@ NetClient::~NetClient() // Destructor
     if(listener)           delete listener;
 }
 
+extern Entity *my_ship;
+
 void NetClient::do_frame(void)
 {
     Sector *sector;
@@ -77,6 +79,11 @@ void NetClient::do_frame(void)
                 console->log(packet->command.chatmsg.message);
                 console->render();
 
+                break;
+            case GRANT_ENT_WRITE:
+                my_ship = (*sectors.begin())->ent_for_id(ntohl(*(ENTID_TYPE *)packet->command.datamsg.message));
+                buf << "Client got GRANT_ENT_WRITE for id" << my_ship->ent_id;
+                console->log(buf.str());
                 break;
             case GOODBYE:
                 console->log("Client got GOODBYE");

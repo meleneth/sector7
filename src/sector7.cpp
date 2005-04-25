@@ -4,6 +4,7 @@
 NetServer *server = NULL;
 Console *console;
 std::list<Sector *> sectors;
+Entity *my_ship;
 
 int main(int argc, char *argv[])
 {
@@ -15,6 +16,7 @@ int main(int argc, char *argv[])
     console = new Console();
     
     console->print_logs = 1;
+    my_ship = NULL;
 
     client = new NetClient(servername, DEFAULT_PORT, "netclient");
  
