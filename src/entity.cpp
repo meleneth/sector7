@@ -9,6 +9,8 @@
 
 #include"math.h"
 
+#define SIGNED_OFFSET 10000
+
 // Public data members go here.
 Entity::Entity() // Constructor
 {
@@ -147,21 +149,21 @@ void Entity::inflateFull(EntFull *newFull)
 void Entity::deflateLoc(EntLoc *currentLoc)
 {
     currentLoc->entID    = htonl(ent_id);
-    currentLoc->x        = htonl((Uint32) floor(v->x));
-    currentLoc->y        = htonl((Uint32) floor(v->y));
-    currentLoc->angle    = htonl((Uint32) floor(v->angle));
-    currentLoc->power    = htonl((Uint32) floor(v->power));
-    currentLoc->rotation = htonl((Uint32) floor(v->rotation));
+    currentLoc->x        = htonl(SIGNED_OFFSET + (Sint32) floor(v->x));
+    currentLoc->y        = htonl(SIGNED_OFFSET + (Sint32) floor(v->y));
+    currentLoc->angle    = htonl(SIGNED_OFFSET + (Sint32) floor(v->angle));
+    currentLoc->power    = htonl(SIGNED_OFFSET + (Sint32) floor(v->power));
+    currentLoc->rotation = htonl(SIGNED_OFFSET + (Sint32) floor(v->rotation));
 }
 
 void Entity::deflateFull(EntFull *currentFull)
 {
     currentFull->entID = htonl(ent_id);
-    currentFull->x         = htonl((Uint32) floor(v->x));
-    currentFull->y         = htonl((Uint32) floor(v->y));
-    currentFull->angle     = htonl((Uint32) floor(v->angle));
-    currentFull->power     = htonl((Uint32) floor(v->power));
-    currentFull->rotation  = htonl((Uint32) floor(v->rotation));
+    currentFull->x         = htonl(SIGNED_OFFSET + (Sint32) floor(v->x));
+    currentFull->y         = htonl(SIGNED_OFFSET + (Sint32) floor(v->y));
+    currentFull->angle     = htonl(SIGNED_OFFSET + (Sint32) floor(v->angle));
+    currentFull->power     = htonl(SIGNED_OFFSET + (Sint32) floor(v->power));
+    currentFull->rotation  = htonl(SIGNED_OFFSET + (Sint32) floor(v->rotation));
     currentFull->textureID = htonl(texture->tilenum);
     currentFull->size      = size;
 }
