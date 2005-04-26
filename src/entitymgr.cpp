@@ -74,7 +74,7 @@ void EntityMgr::remove_ent (Entity *ent)
 Entity *EntityMgr::ent_for_id(Uint32 id)
 {
     std::list < Entity * >::iterator i;
-    Entity * newEnt;
+    Entity *newEnt;
 
     std::stringstream buf;
     buf << "Looking up ent for ID " <<id;
@@ -85,8 +85,7 @@ Entity *EntityMgr::ent_for_id(Uint32 id)
     }
     newEnt = new Entity();
     newEnt->ent_id = id;
-    newEnt->sector = this;
-    entities.push_front(newEnt);
+    add_entity(newEnt);
     return newEnt;
 }
 

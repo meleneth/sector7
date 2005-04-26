@@ -81,7 +81,8 @@ void NetClient::do_frame(void)
 
                 break;
             case GRANT_ENT_WRITE:
-                my_ship = (*sectors.begin())->ent_for_id(ntohl(*(ENTID_TYPE *)packet->command.datamsg.message));
+                console->log("Giggle on Grant");
+                my_ship = sector->ent_for_id((ENTID_TYPE)ntohl(*(ENTID_TYPE *)packet->command.datamsg.message));
                 buf << "Client got GRANT_ENT_WRITE for id" << my_ship->ent_id;
                 console->log(buf.str());
                 break;

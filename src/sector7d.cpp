@@ -78,7 +78,7 @@ int main(int argc, char *argv[])
         }
 
         for(i = sectors.begin() ; i != sectors.end(); ++i){
-            (*i)->frameupdate();
+//            (*i)->frameupdate();
         }
         console->render();
         mvaddstr(LINES-1, 0, input.c_str());

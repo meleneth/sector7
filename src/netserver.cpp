@@ -51,7 +51,9 @@ void NetServer::handle_packet(NetPacket *packet)
         switch(packet->get_command())
         {
             case HELLO:
+                console->log("Calling handle_hello");
                 handle_hello(packet);
+                console->log(" ... And lived through the experience");
                 break;
             case CHATMSG:
                 buf << "<server> Recieved: [" << packet->command.chatmsg.message << "] on port " << packet->their_addr.sin_port 
@@ -80,9 +82,9 @@ void NetServer::handle_hello(NetPacket *packet)
      Entity * newEnt = new Entity();
      newEnt->v->set_from_screen_coords(300,400);
      newEnt->texture = get_tex_id(TILE_SHIP);
-     (*sectors.begin())->add_entity(newEnt); 
+     sector->add_entity(newEnt); 
 
-     buf << packet->command.hello.nickname << " connected.  Directing it to sector: " << (*sectors.begin())->sector_id
+     buf << packet->command.hello.nickname << " connected.  Directing it to sector: " << sector->sector_id
          << " ent_id: " << newEnt->ent_id;
      console->log(buf.str());
 
