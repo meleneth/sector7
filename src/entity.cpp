@@ -53,7 +53,11 @@ void Entity::update_location(void){
 int Entity::frameupdate(void){
 
 	update_location();
-//    ((Sector *)sector)->chkCollision(this);
+
+    if(sector){
+        ((Sector *)sector)->chkCollision(this);
+    }
+
     return !chkDeath();
 }
 
