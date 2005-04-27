@@ -25,8 +25,6 @@ NetServer *server;
 EntityMgr *entmgr;
 Entity *my_ship;
 
-std::list< Sector * > sectors;
-
 std::string nickname;
 std::string servername;
 
@@ -43,6 +41,7 @@ int main(int argc, char *argv[])
     console = new Console(COLS, LINES);
     load_textures(1);
     my_ship = NULL;
+    std::list<Sector *> sectors;
 
     server = new NetServer(DEFAULT_PORT);
     nickname = "SERVER";

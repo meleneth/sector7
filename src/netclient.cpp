@@ -14,6 +14,7 @@
 #include"console.hpp"
 #include"globals.hpp"
 #include"entity.hpp"
+#include"sector.hpp"
 
 extern Console *console;
 
@@ -26,6 +27,7 @@ NetClient::NetClient(std::string servername, int port, std::string nickname) // 
     send_hello(talker, nickname);
     listener = talker;
     this->nickname = nickname;
+    sector = NULL;
 }
     
 NetClient::~NetClient() // Destructor
@@ -39,10 +41,13 @@ extern Entity *my_ship;
 
 void NetClient::do_frame(void)
 {
-    Sector *sector;
     NetPacket *packet = listener->get_next_packet();
     Entity *ent;
     Uint32 ent_id;
+
+    if(sector){
+        sector->frameupdate();
+    }
 
     if(packet)
     {
@@ -57,13 +62,12 @@ void NetClient::do_frame(void)
                 console->log("Client got HELLO");
                 console->log(packet->command.chatmsg.message);
                 sector = new Sector(packet->command.chatmsg.message);
-                sectors.push_front(sector);
                 console->log("sending net full ent req");
                 send_net_cmd(talker, REQ_ENT_FULL_UPDATE, 0, NULL);
+                sector->dump_all();
                 break;
             case INFO_ENT_FULL:
                 console->log("Client got info ent full");
-                sector = *sectors.begin();
                 EntFull *entdata;
                 entdata = (EntFull *) &packet->command;
                 ent_id = ntohl(entdata->entID);
@@ -71,6 +75,7 @@ void NetClient::do_frame(void)
                 ent->inflateFull(entdata);
                 ent->log_info();
                 console->log("dingity fang");
+                sector->dump_all();
                 break;
             case CHATMSG:
 //                buf << "<client> Recieved: [" << packet->command.chatmsg.message << "] on port " << packet->their_addr.sin_port 
@@ -82,6 +87,7 @@ void NetClient::do_frame(void)
                 break;
             case GRANT_ENT_WRITE:
                 console->log("Giggle on Grant");
+                sector->dump_all();
                 my_ship = sector->ent_for_id((ENTID_TYPE)ntohl(*(ENTID_TYPE *)packet->command.datamsg.message));
                 buf << "Client got GRANT_ENT_WRITE for id" << my_ship->ent_id;
                 console->log(buf.str());

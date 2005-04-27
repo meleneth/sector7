@@ -67,8 +67,7 @@ void NetServer::handle_packet(NetPacket *packet)
                 break;
             case REQ_ENT_FULL_UPDATE:
                 console->log("Server got REQ_ENT_FULL_UPDATE");
-                (*sectors.begin())->dump(packet);
-
+                sector->dump(packet);
             default:
                 console->log("Server got unknown msg!");
             break;
@@ -93,7 +92,7 @@ void NetServer::handle_hello(NetPacket *packet)
      NetServerClient *netserverclient = new NetServerClient(add_client_socket(&packet->their_addr), newEnt);
      clients.push_front(netserverclient);
      send_hello(netserverclient->socket, sector->sector_id);
-     send_net_cmd(netserverclient->socket, GRANT_ENT_WRITE, sizeof(ENTID_TYPE), &entid);
+     //send_net_cmd(netserverclient->socket, GRANT_ENT_WRITE, sizeof(ENTID_TYPE), &entid);
 }
 
 void NetServer::do_frame(void)

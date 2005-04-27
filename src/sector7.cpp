@@ -3,7 +3,6 @@
 
 NetServer *server = NULL;
 Console *console;
-std::list<Sector *> sectors;
 Entity *my_ship;
 
 int main(int argc, char *argv[])
@@ -12,6 +11,7 @@ int main(int argc, char *argv[])
     servername = "localhost";
 
     NetClient *client;
+    std::list<Sector *> sectors;
 
     console = new Console();
     

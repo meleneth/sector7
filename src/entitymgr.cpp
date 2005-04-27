@@ -30,13 +30,23 @@ Entity *EntityMgr::add_entity (Entity * entity)
   return entity;
 }
 
+void EntityMgr::dump_all(void)
+{
+    std::list < Entity * >::iterator i;
+    console->log("Entities:");
+
+    for (i = entities.begin(); i != entities.end(); ++i)
+        (*i)->log_info();
+
+    console->log("---------");
+}
+
 int EntityMgr::frameupdate (void)
 {
     std::list < Entity * >::iterator i;
     std::list < Entity *> dead_ents;
-    static Uint32 spawn = 0;
 
-    for (i = entities.begin (); i != entities.end (); ++i)
+    for (i = entities.begin(); i != entities.end(); ++i)
         if (!(*i)->frameupdate())
         {
             dead_ents.push_front(*i);
@@ -52,23 +62,23 @@ int EntityMgr::frameupdate (void)
 int EntityMgr::render (void)
 {
     std::list < Entity * >::iterator i;
-  num_ents = 0;
+    num_ents = 0;
 
-  glColor4f (1, 1, 1, 1);
+    glColor4f (1, 1, 1, 1);
 
-  for (i = entities.begin (); i != entities.end (); ++i)
+    for (i = entities.begin (); i != entities.end (); ++i)
     {
           (*i)->render ();
           num_ents++;
     }
-  return true;
+    return true;
 }
 
 void EntityMgr::remove_ent (Entity *ent)
 {
-        entities.remove(ent);
-        ent->death();
-        delete ent;
+    entities.remove(ent);
+    ent->death();
+    delete ent;
 }
 
 Entity *EntityMgr::ent_for_id(Uint32 id)
@@ -77,12 +87,13 @@ Entity *EntityMgr::ent_for_id(Uint32 id)
     Entity *newEnt;
 
     std::stringstream buf;
-    buf << "Looking up ent for ID " <<id;
+    buf << "Looking up ent for ID " << id;
     console->log(buf.str());
 
     for (i = entities.begin (); i != entities.end (); ++i) {
         if ((*i)->ent_id == id) return *i;
     }
+
     newEnt = new Entity();
     newEnt->ent_id = id;
     add_entity(newEnt);

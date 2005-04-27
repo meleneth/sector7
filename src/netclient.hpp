@@ -6,6 +6,7 @@
 #include<iostream>
 
 #include"udpsocket.hpp"
+#include"sector.hpp"
 
 class NetClient {
     public:
@@ -15,8 +16,9 @@ class NetClient {
         void do_frame(void);
         void send_line(std::string line);
 
-
         std::string nickname;
+
+        Sector *sector;
         
         UDPSocket *talker;
         UDPSocket *listener;
