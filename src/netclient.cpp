@@ -39,11 +39,12 @@ NetClient::~NetClient() // Destructor
 
 extern Entity *my_ship;
 
-void NetClient::do_frame(void)
+Sector *NetClient::do_frame(void)
 {
     NetPacket *packet = listener->get_next_packet();
     Entity *ent;
     Uint32 ent_id;
+    Sector *new_sector = NULL;
 
     if(sector){
         sector->frameupdate();
@@ -65,6 +66,7 @@ void NetClient::do_frame(void)
                 console->log("sending net full ent req");
                 send_net_cmd(talker, REQ_ENT_FULL_UPDATE, 0, NULL);
                 sector->dump_all();
+                new_sector = sector;
                 break;
             case INFO_ENT_FULL:
                 console->log("Client got info ent full");
@@ -102,7 +104,7 @@ void NetClient::do_frame(void)
 
         delete packet;
     }
-
+    return new_sector;
 }
 
 void NetClient::send_line(std::string line)

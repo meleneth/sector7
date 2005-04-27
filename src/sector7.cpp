@@ -39,6 +39,7 @@ int main(int argc, char *argv[])
     Uint8 keys[1024];
     Uint32 framecount = 0;
     std::list< Sector * >::iterator i;
+    Sector *new_sector;
 
     for (speed = 0; speed < 256; speed++)
         keys[speed] = SDL_RELEASED;
@@ -47,12 +48,18 @@ int main(int argc, char *argv[])
         while (SDL_PollEvent (&event) == 0 && !quit)
         {
             renderer->RenderFrame((*sectors.begin()));
-            client->do_frame();
+            new_sector = client->do_frame();
+            
+            if(new_sector){
+                sectors.push_front(new_sector);
+            }
+
+
             if (keys[SDLK_ESCAPE] == SDL_PRESSED)
                 quit = true;
       //      handle_user_input();
             for(i = sectors.begin() ; i != sectors.end(); ++i){
-      //          (*i)->frameupdate();
+                (*i)->frameupdate();
             }
             SDL_Delay (5);
             framecount++;

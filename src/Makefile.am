@@ -6,7 +6,7 @@ s7_SOURCES = netserverclient.cpp netserverclient.hpp sector7.cpp sector7.hpp ren
 
 s7_LDADD = ../libs/glpng/libglpng.a -lncurses @GL_LIBS@ @SDL_LIBS@ 
 
-s7t_SOURCES = sector7t.cpp entity.cpp entitymgr.cpp sector.cpp vector.cpp texture.cpp util.cpp udpsocket.cpp netpacket.cpp console.cpp
+s7t_SOURCES = sector7t.cpp entity.cpp entitymgr.cpp sector.cpp vector.cpp texture.cpp util.cpp udpsocket.cpp netpacket.cpp console.cpp netserver.cpp netserver.hpp netserverclient.cpp netserverclient.hpp
 s7t_LDADD = ../libs/glpng/libglpng.a -lncurses @GL_LIBS@ @SDL_LIBS@
 #-lSDL_mixer
 #engine/libengine.a levels/liblevels.a entities/libentities.a base/libbase.a weapons/libweapons.a projectiles/libprojectiles.a

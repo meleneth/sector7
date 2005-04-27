@@ -15,6 +15,7 @@ class NetServer {
         NetServer::NetServer(int bar); // Constructor
         NetServer::~NetServer(); // Destructor
         void send_all_clients(int length, void *data);
+        void send_all_clients(NetPacket *packet);
         UDPSocket *add_client_socket(struct sockaddr_in *sock); // Adds new client to the list, and returns it
         void do_frame(void);
         void handle_packet(NetPacket *packet);

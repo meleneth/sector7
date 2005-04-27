@@ -28,6 +28,7 @@ NetServer::NetServer(int port) // Constructor
     console->log("Starting net server..");
     listener = new UDPSocket();
     listener->setup_for_listen(port);
+    sector = NULL;
 }
     
 NetServer::~NetServer() // Destructor
@@ -79,7 +80,7 @@ void NetServer::handle_hello(NetPacket *packet)
      std::stringstream buf;
 
      Entity * newEnt = new Entity();
-     newEnt->v->set_from_screen_coords(300,400);
+     newEnt->v->random_location(-300, -300, 300, 300);
      newEnt->texture = get_tex_id(TILE_SHIP);
      sector->add_entity(newEnt); 
 
@@ -124,6 +125,16 @@ void NetServer::send_all_clients(int length, void *data)
     for(i = clients.begin() ; i!=clients.end(); i++)
     {
         (*i)->socket->send(length, data);
+    }
+}
+
+void NetServer::send_all_clients(NetPacket *packet)
+{
+    std::list< NetServerClient * >::iterator i;
+
+    for(i = clients.begin() ; i!=clients.end(); i++)
+    {
+        (*i)->socket->send(packet);
     }
 }
 

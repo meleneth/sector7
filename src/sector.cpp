@@ -70,6 +70,8 @@ void Sector::dump(NetPacket *packet)
         (*i)->deflateFull(entData);
         client->socket->send(dumper);
     }    
+
+    delete dumper;
 }
 
 NetServerClient *Sector::get_client(NetPacket *packet)
@@ -84,6 +86,15 @@ NetServerClient *Sector::get_client(NetPacket *packet)
 
 Entity *Sector::add_entity (Entity *entity)
 {
+    NetPacket *data = new NetPacket(sizeof(EntFull));
+    EntFull *entData = (EntFull *) &data->command;
+
+    if(server){
+        entity->deflateFull(entData);
+        entData->cmd = (NetCmd) htonl(INFO_ENT_FULL);
+        server->send_all_clients(data);
+    }
+    
     entities.push_front (entity);
         
     entity->sector = this;
