@@ -52,6 +52,7 @@ void Sector::setup_connecting(void)
     ship->size = 128;
     ship->texture = get_tex_id(TILE_SHIP);
 	ship->sector = this;
+    ship->ent_id = 31337;
     add_entity(ship);
 }
 
