@@ -86,15 +86,8 @@ Entity *Sector::add_entity (Entity *entity)
 {
     entities.push_front (entity);
         
-    if(entity->ent_id == 0){
-        ent_id++;
-        entity->ent_id = ent_id;
-        entity->sector = this;
-        std::stringstream buf;
-        buf << "Entity " << ent_id << " is Reporting for Duty (SIR!!)";
-        console->log(buf.str());
-    }                                    
-    return entity;
+    entity->sector = this;
+    return EntityMgr::add_entity(entity);
 } 
 
 // Private members go here.
