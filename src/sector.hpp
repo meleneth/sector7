@@ -19,7 +19,8 @@ class Sector : public EntityMgr {
         void dump(NetPacket *packet);
         std::string sector_id;
         int is_master;
-        NetServerClient * get_client(NetPacket *packet);
+        NetServerClient *get_client(NetPacket *packet);
+        virtual Entity *add_entity (Entity * entity);
     private:
         // Private members go here.
     protected:

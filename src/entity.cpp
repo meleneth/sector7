@@ -174,7 +174,6 @@ void Entity::log_info(void){
     std::stringstream buf;
     buf << "Entity [" << ent_id << "] Info: ";
     buf << "x: " << v->x << " y: " << v->y << " size: " << (int) size << " tid: " << (int)texture->tilenum;
-
     if(sector){
     buf << " sector: " << ((Sector *)sector)->sector_id;
     }

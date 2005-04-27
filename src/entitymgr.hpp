@@ -16,7 +16,7 @@ class EntityMgr {
         EntityMgr::EntityMgr(); // Constructor
         EntityMgr::~EntityMgr(); // Destructor
         Entity *_new_ent_of_type(Uint16 ent_type, Sint16 size);
-        Entity *add_entity(Entity *entity);
+        virtual Entity *add_entity(Entity *entity);
         Entity *ent_for_id(Uint32 id);
         void dump_all(void);
 

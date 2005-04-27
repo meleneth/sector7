@@ -72,7 +72,7 @@ void Sector::dump(NetPacket *packet)
     }    
 }
 
-NetServerClient * Sector::get_client(NetPacket *packet)
+NetServerClient *Sector::get_client(NetPacket *packet)
 {
     std::list< NetServerClient * >::iterator i;
     for (i = server->clients.begin(); i != server->clients.end(); ++i) {
@@ -81,6 +81,21 @@ NetServerClient * Sector::get_client(NetPacket *packet)
         }
     }
 }
+
+Entity *Sector::add_entity (Entity *entity)
+{
+    entities.push_front (entity);
+        
+    if(entity->ent_id == 0){
+        ent_id++;
+        entity->ent_id = ent_id;
+        entity->sector = this;
+        std::stringstream buf;
+        buf << "Entity " << ent_id << " is Reporting for Duty (SIR!!)";
+        console->log(buf.str());
+    }                                    
+    return entity;
+} 
 
 // Private members go here.
 // Protected members go here.
