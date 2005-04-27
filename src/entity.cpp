@@ -53,7 +53,7 @@ void Entity::update_location(void){
 int Entity::frameupdate(void){
 
 	update_location();
-    ((Sector *)sector)->chkCollision(this);
+//    ((Sector *)sector)->chkCollision(this);
     return !chkDeath();
 }
 
@@ -83,6 +83,8 @@ int Entity::chkDeath(void){
 int Entity::chkCollision(Entity *check)
 {
     
+    return false;
+
     if(!(collision_mask & check->alignment))
         return false;
     
@@ -171,7 +173,7 @@ void Entity::deflateFull(EntFull *currentFull)
 void Entity::log_info(void){
     std::stringstream buf;
     buf << "Entity [" << ent_id << "] Info: ";
-    buf << "x: " << v->x << " y: " << v->y << " size: " << (int) size << " tid: " << (int)texture->tilenum << " sector: " << ((Sector *)sector)->sector_id;
+//    buf << "x: " << v->x << " y: " << v->y << " size: " << (int) size << " tid: " << (int)texture->tilenum << " sector: " << ((Sector *)sector)->sector_id;
     console->log(buf.str());
 }
 
