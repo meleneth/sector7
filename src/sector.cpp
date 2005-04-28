@@ -13,6 +13,7 @@ Sector::Sector(std::string sector_id) // Constructor
     this->sector_id = sector_id;
     is_master = 0;
     console->log("Sector " + sector_id + " created");
+    server = NULL;
 }
     
 Sector::~Sector() // Destructor
@@ -23,24 +24,6 @@ void Sector::setup_master(void)
 {
     is_master = 1;
     console->log("Master sector initialized.");
-
-    Entity *ship;
-
-    ship = new Entity();
-    ship->v->set_from_screen_coords(300, 200);
-    ship->size = 32;
-    ship->texture = get_tex_id(TILE_SHIP);
-	ship->sector = this;
-    add_entity(ship);
-    ship->log_info();
-	
-    ship = new Entity();
-    ship->v->set_from_screen_coords(620, 180);
-    ship->size = 32;
-    ship->texture = get_tex_id(TILE_SHIP);
-	ship->sector = this;
-    add_entity(ship);
-    ship->log_info();
 }
 
 void Sector::setup_connecting(void)
@@ -58,7 +41,11 @@ void Sector::setup_connecting(void)
 
 void Sector::dump(NetPacket *packet)
 {
-    NetServerClient *client = get_client(packet);
+    if(!server){
+        return;
+    }
+
+    NetServerClient *client = server->get_client(packet);
 
     NetPacket *dumper = new NetPacket(sizeof(EntFull));
 
@@ -74,15 +61,6 @@ void Sector::dump(NetPacket *packet)
     delete dumper;
 }
 
-NetServerClient *Sector::get_client(NetPacket *packet)
-{
-    std::list< NetServerClient * >::iterator i;
-    for (i = server->clients.begin(); i != server->clients.end(); ++i) {
-        if ((*i)->socket->is_reply_to(&packet->their_addr)) {
-            return *i;
-        }
-    }
-}
 
 Entity *Sector::add_entity (Entity *entity)
 {
@@ -95,8 +73,6 @@ Entity *Sector::add_entity (Entity *entity)
         server->send_all_clients(data);
     }
     
-    entities.push_front (entity);
-        
     entity->sector = this;
     return EntityMgr::add_entity(entity);
 } 

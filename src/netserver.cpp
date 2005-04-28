@@ -15,6 +15,7 @@
 #define MAXBUFLEN 100
 
 #include"console.hpp"
+#include"entity.hpp"
 
 extern Console *console;
 
@@ -47,6 +48,9 @@ void NetServer::handle_packet(NetPacket *packet)
     UDPSocket *replysock;
     NetPacket *replypacket;
 
+    ENTID_TYPE ent_id;
+    Entity *ent;
+
     std::stringstream buf;
 
         switch(packet->get_command())
@@ -65,6 +69,16 @@ void NetServer::handle_packet(NetPacket *packet)
                 break;
             case GOODBYE:
                 console->log("Server got GOODBYE");
+                break;
+            case INFO_ENT_FULL:
+                console->log("Server got info ent full");
+                EntFull *entdata;
+                entdata = (EntFull *) &packet->command;
+                ent_id = ntohl(entdata->entID);
+                ent =  sector->ent_for_id(ent_id);
+                ent->inflateFull(entdata);
+                ent->log_info();
+                console->log("bippity boppity boo");
                 break;
             case REQ_ENT_FULL_UPDATE:
                 console->log("Server got REQ_ENT_FULL_UPDATE");
@@ -144,6 +158,17 @@ UDPSocket *NetServer::add_client_socket(struct sockaddr_in *sock)
     reply->setup_reply_socket(sock);
     return reply;
 }
+
+NetServerClient *NetServer::get_client(NetPacket *packet)
+{
+    std::list< NetServerClient * >::iterator i;
+    for (i = clients.begin(); i != clients.end(); ++i) {
+        if ((*i)->socket->is_reply_to(&packet->their_addr)) {
+            return *i;
+        }
+    }
+}
+
 
 // Private members go here.
 // Protected members go here.

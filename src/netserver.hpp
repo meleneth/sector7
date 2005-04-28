@@ -19,7 +19,7 @@ class NetServer {
         UDPSocket *add_client_socket(struct sockaddr_in *sock); // Adds new client to the list, and returns it
         void do_frame(void);
         void handle_packet(NetPacket *packet);
-        UDPSocket  *get_client(NetPacket *packet);
+        NetServerClient *get_client(NetPacket *packet);
         void handle_hello(NetPacket *packet);
         
         UDPSocket *listener;

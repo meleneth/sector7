@@ -77,7 +77,6 @@ Sector *NetClient::do_frame(void)
                 ent->inflateFull(entdata);
                 ent->log_info();
                 console->log("dingity fang");
-                sector->dump_all();
                 break;
             case CHATMSG:
 //                buf << "<client> Recieved: [" << packet->command.chatmsg.message << "] on port " << packet->their_addr.sin_port 
