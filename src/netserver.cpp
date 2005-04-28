@@ -79,6 +79,7 @@ void NetServer::handle_packet(NetPacket *packet)
                 ent->inflateFull(entdata);
                 ent->log_info();
                 console->log("bippity boppity boo");
+                send_all_clients(packet->data_length, packet->command.buf);
                 break;
             case REQ_ENT_FULL_UPDATE:
                 console->log("Server got REQ_ENT_FULL_UPDATE");

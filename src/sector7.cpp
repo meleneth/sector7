@@ -66,6 +66,15 @@ int main(int argc, char *argv[])
 
                 if (keys[SDLK_d] == SDL_PRESSED)
                     my_ship->move (SHIP_SPEED, 0);
+
+                NetPacket *dumper = new NetPacket(sizeof(EntFull));
+
+                EntFull *entData = (EntFull *) &dumper->command;
+                entData->cmd = (NetCmd) htonl(INFO_ENT_FULL);
+                my_ship->deflateFull(entData);
+                client->talker->send(dumper);
+
+                delete dumper;
             }
             
             if (keys[SDLK_RETURN] == SDL_PRESSED)
@@ -73,7 +82,7 @@ int main(int argc, char *argv[])
             
             if (keys[SDLK_ESCAPE] == SDL_PRESSED)
                 quit = true;
-      //      handle_user_input();
+            
             for(i = sectors.begin() ; i != sectors.end(); ++i){
                 (*i)->frameupdate();
             }
