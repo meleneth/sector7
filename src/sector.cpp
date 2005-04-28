@@ -13,7 +13,6 @@ Sector::Sector(std::string sector_id) // Constructor
     this->sector_id = sector_id;
     is_master = 0;
     console->log("Sector " + sector_id + " created");
-    server = NULL;
 }
     
 Sector::~Sector() // Destructor
