@@ -54,7 +54,23 @@ int main(int argc, char *argv[])
                 sectors.push_front(new_sector);
             }
 
+            if (my_ship){
+                if (keys[SDLK_w] == SDL_PRESSED)
+                    my_ship->move (0, -SHIP_SPEED);
+    
+                if (keys[SDLK_a] == SDL_PRESSED)
+                    my_ship->move (-SHIP_SPEED, 0);
 
+                if (keys[SDLK_s] == SDL_PRESSED)
+                    my_ship->move (0, SHIP_SPEED);
+
+                if (keys[SDLK_d] == SDL_PRESSED)
+                    my_ship->move (SHIP_SPEED, 0);
+            }
+            
+            if (keys[SDLK_RETURN] == SDL_PRESSED)
+                quit = true;
+            
             if (keys[SDLK_ESCAPE] == SDL_PRESSED)
                 quit = true;
       //      handle_user_input();

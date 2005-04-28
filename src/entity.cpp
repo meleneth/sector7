@@ -74,6 +74,12 @@ void Entity::render(void){
     }
 }
 
+void Entity::move(Sint32 xdir, Sint32 ydir)
+{
+    v->x+=xdir;
+    v->y+=ydir;
+}
+
 int Entity::chkDeath(void){
     if((v->y > (YRES + 50)) || (v->y < -400)){
         return true;

@@ -82,6 +82,7 @@ class Entity {
         virtual void death();
         void kill_me_now(void); 
         void log_info(void);
+        void move(Sint32 xdir, Sint32 ydir);
 
         void inflateLoc(EntLoc *newLoc);
         void inflateFull(EntFull *newFull);
