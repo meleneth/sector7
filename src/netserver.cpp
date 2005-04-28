@@ -107,7 +107,7 @@ void NetServer::handle_hello(NetPacket *packet)
      NetServerClient *netserverclient = new NetServerClient(add_client_socket(&packet->their_addr), newEnt);
      clients.push_front(netserverclient);
      send_hello(netserverclient->socket, sector->sector_id);
-     //send_net_cmd(netserverclient->socket, GRANT_ENT_WRITE, sizeof(ENTID_TYPE), &entid);
+     send_net_cmd(netserverclient->socket, GRANT_ENT_WRITE, sizeof(ENTID_TYPE), &entid);
 }
 
 void NetServer::do_frame(void)

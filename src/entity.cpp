@@ -15,7 +15,6 @@
 Entity::Entity() // Constructor
 {
     setup_entity();
-    texture = NULL;
 }
 
 Entity::Entity(ENT_ALIGNMENT ent_alignment) // Constructor
