@@ -54,9 +54,6 @@ Sector *NetClient::do_frame(void)
     {
         std::stringstream buf;
 
-        buf << "Client got packet of length " << packet->data_length;
-        console->log(buf.str());
-
         switch(packet->get_command())
         {
             case HELLO:
@@ -87,7 +84,7 @@ Sector *NetClient::do_frame(void)
                 console->log("Giggle on Grant");
                 sector->dump_all();
                 my_ship = sector->ent_for_id((ENTID_TYPE)ntohl(*(ENTID_TYPE *)packet->command.datamsg.message));
-                buf << "Client got GRANT_ENT_WRITE for id" << my_ship->ent_id;
+                buf << "Client got GRANT_ENT_WRITE for id " << my_ship->ent_id;
                 console->log(buf.str());
                 break;
             case GOODBYE:
