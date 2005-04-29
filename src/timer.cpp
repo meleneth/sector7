@@ -4,13 +4,14 @@
 
 void wait_next_frame(void){
     static Uint32 last_frame = 0;
-    Uint32 now = SDL_GetTicks();
+    Uint32 now;
 
     if(last_frame == 0)
     {
         last_frame = SDL_GetTicks();
     }
-
+    
+    now = SDL_GetTicks();
     if((last_frame + TIME_FRAME) > now){
         last_frame += TIME_FRAME;
     }else{
