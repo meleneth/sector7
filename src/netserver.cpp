@@ -87,6 +87,7 @@ void NetServer::handle_packet(NetPacket *packet)
             case REQ_ENT_FULL_UPDATE:
                 console->log("Server got REQ_ENT_FULL_UPDATE");
                 sector->dump(packet);
+                break;
             default:
                 console->log("Server got unknown msg!");
             break;
