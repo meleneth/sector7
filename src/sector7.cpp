@@ -8,8 +8,21 @@ Entity *my_ship;
 
 int main(int argc, char *argv[])
 {
+    std::string nickname;
+    std::string servername;
+    
+    if(argc == 1){
+        nickname = "netclient";
+        servername = "localhost";
+    }else if(argc == 3){
+        nickname = strdup(argv[1]);
+        servername = strdup(argv[2]);
+    }else{
+        printf("Usage: s7 [nick servername]\n");
+        exit(0);
+    }
     quit = false;
-    servername = "localhost";
+   // servername = "localhost";
 
     NetClient *client;
     std::list<Sector *> sectors;
@@ -20,7 +33,7 @@ int main(int argc, char *argv[])
     my_ship = NULL;
     int dirty=0;
 
-    client = new NetClient(servername, DEFAULT_PORT, "netclient");
+    client = new NetClient(servername, DEFAULT_PORT, nickname);
  
 //    soundmgr = new SoundCore();
     
