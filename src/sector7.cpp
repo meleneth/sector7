@@ -1,6 +1,7 @@
 #include"sector7.hpp"
 #include"netserver.hpp"
 #include "timer.hpp"
+#include"vector.hpp"
 
 NetServer *server = NULL;
 Console *console;
@@ -10,6 +11,8 @@ int main(int argc, char *argv[])
 {
     std::string nickname;
     std::string servername;
+    Vector *mouse_cursor;
+    int mx, my;
     
     if(argc == 1){
         nickname = "netclient";
@@ -39,6 +42,8 @@ int main(int argc, char *argv[])
     
     Renderer  *renderer = new Renderer();
     Texture *no_texture = get_tex_id(TILE_NOTILE);
+    mouse_cursor = new Vector();
+    int reticle_angle = 0;
 
 //    bg_particles = new EntityMgr();
 //    fg_particles = new EntityMgr();
@@ -67,6 +72,17 @@ int main(int argc, char *argv[])
         {
             wait_next_frame();
             renderer->RenderFrame((*sectors.begin()));
+            if(my_ship){
+                glLoadIdentity();
+                glTranslatef(mouse_cursor->x, mouse_cursor->y, 0);
+
+                reticle_angle += 4;
+                if (reticle_angle > 360)
+                    reticle_angle = 0;
+                glRotatef(reticle_angle, 0, 0, 1);
+                glColor4f(0, 1, 0, .65);
+                get_tex_id(TILE_RETICLE)->DrawGLSquare(16);
+            }
 
             new_sector = client->do_frame();
             
@@ -94,6 +110,9 @@ int main(int argc, char *argv[])
                     my_ship->move (SHIP_SPEED, 0);
                     dirty = 1;
                 }
+
+                SDL_GetMouseState(&mx, &my);
+                mouse_cursor->set_from_screen_coords(mx, my);
 
                 if(my_ship->texture != no_texture && dirty){
                     NetPacket *dumper = new NetPacket(sizeof(EntFull));
