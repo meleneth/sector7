@@ -9,6 +9,7 @@
 #include"sector.hpp"
 #include"entitymgr.hpp"
 #include"globals.hpp"
+#include"timer.hpp"
 
 #include"SDL.h"
 
@@ -58,8 +59,7 @@ int main(int argc, char *argv[])
     
     while(1){
         // Select loop here
-
-        SDL_Delay(10);
+        wait_next_frame();
 
         int key = getch();
         if(key != ERR){

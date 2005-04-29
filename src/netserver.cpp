@@ -78,10 +78,11 @@ void NetServer::handle_packet(NetPacket *packet)
 
                 client = get_client(packet);
                 ent =  sector->ent_for_id(ent_id);
-                ent->inflateFull(entdata);
-                ent->log_info();
-                console->log("bippity boppity boo");
-                send_all_clients(packet->data_length, packet->command.buf);
+
+                if(client->entity->ent_id == ent_id){
+                    client->entity->inflateFull(entdata);
+                    send_all_clients(packet, client);
+                }
                 break;
             case REQ_ENT_FULL_UPDATE:
                 console->log("Server got REQ_ENT_FULL_UPDATE");

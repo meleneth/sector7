@@ -1,5 +1,6 @@
 #include"sector7.hpp"
 #include"netserver.hpp"
+#include "timer.hpp"
 
 NetServer *server = NULL;
 Console *console;
@@ -51,7 +52,9 @@ int main(int argc, char *argv[])
     while(!quit){
         while (SDL_PollEvent (&event) == 0 && !quit)
         {
+            wait_next_frame();
             renderer->RenderFrame((*sectors.begin()));
+
             new_sector = client->do_frame();
             
             if(new_sector){
@@ -101,7 +104,7 @@ int main(int argc, char *argv[])
             for(i = sectors.begin() ; i != sectors.end(); ++i){
                 (*i)->frameupdate();
             }
-            SDL_Delay (5);
+
             framecount++;
         }
         switch (event.type)
