@@ -47,6 +47,7 @@ void NetServer::handle_packet(NetPacket *packet)
 {
     UDPSocket *replysock;
     NetPacket *replypacket;
+    NetServerClient *client;
 
     ENTID_TYPE ent_id;
     Entity *ent;
@@ -71,15 +72,17 @@ void NetServer::handle_packet(NetPacket *packet)
                 console->log("Server got GOODBYE");
                 break;
             case INFO_ENT_FULL:
-                console->log("Server got info ent full");
                 EntFull *entdata;
                 entdata = (EntFull *) &packet->command;
                 ent_id = ntohl(entdata->entID);
+
+                client = get_client(packet);
                 ent =  sector->ent_for_id(ent_id);
-                ent->inflateFull(entdata);
-                ent->log_info();
-                console->log("bippity boppity boo");
-                send_all_clients(packet->data_length, packet->command.buf);
+
+                if(client->entity->ent_id == ent_id){
+                    client->entity->inflateFull(entdata);
+                    send_all_clients(packet, client);
+                }
                 break;
             case REQ_ENT_FULL_UPDATE:
                 console->log("Server got REQ_ENT_FULL_UPDATE");
@@ -150,6 +153,18 @@ void NetServer::send_all_clients(NetPacket *packet)
     for(i = clients.begin() ; i!=clients.end(); i++)
     {
         (*i)->socket->send(packet);
+    }
+}
+
+void NetServer::send_all_clients(NetPacket *packet, NetServerClient *except_me)
+{
+    std::list< NetServerClient * >::iterator i;
+
+    for(i = clients.begin() ; i!=clients.end(); i++)
+    {
+        if((*i) != except_me){
+            (*i)->socket->send(packet);
+        }
     }
 }
 

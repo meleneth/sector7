@@ -99,12 +99,9 @@ void load_textures(int dummy)
 Texture *get_tex_id(TileNum tile_id)
 {
     std::list < Texture * >::iterator i;
-    std::stringstream(buf);
-    buf << "Looking up: " << (int) tile_id;
-    console->log(buf.str());
+
     for(i = textures.begin(); i != textures.end(); ++i){
         if((*i)->tilenum == tile_id){
-            console->log("Looked up texture");
             return *i;
         }
     }

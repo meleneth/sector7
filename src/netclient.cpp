@@ -69,14 +69,11 @@ Sector *NetClient::do_frame(void)
                 new_sector = sector;
                 break;
             case INFO_ENT_FULL:
-                console->log("Client got info ent full");
                 EntFull *entdata;
                 entdata = (EntFull *) &packet->command;
                 ent_id = ntohl(entdata->entID);
                 ent =  sector->ent_for_id(ent_id);
                 ent->inflateFull(entdata);
-                ent->log_info();
-                console->log("dingity fang");
                 break;
             case CHATMSG:
 //                buf << "<client> Recieved: [" << packet->command.chatmsg.message << "] on port " << packet->their_addr.sin_port 

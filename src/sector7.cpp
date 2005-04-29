@@ -17,11 +17,15 @@ int main(int argc, char *argv[])
     
     console->print_logs = 1;
     my_ship = NULL;
+    int dirty=0;
 
     client = new NetClient(servername, DEFAULT_PORT, "netclient");
  
 //    soundmgr = new SoundCore();
+    
     Renderer  *renderer = new Renderer();
+    Texture *no_texture = get_tex_id(TILE_NOTILE);
+
 //    bg_particles = new EntityMgr();
 //    fg_particles = new EntityMgr();
 //    scoreboard = new ScoreBoard();
@@ -55,26 +59,37 @@ int main(int argc, char *argv[])
             }
 
             if (my_ship){
-                if (keys[SDLK_w] == SDL_PRESSED)
+                if (keys[SDLK_w] == SDL_PRESSED){
                     my_ship->move (0, -SHIP_SPEED);
+                    dirty = 1;
+                }
     
-                if (keys[SDLK_a] == SDL_PRESSED)
+                if (keys[SDLK_a] == SDL_PRESSED){
                     my_ship->move (-SHIP_SPEED, 0);
+                    dirty = 1;
+                }
 
-                if (keys[SDLK_s] == SDL_PRESSED)
+                if (keys[SDLK_s] == SDL_PRESSED){
                     my_ship->move (0, SHIP_SPEED);
+                    dirty = 1;
+                }
 
-                if (keys[SDLK_d] == SDL_PRESSED)
+                if (keys[SDLK_d] == SDL_PRESSED){
                     my_ship->move (SHIP_SPEED, 0);
+                    dirty = 1;
+                }
 
-                NetPacket *dumper = new NetPacket(sizeof(EntFull));
+                if(my_ship->texture != no_texture && dirty){
+                    NetPacket *dumper = new NetPacket(sizeof(EntFull));
 
-                EntFull *entData = (EntFull *) &dumper->command;
-                entData->cmd = (NetCmd) htonl(INFO_ENT_FULL);
-                my_ship->deflateFull(entData);
-                client->talker->send(dumper);
+                    EntFull *entData = (EntFull *) &dumper->command;
+                    entData->cmd = (NetCmd) htonl(INFO_ENT_FULL);
+                    my_ship->deflateFull(entData);
+                    client->talker->send(dumper);
+                    dirty = 0;
 
-                delete dumper;
+                    delete dumper;
+                }
             }
             
             if (keys[SDLK_RETURN] == SDL_PRESSED)

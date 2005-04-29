@@ -86,10 +86,6 @@ Entity *EntityMgr::ent_for_id(Uint32 id)
     std::list < Entity * >::iterator i;
     Entity *newEnt;
 
-    std::stringstream buf;
-    buf << "Looking up ent for ID " << id;
-    console->log(buf.str());
-
     for (i = entities.begin (); i != entities.end (); ++i) {
         if ((*i)->ent_id == id) return *i;
     }
