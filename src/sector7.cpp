@@ -26,7 +26,6 @@ int main(int argc, char *argv[])
         exit(0);
     }
     quit = false;
-   // servername = "localhost";
 
     NetClient *client;
     std::list<Sector *> sectors;
@@ -38,22 +37,12 @@ int main(int argc, char *argv[])
     int dirty=0;
 
     client = new NetClient(servername, DEFAULT_PORT, nickname);
- 
-//    soundmgr = new SoundCore();
     
     Renderer  *renderer = new Renderer();
     Texture *no_texture = get_tex_id(TILE_NOTILE);
     mouse_cursor = new Vector();
     int reticle_angle = 0;
 
-//    bg_particles = new EntityMgr();
-//    fg_particles = new EntityMgr();
-//    scoreboard = new ScoreBoard();
-//    entmgr = new EntityMgr();
-//    player1 = new Player();
-
-  //  entmgr->add_entity(player1);
-    
     Sector *sector = new Sector("connecting");
     sector->setup_connecting();
     sectors.push_front(sector);
@@ -164,20 +153,15 @@ int main(int argc, char *argv[])
                 break;
 
             case SDL_QUIT:
-                {
-                    printf ("Quit requested, quitting.\n");
-                    quit=true;
-                }
+                printf ("Quit requested, quitting.\n");
+                quit=true;
                 break;
+                
             case SDL_KEYUP:
-                //Keyboard handler
-                //      printf("-Value: %d\n",event.key.keysym.sym);
-
                 keys[event.key.keysym.sym] = 0;
                 break;
 
             case SDL_KEYDOWN:
-                //              printf("Value: %d\n",event.key.keysym.sym);
                 keys[event.key.keysym.sym] = SDL_PRESSED;
                 break;
 
