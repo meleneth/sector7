@@ -21,7 +21,6 @@ Renderer::~Renderer()		// Destructor
 
 int Renderer::RenderFrame(Sector *sector)
 {
-    GLenum gl_error;
     static int reticle_angle = 0;
 
     ClearScreen();
@@ -52,6 +51,12 @@ int Renderer::RenderFrame(Sector *sector)
     //    glColor4f(1, 1, 1, 1);
     //player1->render();
     //}
+    return true;
+}
+
+void Renderer::swap_buffers(void)
+{
+    GLenum gl_error;
     SDL_GL_SwapBuffers();
 
     /* Check for error conditions. */
@@ -60,7 +65,6 @@ int Renderer::RenderFrame(Sector *sector)
     if (gl_error != GL_NO_ERROR) {
         fprintf(stderr, "KarmaRender: OpenGL error: %d\n", gl_error);
     }
-    return true;
 }
 
 

@@ -11,7 +11,8 @@ int main(int argc, char *argv[])
 {
     std::string nickname;
     std::string servername;
-    Vector *mouse_cursor;
+    Vector *mouse_cursor = new Vector();
+
     int mx, my;
     
     if(argc == 1){
@@ -72,6 +73,7 @@ int main(int argc, char *argv[])
         {
             wait_next_frame();
             renderer->RenderFrame((*sectors.begin()));
+
             if(my_ship){
                 glLoadIdentity();
                 glTranslatef(mouse_cursor->x, mouse_cursor->y, 0);
@@ -83,6 +85,8 @@ int main(int argc, char *argv[])
                 glColor4f(0, 1, 0, .65);
                 get_tex_id(TILE_RETICLE)->DrawGLSquare(16);
             }
+
+            renderer->swap_buffers();
 
             new_sector = client->do_frame();
             
@@ -114,9 +118,11 @@ int main(int argc, char *argv[])
                 SDL_GetMouseState(&mx, &my);
                 mouse_cursor->set_from_screen_coords(mx, my);
 
+                my_ship->v->aim(mouse_cursor->x, mouse_cursor->y);
+                my_ship->rotation = my_ship->v->angle;
+
                 if(my_ship->texture != no_texture && dirty){
                     NetPacket *dumper = new NetPacket(sizeof(EntFull));
-
                     EntFull *entData = (EntFull *) &dumper->command;
                     entData->cmd = (NetCmd) htonl(INFO_ENT_FULL);
                     my_ship->deflateFull(entData);

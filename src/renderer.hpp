@@ -14,6 +14,7 @@ class Renderer {
         // Public data members go here.
         Renderer::Renderer(); // Constructor
         Renderer::~Renderer(); // Destructor
+        void swap_buffers(void);
         int RenderFrame(Sector *sector);
         void ClearScreen(void);
 
