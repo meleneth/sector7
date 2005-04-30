@@ -1,35 +1,28 @@
 
-AC_INIT()
-
-AC_CANONICAL_HOST
-AC_CANONICAL_TARGET
+AC_INIT(src/sector7.cpp)
 
 PROJ_NAME=sector7
 PROJ_VERSION=.01
+AUTOMAKE_OPTIONS = foreign
+
+AC_CANONICAL_TARGET
+
 AM_INIT_AUTOMAKE($PROJ_NAME, $PROJ_VERSION)
 
-# Setup for automake
+AC_CONFIG_HEADERS(config.h)
 
-# Detect the canonical host and target build environment
-
-# Check for tools
+AC_PROG_CC
 AC_PROG_CXX
 
-# library generator autoconf
+AC_PROG_INSTALL
 AC_PROG_RANLIB
 
-# Check for compiler environment
-AC_C_CONST
 
 dnl Check for SDL
 SDL_VERSION=1.2.0
 AM_PATH_SDL($SDL_VERSION, :, AC_MSG_ERROR([*** SDL version $SDL_VERSION not found!]))
 MDL_HAVE_OPENGL
-CFLAGS="$CFLAGS $SDL_CFLAGS"
-LIBS="$LIBS $SDL_LIBS"
-						
 
 # Finally create all the generated files
-AC_OUTPUT(Makefile libs/Makefile libs/glpng/Makefile src/Makefile)
+AC_OUTPUT(Makefile libs/Makefile libs/glpng/Makefile src/engine/Makefile src/Makefile)
 
-#src/weapons/Makefile src/projectiles/Makefile src/entities/Makefile src/engine/Makefile src/Makefile src/include/Makefile src/tests/Makefile src/levels/Makefile)
