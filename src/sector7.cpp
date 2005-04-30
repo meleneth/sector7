@@ -7,6 +7,8 @@ NetServer *server = NULL;
 Console *console;
 Entity *my_ship;
 
+#define SHIP_SPEED 3
+
 int main(int argc, char *argv[])
 {
     std::string nickname;

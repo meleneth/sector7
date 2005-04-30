@@ -7,7 +7,6 @@
 #include "entitymgr.hpp"
 #include "entity.hpp"
 #include "player.hpp"
-#include "game.hpp"
 
 extern Console *sysconsole;
 extern char *servername;
@@ -16,6 +15,5 @@ extern Player *player1;
 extern EntityMgr *bg_particles;
 extern EntityMgr *fg_particles;
 extern Sint32 numroids;
-extern Game *game;
 
 #endif
