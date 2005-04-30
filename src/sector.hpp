@@ -15,7 +15,7 @@ class Sector : public EntityMgr {
         Sector::~Sector(); // Destructor
         
         void setup_master(void);
-        void setup_connecting(void);
+        Entity * setup_connecting(void);
         void dump(NetPacket *packet);
         std::string sector_id;
         int is_master;

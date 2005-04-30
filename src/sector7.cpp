@@ -4,7 +4,6 @@
 #include"netserver.hpp"
 #include"timer.hpp"
 #include"vector.hpp"
-#include"globals.hpp"
 
 NetServer *server = NULL;
 Console *console;
@@ -35,6 +34,8 @@ int main(int argc, char *argv[])
     }
 
     Vector *mouse_cursor = new Vector();
+    Camera *camera = new Camera("camera1");
+    Area *area = new Area(200, 200);
 
     int mx, my;
     Uint8 mbuttons;
@@ -58,7 +59,7 @@ int main(int argc, char *argv[])
     int reticle_angle = 0;
 
     Sector *sector = new Sector("connecting");
-    sector->setup_connecting();
+    camera->follow(sector->setup_connecting(), area);
     sectors.push_front(sector);
     
     SDL_Event event;
@@ -75,9 +76,11 @@ int main(int argc, char *argv[])
         while (SDL_PollEvent (&event) == 0 && !quit)
         {
             wait_next_frame();
-            renderer->RenderFrame((*sectors.begin()));
+            renderer->RenderFrame(camera);
 
             if(my_ship){
+                camera->follow(my_ship, area);
+
                 glLoadIdentity();
                 glTranslatef(mouse_cursor->x, mouse_cursor->y, 0);
 

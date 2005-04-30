@@ -29,7 +29,7 @@ void Sector::setup_master(void)
     size->y = 500;
 }
 
-void Sector::setup_connecting(void)
+Entity *Sector::setup_connecting(void)
 {
     Entity *ship;
 
