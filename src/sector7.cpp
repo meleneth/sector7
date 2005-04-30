@@ -108,7 +108,7 @@ int main(int argc, char *argv[])
                 mouse_cursor->set_from_screen_coords(mx, my);
 
                 my_ship->v->aim(mouse_cursor->x, mouse_cursor->y);
-                my_ship->rotation = my_ship->v->angle;
+                my_ship->v->angle -= 90;
 
                 if(my_ship->texture != no_texture && dirty){
                     NetPacket *dumper = new NetPacket(sizeof(EntFull));
