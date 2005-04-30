@@ -14,6 +14,7 @@ int main(int argc, char *argv[])
     Vector *mouse_cursor = new Vector();
 
     int mx, my;
+    Uint8 mbuttons;
     
     if(argc == 1){
         nickname = "netclient";
@@ -104,7 +105,10 @@ int main(int argc, char *argv[])
                     dirty = 1;
                 }
 
-                SDL_GetMouseState(&mx, &my);
+                mbuttons = SDL_GetMouseState(&mx, &my);
+                if(mbuttons & 1){
+                    my_ship->log_info();
+                }
                 mouse_cursor->set_from_screen_coords(mx, my);
 
                 my_ship->v->aim(mouse_cursor->x, mouse_cursor->y);

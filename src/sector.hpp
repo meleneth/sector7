@@ -20,6 +20,10 @@ class Sector : public EntityMgr {
         std::string sector_id;
         int is_master;
         virtual Entity *add_entity (Entity * entity);
+
+        Vector *position;
+        Vector *size;
+
     private:
         // Private members go here.
     protected:

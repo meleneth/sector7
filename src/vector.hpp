@@ -18,7 +18,7 @@ class Vector {
         void update_location(void);
         void set_from_screen_coords(double screen_x, double screen_y);
         void set_from(Vector *v);
-        void bounds_check(void);
+        void bounds_check(Vector *size);
         void accelerate(Vector *v);
         void random_location(double x1, double y1, double x2, double y2);
 

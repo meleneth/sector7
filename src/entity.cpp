@@ -45,7 +45,10 @@ void Entity::setup_entity(void)
 
 void Entity::update_location(void){
     v->update_location();
-    v->bounds_check();
+
+    if(sector){
+        v->bounds_check(((Sector *)sector)->size);
+    }
     rotation += v->rotation;
 }
 

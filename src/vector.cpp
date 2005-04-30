@@ -69,10 +69,14 @@ void Vector::set_from(Vector *v)
     y=v->y;
 }
 
-void Vector::bounds_check(void)
+void Vector::bounds_check(Vector *size)
 {
-    if (x < -HALFXRES) x += XRES;
-    if (x > HALFXRES) x -= XRES;
+    return;
+    if (x < -size->x) x = size->x;
+    if (x > size->x)  x = -size->x;
+
+    if (y < -size->y) y = size->y;
+    if (y > size->y)  y = -size->y;
 }
 
 void Vector::accelerate(Vector *v)

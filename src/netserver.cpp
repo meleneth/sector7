@@ -99,7 +99,7 @@ void NetServer::handle_hello(NetPacket *packet)
      std::stringstream buf;
 
      Entity * newEnt = new Entity();
-     newEnt->v->random_location(-300, -300, 300, 300);
+     newEnt->v->random_location(50, 50, 300, 300);
      newEnt->texture = get_tex_id(TILE_SHIP);
      sector->add_entity(newEnt); 
 

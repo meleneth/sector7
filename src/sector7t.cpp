@@ -11,6 +11,7 @@ NetServer *server;
 Entity *my_ship;
 
 int test_entity_marshalling(void);
+int test_vector(void);
 
 int main(int argc, char *argv[])
 {
@@ -23,6 +24,9 @@ int main(int argc, char *argv[])
     std::string foo;
     foo = "Bar";
     assert(foo.length() ==3);
+
+    printf ("Testing vector\n");
+    test_vector();
 
     printf ("Testing entity marshalling\n");
     test_entity_marshalling();
@@ -62,4 +66,29 @@ int test_entity_marshalling(void)
 
     assert(ent->size == 48);
     assert(ent->texture == get_tex_id(TILE_SHIP));
+}
+
+int test_vector(void)
+{
+    Vector *bound = new Vector();
+    bound->x = 200;
+    bound->y = 200;
+
+    Vector *p = new Vector();
+
+    p->x = 200;
+    p->y = 200;
+
+    p->bounds_check(bound);
+
+    assert(p->x == 200);
+    assert(p->y == 200);
+
+    p->x = 201;
+    p->y = 201;
+
+    p->bounds_check(bound);
+
+    assert(p->x == -200);
+    assert(p->y == -200);
 }

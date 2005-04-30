@@ -13,6 +13,8 @@ Sector::Sector(std::string sector_id) // Constructor
     this->sector_id = sector_id;
     is_master = 0;
     console->log("Sector " + sector_id + " created");
+    position = new Vector();
+    size = new Vector();
 }
     
 Sector::~Sector() // Destructor
@@ -23,6 +25,8 @@ void Sector::setup_master(void)
 {
     is_master = 1;
     console->log("Master sector initialized.");
+    size->x = 500;
+    size->y = 500;
 }
 
 void Sector::setup_connecting(void)
