@@ -143,7 +143,7 @@ void Entity::inflateLoc(EntLoc *newLoc)
    v->y        = (double) ntohl(newLoc->y);
    v->angle    = (double) ntohl(newLoc->angle);
    v->power    = (double) ntohl(newLoc->power);
-   rotation    = (double) ntohl(newLoc->rotation);
+   v->rotation = (double) ntohl(newLoc->rotation);
 }     
 
 void Entity::inflateFull(EntFull *newFull)
@@ -164,7 +164,7 @@ void Entity::deflateLoc(EntLoc *currentLoc)
     currentLoc->y        = htonl(SIGNED_OFFSET + (Sint32) floor(v->y));
     currentLoc->angle    = htonl(SIGNED_OFFSET + (Sint32) floor(v->angle));
     currentLoc->power    = htonl(SIGNED_OFFSET + (Sint32) floor(v->power));
-    currentLoc->rotation = htonl(SIGNED_OFFSET + (Sint32) floor(rotation));
+    currentLoc->rotation = htonl(SIGNED_OFFSET + (Sint32) floor(v->rotation));
 }
 
 void Entity::deflateFull(EntFull *currentFull)
