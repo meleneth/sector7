@@ -16,8 +16,6 @@
 void do_init(void);
 static void finish(int sig);
 
-//#define DEFAULT_PORT 6565
-
 Console *console;
 
 NetClient *client;

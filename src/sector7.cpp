@@ -1,6 +1,6 @@
 #include"sector7.hpp"
 #include"netserver.hpp"
-#include "timer.hpp"
+#include"timer.hpp"
 #include"vector.hpp"
 
 NetServer *server = NULL;
@@ -137,19 +137,11 @@ int main(int argc, char *argv[])
         switch (event.type)
         {
             case SDL_ACTIVEEVENT:
-                {
-                    if (event.active.state & SDL_APPACTIVE)
-                    {
-                        if (event.active.gain)
-                        {
-                            printf ("App activated\n");
-                        }
-                        else
-                        {
-                            printf ("App iconified\n");
-                        }
-                    }
-                }
+                if (event.active.state & SDL_APPACTIVE)
+                    if (event.active.gain)
+                        printf ("App activated\n");
+                    else
+                        printf ("App iconified\n");
                 break;
 
             case SDL_QUIT:

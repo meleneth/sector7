@@ -1,11 +1,9 @@
 #ifndef ___game_inc
 #define ___game_inc 1
 
+#define SHIP_SPEED 5
 
 #include"SDL.h"
-
-#define SHIP_SPEED 3
-
 #include"sector.hpp"
 #include<list>
 
