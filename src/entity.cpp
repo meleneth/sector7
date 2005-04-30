@@ -174,7 +174,7 @@ void Entity::deflateFull(EntFull *currentFull)
     currentFull->y         = htonl(SIGNED_OFFSET + (Sint32) floor(v->y));
     currentFull->angle     = htonl(SIGNED_OFFSET + (Sint32) floor(v->angle));
     currentFull->power     = htonl(SIGNED_OFFSET + (Sint32) floor(v->power));
-    currentFull->rotation  = htonl(SIGNED_OFFSET + (Sint32) floor(v->rotation));
+    currentFull->rotation  = htonl(SIGNED_OFFSET + (Sint32) floor(rotation));
     currentFull->textureID = htonl(texture->tilenum);
     currentFull->size      = size;
 }
