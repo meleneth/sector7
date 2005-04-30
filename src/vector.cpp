@@ -57,10 +57,10 @@ void Vector::update_location(void)
     y += power * sin(angle  * (PI / 180));
 }
 
-void Vector::set_from_screen_coords(double screen_x, double screen_y)
+void Vector::set_from_screen_coords(double screen_x, double screen_y, Uint32 screen_width, Uint32 screen_height)
 {
-   // x = screen_x - xres/2;
-   // y = screen_y;
+    x = screen_x - (screen_width/2);
+    y = screen_y;
 }
 
 void Vector::set_from(Vector *v)

@@ -3,7 +3,6 @@
 
 #include"stdutil.hpp"
 #include"renderer.hpp"
-#include"player.hpp"
 #include"console.hpp"
 #include"particles.hpp"
 #include"entitymgr.hpp"
@@ -14,7 +13,6 @@
 
 //SoundCore *soundmgr = NULL;
 Renderer *renderer = NULL;
-//Player *player1 = NULL;
 extern Console *console;
 //EntityMgr *bg_particles = NULL;
 //EntityMgr *fg_particles = NULL;

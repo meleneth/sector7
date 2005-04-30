@@ -4,6 +4,8 @@
 #include"netserver.hpp"
 #include"timer.hpp"
 #include"vector.hpp"
+#include"camera.hpp"
+#include"globals.hpp"
 
 NetServer *server = NULL;
 Console *console;
@@ -13,8 +15,29 @@ Entity *my_ship;
 
 int main(int argc, char *argv[])
 {
-    std::string nickname;
-    std::string servername;
+    console = new Console();
+    console->print_logs = 1;
+
+    std::string nickname = "netclient";
+    std::string servername = "localhost";
+    Uint32 xres = 1024;
+    Uint32 yres = 768;
+
+    int option_char;
+    if (argc > 1)
+    while ((option_char = getopt (argc, argv, "n:s:x:y:")) != EOF){
+        switch (option_char){
+            case 'n':
+                nickname = strdup(optarg); break;
+            case 's':
+                servername = strdup(optarg); break;
+            case 'x':
+                xres = atoi (optarg); break;
+            case 'y':
+                yres = atoi (optarg); break;
+        }
+    }
+
     Vector *mouse_cursor = new Vector();
     Area *area = new Area(200, 200);
 
@@ -105,7 +128,7 @@ int main(int argc, char *argv[])
                 if(mbuttons & 1){
                     my_ship->log_info();
                 }
-                mouse_cursor->set_from_screen_coords(mx, my);
+                mouse_cursor->set_from_screen_coords(mx, my, xres, yres);
 
                 my_ship->v->aim(mouse_cursor->x, mouse_cursor->y);
                 my_ship->v->angle -= 90;

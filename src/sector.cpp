@@ -34,7 +34,7 @@ Entity *Sector::setup_connecting(void)
     Entity *ship;
 
     ship = new Entity();
-    ship->v->set_from_screen_coords(320, 200);
+    ship->v->set_from_screen_coords(320, 200, 640, 480);
     ship->size = 128;
     ship->texture = get_tex_id(TILE_SHIP);
 	ship->sector = this;
