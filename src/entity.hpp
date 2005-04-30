@@ -6,6 +6,7 @@
 #include"texture.hpp"
 #include"vector.hpp"
 #include"netpacket.hpp"
+#include"globals.hpp"
 
 #define E_PLAYER 1
 #define E_ENEMY 2

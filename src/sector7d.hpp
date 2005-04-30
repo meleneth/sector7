@@ -4,7 +4,7 @@
 #include"stdutil.hpp"
 #include"renderer.hpp"
 #include"game.hpp"
-#include"player.hpp"
+//#include"player.hpp"
 #include"console.hpp"
 #include"particles.hpp"
 #include"entitymgr.hpp"
@@ -14,7 +14,7 @@
 //SoundCore *soundmgr = NULL;
 Renderer *renderer = NULL;
 Game *game = NULL;
-Player *player1 = NULL;
+//Player *player1 = NULL;
 Console *sysconsole = NULL;
 EntityMgr *bg_particles = NULL;
 EntityMgr *fg_particles = NULL;

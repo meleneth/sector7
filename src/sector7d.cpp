@@ -16,6 +16,9 @@
 void do_init(void);
 static void finish(int sig);
 
+extern Uint32 xres;
+extern Uint32 yres;
+
 Console *console;
 
 NetClient *client;

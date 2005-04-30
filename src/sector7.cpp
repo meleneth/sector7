@@ -1,7 +1,10 @@
+#include<stdio.h>
+#include<unistd.h>
 #include"sector7.hpp"
 #include"netserver.hpp"
 #include"timer.hpp"
 #include"vector.hpp"
+#include"globals.hpp"
 
 NetServer *server = NULL;
 Console *console;
@@ -9,25 +12,36 @@ Entity *my_ship;
 
 #define SHIP_SPEED 3
 
+Uint32 xres = 1024;
+Uint32 yres = 768;
+
 int main(int argc, char *argv[])
 {
-    std::string nickname;
-    std::string servername;
+    std::string nickname = "netclient";
+    std::string servername = "servername";
+
+    int option_char;
+    if (argc > 1)
+    while ((option_char = getopt (argc, argv, "n:s:x:y:")) != EOF){
+        switch (option_char){
+            case 'n':
+                nickname = strdup(optarg); break;
+            case 's':
+                servername = strdup(optarg); break;
+            case 'x':
+                xres = atoi (optarg); break;
+            case 'y':
+                yres = atoi (optarg); break;
+            case '?':
+                fprintf (stderr, "usage: %s [dcs<size>]\n", argv[0]);
+        }
+    }
+
     Vector *mouse_cursor = new Vector();
 
     int mx, my;
     Uint8 mbuttons;
     
-    if(argc == 1){
-        nickname = "netclient";
-        servername = "localhost";
-    }else if(argc == 3){
-        nickname = strdup(argv[1]);
-        servername = strdup(argv[2]);
-    }else{
-        printf("Usage: s7 [nick servername]\n");
-        exit(0);
-    }
     quit = false;
 
     NetClient *client;
@@ -169,4 +183,6 @@ int main(int argc, char *argv[])
     SDL_Quit();
     exit (0);
 }
+
+
 

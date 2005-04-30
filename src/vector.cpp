@@ -1,6 +1,9 @@
 #include "stdutil.hpp"
 #include "vector.hpp"
+#include "globals.hpp"
 
+extern Uint32 xres;
+extern Uint32 yres;
 
 Sint32 m_trunc(double value);
 
@@ -56,7 +59,7 @@ void Vector::update_location(void)
 
 void Vector::set_from_screen_coords(double screen_x, double screen_y)
 {
-    x = screen_x - HALFXRES;
+    x = screen_x - xres/2;
     y = screen_y;
 }
 

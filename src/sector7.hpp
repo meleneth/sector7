@@ -23,6 +23,6 @@ extern Console *console;
 
 Uint32 quit = false;
 
-char *servername = NULL;
+//char *servername = NULL;
 
 #endif

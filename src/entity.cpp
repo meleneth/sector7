@@ -6,6 +6,7 @@
 #include"texture.hpp"
 #include"engine.hpp"
 #include"sector.hpp"
+#include"globals.hpp"
 
 #include"math.h"
 
@@ -84,7 +85,7 @@ void Entity::move(Sint32 xdir, Sint32 ydir)
 }
 
 int Entity::chkDeath(void){
-    if((v->y > (YRES + 50)) || (v->y < -400)){
+    if((v->y > 500) || (v->y < -400)){
         return true;
     }
     if(health > 0)

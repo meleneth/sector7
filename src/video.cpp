@@ -1,5 +1,6 @@
 #include "stdutil.hpp"
 #include "video.hpp"
+#include "globals.hpp"
 
 
 
@@ -17,8 +18,8 @@ Video::~Video ()		// Destructor
 void Video::InitGL (int bpp, int fullscreen, float gamma)
 {
     Uint32 video_flags;
-    int w = XRES;
-    int h = YRES;
+    int w = xres;
+    int h = yres;
 
     if (SDL_Init (SDL_INIT_VIDEO | SDL_INIT_AUDIO) < 0)
     {
@@ -49,11 +50,11 @@ void Video::InitGL (int bpp, int fullscreen, float gamma)
     glLoadIdentity ();
     glMatrixMode (GL_PROJECTION);
 
-    glOrtho (-HALFXRES, HALFXRES, YRES, 0, 20, -20);
+    glOrtho (-xres/2, xres/2, yres, 0, 20, -20);
     printf ("Init: [%d bpp fullscreen(%d) %f gamma]\n", bpp, fullscreen, gamma);
     glMatrixMode (GL_MODELVIEW);
     glLoadIdentity ();
-    glViewport (0, 0, XRES, YRES);
+    glViewport (0, 0, xres, yres);
     glDisable (GL_DEPTH_TEST);
     glEnable (GL_TEXTURE_2D);
     glEnable (GL_BLEND);
@@ -63,7 +64,7 @@ void Video::InitGL (int bpp, int fullscreen, float gamma)
     //glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
     //glEnable(GL_SET);
     //  glShadeModel(GL_SMOOTH);
-    SDL_WM_SetCaption ("Codename: Last Defense", "lastdefense");
+    SDL_WM_SetCaption ("Codename: Sector 7", "s7");
 
     glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     SDL_ShowCursor(0);
