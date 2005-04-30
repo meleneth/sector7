@@ -13,28 +13,9 @@ Entity *my_ship;
 
 int main(int argc, char *argv[])
 {
-    std::string nickname = "netclient";
-    std::string servername = "servername";
-    Uint32 xres = 1024;
-    Uint32 yres = 768;
-
-    int option_char;
-    if (argc > 1)
-    while ((option_char = getopt (argc, argv, "n:s:x:y:")) != EOF){
-        switch (option_char){
-            case 'n':
-                nickname = strdup(optarg); break;
-            case 's':
-                servername = strdup(optarg); break;
-            case 'x':
-                xres = atoi (optarg); break;
-            case 'y':
-                yres = atoi (optarg); break;
-        }
-    }
-
+    std::string nickname;
+    std::string servername;
     Vector *mouse_cursor = new Vector();
-    Camera *camera = new Camera("camera1");
     Area *area = new Area(200, 200);
 
     int mx, my;
@@ -45,9 +26,7 @@ int main(int argc, char *argv[])
     NetClient *client;
     std::list<Sector *> sectors;
 
-    console = new Console();
-    
-    console->print_logs = 1;
+    Camera *camera = new Camera("camera1");
     my_ship = NULL;
     int dirty=0;
 
@@ -75,7 +54,6 @@ int main(int argc, char *argv[])
     while(!quit){
         while (SDL_PollEvent (&event) == 0 && !quit)
         {
-            wait_next_frame();
             renderer->RenderFrame(camera);
 
             if(my_ship){
@@ -91,6 +69,8 @@ int main(int argc, char *argv[])
                 glColor4f(0, 1, 0, .65);
                 get_tex_id(TILE_RETICLE)->DrawGLSquare(16);
             }
+
+            wait_next_frame();
 
             renderer->swap_buffers();
 
