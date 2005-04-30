@@ -3,6 +3,7 @@
 // Public data members go here.
 Camera::Camera(std::string sector_id): Sector(sector_id) // Constructor
 {
+    visible_area = new Area(800,800);
 }
     
 Camera::~Camera() // Destructor

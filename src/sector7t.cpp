@@ -5,6 +5,7 @@
 #include"console.hpp"
 #include"netserver.hpp"
 #include"texture.hpp"
+#include"area.hpp"
 
 Console *console;
 NetServer *server;
@@ -12,6 +13,7 @@ Entity *my_ship;
 
 int test_entity_marshalling(void);
 int test_vector(void);
+int test_area(void);
 
 int main(int argc, char *argv[])
 {
@@ -27,6 +29,9 @@ int main(int argc, char *argv[])
 
     printf ("Testing vector\n");
     test_vector();
+
+    printf ("Testing area\n");
+    test_area();
 
     printf ("Testing entity marshalling\n");
     test_entity_marshalling();
@@ -91,4 +96,18 @@ int test_vector(void)
 
     assert(p->x == -200);
     assert(p->y == -200);
+}
+
+int test_area(void)
+{
+    Area *area = new Area(320, 200);
+    
+    Vector *v = new Vector();
+    v->x = 100;
+    v->y = 100;
+
+    assert(area->contains(v));
+
+    v->x = 400;
+    assert(!area->contains(v));
 }

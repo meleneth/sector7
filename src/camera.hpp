@@ -11,7 +11,8 @@ class Camera : public Sector {
         Camera::Camera(std::string camera_id); // Constructor
         Camera::~Camera(); // Destructor
         void follow(Entity *bird, Area *roam);
-
+    
+        Area *visible_area;
     private:
         // Private members go here.
     protected:
