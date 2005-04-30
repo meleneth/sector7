@@ -12,13 +12,12 @@ Entity *my_ship;
 
 #define SHIP_SPEED 3
 
-Uint32 xres = 1024;
-Uint32 yres = 768;
-
 int main(int argc, char *argv[])
 {
     std::string nickname = "netclient";
     std::string servername = "servername";
+    Uint32 xres = 1024;
+    Uint32 yres = 768;
 
     int option_char;
     if (argc > 1)
@@ -32,8 +31,6 @@ int main(int argc, char *argv[])
                 xres = atoi (optarg); break;
             case 'y':
                 yres = atoi (optarg); break;
-            case '?':
-                fprintf (stderr, "usage: %s [dcs<size>]\n", argv[0]);
         }
     }
 
@@ -55,7 +52,7 @@ int main(int argc, char *argv[])
 
     client = new NetClient(servername, DEFAULT_PORT, nickname);
     
-    Renderer  *renderer = new Renderer();
+    renderer = new Renderer(xres, yres);
     Texture *no_texture = get_tex_id(TILE_NOTILE);
     mouse_cursor = new Vector();
     int reticle_angle = 0;

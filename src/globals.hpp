@@ -22,7 +22,5 @@
 
 extern Console *console;
 Sint32 m_round(double value);
-extern Uint32 xres;
-extern Uint32 yres;
 
 #endif

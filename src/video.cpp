@@ -5,9 +5,9 @@
 
 
 // Public data members go here.
-Video::Video (void)		// Constructor
+Video::Video (Uint32 xres, Uint32 yres)		// Constructor
 {
-  InitGL (16, 0, 0.0);
+  InitGL (16, 0, 0.0, xres, yres);
 }
 
 Video::~Video ()		// Destructor
@@ -15,7 +15,7 @@ Video::~Video ()		// Destructor
 }
 
 
-void Video::InitGL (int bpp, int fullscreen, float gamma)
+void Video::InitGL (int bpp, int fullscreen, float gamma, Uint32 xres, Uint32 yres)
 {
     Uint32 video_flags;
     int w = xres;

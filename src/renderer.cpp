@@ -9,9 +9,9 @@
 #include"SDL_opengl.h"
 
 // Public data members go here.
-Renderer::Renderer()		// Constructor
+Renderer::Renderer(Uint32 xres, Uint32 yres)		// Constructor
 {
-    board = new Video();
+    board = new Video(xres, yres);
     load_textures(0);
 }
 

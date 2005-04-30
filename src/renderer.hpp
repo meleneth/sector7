@@ -12,7 +12,7 @@
 class Renderer {
     public:
         // Public data members go here.
-        Renderer::Renderer(); // Constructor
+        Renderer::Renderer(Uint32 xres, Uint32 yres); // Constructor
         Renderer::~Renderer(); // Destructor
         void swap_buffers(void);
         int RenderFrame(Sector *sector);

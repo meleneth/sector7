@@ -59,8 +59,8 @@ void Vector::update_location(void)
 
 void Vector::set_from_screen_coords(double screen_x, double screen_y)
 {
-    x = screen_x - xres/2;
-    y = screen_y;
+   // x = screen_x - xres/2;
+   // y = screen_y;
 }
 
 void Vector::set_from(Vector *v)
