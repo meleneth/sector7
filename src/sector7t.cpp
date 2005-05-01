@@ -11,6 +11,7 @@ Console *console;
 NetServer *server;
 Entity *my_ship;
 
+int test_partial_entity_update(void);
 int test_entity_marshalling(void);
 int test_vector(void);
 int test_area(void);
@@ -27,6 +28,9 @@ int main(int argc, char *argv[])
     foo = "Bar";
     assert(foo.length() ==3);
 
+    printf("Testing partial entity updates\n");
+    test_partial_entity_update();
+    
     printf ("Testing vector\n");
     test_vector();
 
@@ -36,6 +40,37 @@ int main(int argc, char *argv[])
     printf ("Testing entity marshalling\n");
     test_entity_marshalling();
 
+}
+
+int test_partial_entity_update(void)
+{
+    Entity *ent = new Entity();
+    EntLoc info;
+
+    Sint32 foo = -50;
+
+    foo = ntohl(htonl(foo));
+
+    assert(foo == -50);
+    
+    ent->v->x = -20;
+    ent->v->y = 20;
+    ent->v->angle = 39;
+    ent->v->power = 174;
+    ent->v->rotation = -23;
+    
+    ent->deflateLoc(&info);
+
+    console->log("Calling new Entity()");
+    ent = new Entity();
+    console->log("Calling inflateFull()");
+    ent->inflateLoc(&info);
+
+    assert(ent->v->x == -20);
+    assert(ent->v->y == 20);
+    assert(ent->v->angle == 39);
+    assert(ent->v->power == 174);
+    assert(ent->v->rotation == -23);
 }
 
 int test_entity_marshalling(void)

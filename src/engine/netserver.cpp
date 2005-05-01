@@ -71,6 +71,10 @@ void NetServer::handle_packet(NetPacket *packet)
             case GOODBYE:
                 console->log("Server got GOODBYE");
                 break;
+            case REQ_ENT_FULL_UPDATE:
+                console->log("Server got REQ_ENT_FULL_UPDATE");
+                sector->dump(packet);
+                break;
             case INFO_ENT_FULL:
                 EntFull *entdata;
                 entdata = (EntFull *) &packet->command;
@@ -84,9 +88,22 @@ void NetServer::handle_packet(NetPacket *packet)
                     send_all_clients(packet, client);
                 }
                 break;
-            case REQ_ENT_FULL_UPDATE:
-                console->log("Server got REQ_ENT_FULL_UPDATE");
+            case REQ_ENT_LOC_UPDATE:
+                console->log("Server got REQ_ENT_LOC_UPDATE");
                 sector->dump(packet);
+                break;
+            case INFO_ENT_LOC:
+                EntLoc *entLocData;
+                entLocData = (EntLoc *) &packet->command;
+                ent_id = ntohl(entLocData->entID);
+
+                client = get_client(packet);
+                ent =  sector->ent_for_id(ent_id);
+
+                if(client->entity->ent_id == ent_id){
+                    client->entity->inflateLoc(entLocData);
+                    send_all_clients(packet, client);
+                }
                 break;
             default:
                 console->log("Server got unknown msg!");

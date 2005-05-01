@@ -1,9 +1,5 @@
 #include "stdutil.hpp"
 #include "vector.hpp"
-#include "globals.hpp"
-
-extern Uint32 xres;
-extern Uint32 yres;
 
 Sint32 m_trunc(double value);
 

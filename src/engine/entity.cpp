@@ -143,11 +143,11 @@ void Entity::kill_me_now(void)
 void Entity::inflateLoc(EntLoc *newLoc)
 {
    
-   v->x        = (double) ntohl(newLoc->x);
-   v->y        = (double) ntohl(newLoc->y);
-   v->angle    = (double) ntohl(newLoc->angle);
-   v->power    = (double) ntohl(newLoc->power);
-   v->rotation = (double) ntohl(newLoc->rotation);
+   v->x        = (double) ntohl(newLoc->x) - SIGNED_OFFSET;
+   v->y        = (double) ntohl(newLoc->y) - SIGNED_OFFSET;
+   v->angle    = (double) ntohl(newLoc->angle) - SIGNED_OFFSET;
+   v->power    = (double) ntohl(newLoc->power) - SIGNED_OFFSET;
+   v->rotation = (double) ntohl(newLoc->rotation) - SIGNED_OFFSET;
 }     
 
 void Entity::inflateFull(EntFull *newFull)
