@@ -1,5 +1,5 @@
-noinst_LTLIBRARIES = libengine.la
-        libengine_la_SOURCES = area.cpp area.hpp camera.cpp camera.hpp console.cpp \
+noinst_LIBRARIES = libengine.a
+libengine_a_SOURCES = area.cpp area.hpp camera.cpp camera.hpp console.cpp \
         console.hpp entity.cpp entity.hpp entitymgr.cpp netclient.cpp netclient.hpp \
         netpacket.cpp netpacket.hpp netserver.cpp netserver.hpp netserverclient.cpp \
         netserverclient.hpp p_plasma.cpp p_plasma.hpp particles.cpp particles.hpp  \
@@ -9,5 +9,5 @@ noinst_LTLIBRARIES = libengine.la
         w_plasmacannon.hpp weapon.cpp weapon.hpp 
 
 AM_CXXFLAGS = @SDL_CFLAGS@ @GL_CFLAGS@ -I../../libs/glpng 
-libengine_la_LIBFLAGS = -l../../libs/glpng.la @GL_LDFLAGS@ @SDL_LDFLAGS@
+LDFLAGS = -l../../libs/glpng.la @GL_LDFLAGS@ @SDL_LDFLAGS@
 
