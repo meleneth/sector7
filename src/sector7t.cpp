@@ -122,13 +122,13 @@ int test_vector(void)
     assert(p->x == 200);
     assert(p->y == 200);
 
-    p->x = 1025;
-    p->y = 769;
+    p->x = 513;
+    p->y = 385;
 
     p->bounds_check(bound);
 
-    assert(p->x == -1024);
-    assert(p->y == -768);
+    assert(p->x == -512);
+    assert(p->y == -384);
 }
 
 int test_area(void)

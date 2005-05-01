@@ -40,7 +40,8 @@ int main(int argc, char *argv[])
 
     Vector *mouse_cursor = new Vector();
     Area *area = new Area(200, 200);
-
+    Area *screensize = new Area(xres, yres);
+            
     int mx, my;
     Uint8 mbuttons;
     
@@ -124,6 +125,8 @@ int main(int argc, char *argv[])
                     dirty = 1;
                 }
 
+                my_ship->v->bounds_check(screensize);
+                
                 mbuttons = SDL_GetMouseState(&mx, &my);
                 if(mbuttons & 1){
                     my_ship->log_info();
