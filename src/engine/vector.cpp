@@ -1,5 +1,6 @@
 #include "stdutil.hpp"
 #include "vector.hpp"
+#include "area.hpp"
 
 Sint32 m_trunc(double value);
 
@@ -68,14 +69,13 @@ void Vector::set_from(Vector *v)
     y=v->y;
 }
 
-void Vector::bounds_check(Vector *size)
+void Vector::bounds_check(Area *boundary)
 {
-    return;
-    if (x < -size->x) x = size->x;
-    if (x > size->x)  x = -size->x;
+    if (x < -boundary->width) x = boundary->width;
+    if (x > boundary->width)  x = -boundary->width;
 
-    if (y < -size->y) y = size->y;
-    if (y > size->y)  y = -size->y;
+    if (y < -boundary->height) y = boundary->height;
+    if (y > boundary->height)  y = -boundary->height;
 }
 
 void Vector::accelerate(Vector *v)

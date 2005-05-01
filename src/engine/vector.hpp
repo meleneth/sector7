@@ -4,7 +4,8 @@
 
 #include"SDL.h"
 #include"types.hpp"
-
+#include"area.hpp"
+class Area;
 class Vector {
     public:
         // Public data members go here.
@@ -18,7 +19,7 @@ class Vector {
         void update_location(void);
         void set_from_screen_coords(double screen_x, double screen_y, Uint32 screen_width, Uint32 screen_height);
         void set_from(Vector *v);
-        void bounds_check(Vector *size);
+        void bounds_check(Area *boundary);
         void accelerate(Vector *v);
         void random_location(double x1, double y1, double x2, double y2);
 

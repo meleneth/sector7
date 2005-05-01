@@ -5,6 +5,7 @@
 #include"entitymgr.hpp"
 #include"netserverclient.hpp"
 #include<string>
+#include"area.hpp"
 
 class EntityMgr;
 
@@ -22,7 +23,7 @@ class Sector : public EntityMgr {
         virtual Entity *add_entity (Entity * entity);
 
         Vector *position;
-        Vector *size;
+        Area *bound;
 
     private:
         // Private members go here.

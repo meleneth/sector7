@@ -110,9 +110,7 @@ int test_entity_marshalling(void)
 
 int test_vector(void)
 {
-    Vector *bound = new Vector();
-    bound->x = 200;
-    bound->y = 200;
+    Area *bound = new Area(1024, 768);
 
     Vector *p = new Vector();
 
@@ -124,13 +122,13 @@ int test_vector(void)
     assert(p->x == 200);
     assert(p->y == 200);
 
-    p->x = 201;
-    p->y = 201;
+    p->x = 1025;
+    p->y = 769;
 
     p->bounds_check(bound);
 
-    assert(p->x == -200);
-    assert(p->y == -200);
+    assert(p->x == -1024);
+    assert(p->y == -768);
 }
 
 int test_area(void)

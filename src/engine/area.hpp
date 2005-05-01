@@ -3,7 +3,7 @@
 
 #include"SDL.h"
 #include"vector.hpp"
-
+class Vector;
 class Area {
     public:
         // Public data members go here.

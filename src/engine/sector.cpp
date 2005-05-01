@@ -4,6 +4,7 @@
 #include "netpacket.hpp"
 #include "netserver.hpp"
 #include "udpsocket.hpp"
+#include "area.hpp"
 
 extern NetServer *server;
 
@@ -14,7 +15,7 @@ Sector::Sector(std::string sector_id) // Constructor
     is_master = 0;
     console->log("Sector " + sector_id + " created");
     position = new Vector();
-    size = new Vector();
+    bound = new Area(1024, 768);
 }
     
 Sector::~Sector() // Destructor
@@ -25,8 +26,8 @@ void Sector::setup_master(void)
 {
     is_master = 1;
     console->log("Master sector initialized.");
-    size->x = 500;
-    size->y = 500;
+//    bound->x = 500;
+//    bound->y = 500;
 }
 
 Entity *Sector::setup_connecting(void)

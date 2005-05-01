@@ -5,6 +5,8 @@ Area::Area(double width, double height) // Constructor
 {
     this->width = width;
     this->height = height;
+    this->x = 0;
+    this->y = 0;
 }
     
 Area::~Area() // Destructor
