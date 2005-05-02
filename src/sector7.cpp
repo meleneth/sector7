@@ -107,6 +107,7 @@ int main(int argc, char *argv[])
             if (my_ship){
                 if (keys[SDLK_w] == SDL_PRESSED){
                     my_ship->move (0, -SHIP_SPEED);
+                    if(my_ship->v->power < 7) my_ship->v->power += 0.1;
                     dirty = 1;
                 }
     
@@ -117,6 +118,7 @@ int main(int argc, char *argv[])
 
                 if (keys[SDLK_s] == SDL_PRESSED){
                     my_ship->move (0, SHIP_SPEED);
+                    if(my_ship->v->power) my_ship->v->power -= 0.1;
                     dirty = 1;
                 }
 
@@ -134,7 +136,6 @@ int main(int argc, char *argv[])
                 mouse_cursor->set_from_screen_coords(mx, my, xres, yres);
 
                 my_ship->v->aim(mouse_cursor->x, mouse_cursor->y);
-                my_ship->v->angle -= 90;
 
                 if(my_ship->texture != no_texture && dirty){
                     NetPacket *dumper = new NetPacket(sizeof(EntFull));
