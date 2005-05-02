@@ -16,14 +16,21 @@ class Sector : public EntityMgr {
         Sector::~Sector(); // Destructor
         
         void setup_master(void);
-        Entity * setup_connecting(void);
+        Entity *setup_connecting(void);
         void dump(NetPacket *packet);
         std::string sector_id;
         int is_master;
         virtual Entity *add_entity (Entity * entity);
+        void update_visible(void);
 
         Vector *position;
         Area *bound;
+        std::list<Entity *> visible_entities;
+
+        Sector *s_ne;
+        Sector *s_nw;
+        Sector *s_se;
+        Sector *s_sw;
 
     private:
         // Private members go here.

@@ -17,7 +17,7 @@ Sector::Sector(std::string sector_id) // Constructor
     is_master = 0;
     console->log("Sector " + sector_id + " created");
     position = new Vector();
-    bound = new Area(SECTOR_SIDE, SECTOR_SIDE);
+    bound = new Area(1024, 768);
 }
     
 Sector::~Sector() // Destructor
@@ -28,6 +28,8 @@ void Sector::setup_master(void)
 {
     is_master = 1;
     console->log("Master sector initialized.");
+//    bound->x = 500;
+//    bound->y = 500;
 }
 
 Entity *Sector::setup_connecting(void)
