@@ -12,7 +12,7 @@ Camera::~Camera() // Destructor
 {
 }
 
-void Camera::follow(Entity *bird, Area *size)
+void Camera::follow(Entity *bird)
 {
     entities = ((Sector *)bird->sector)->entities;
     //if(position.x > bird->x)  position.x = bird->x

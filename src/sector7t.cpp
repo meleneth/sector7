@@ -3,6 +3,7 @@
 #include<string>
 
 #include"console.hpp"
+#include"camera.hpp"
 #include"netserver.hpp"
 #include"texture.hpp"
 #include"area.hpp"
@@ -13,6 +14,7 @@ Entity *my_ship;
 
 int test_partial_entity_update(void);
 int test_entity_marshalling(void);
+int test_camera(void);
 int test_vector(void);
 int test_area(void);
 
@@ -36,6 +38,9 @@ int main(int argc, char *argv[])
 
     printf ("Testing area\n");
     test_area();
+
+    printf ("Testing camera\n");
+    test_camera();
 
     printf ("Testing entity marshalling\n");
     test_entity_marshalling();
@@ -143,4 +148,18 @@ int test_area(void)
 
     v->x = 400;
     assert(!area->contains(v));
+}
+
+int test_camera(void)
+{
+    Camera *cam = new Camera("camera1");
+    Entity *ent = new Entity();
+
+    ent->v->x = 5000;
+    ent->v->y = 5000;
+
+    cam->follow(ent);
+
+    assert(cam->position->x == 4600);
+    assert(cam->position->y == 4600);
 }

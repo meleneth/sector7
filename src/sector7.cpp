@@ -62,7 +62,7 @@ int main(int argc, char *argv[])
     int reticle_angle = 0;
 
     Sector *sector = new Sector("connecting");
-    camera->follow(sector->setup_connecting(), area);
+    camera->follow(sector->setup_connecting());
     sectors.push_front(sector);
     
     SDL_Event event;
@@ -81,7 +81,7 @@ int main(int argc, char *argv[])
             renderer->RenderFrame(camera);
 
             if(my_ship){
-                camera->follow(my_ship, area);
+                camera->follow(my_ship);
 
                 glLoadIdentity();
                 glTranslatef(mouse_cursor->x, mouse_cursor->y, 0);
