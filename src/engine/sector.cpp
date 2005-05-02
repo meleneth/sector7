@@ -17,7 +17,12 @@ Sector::Sector(std::string sector_id) // Constructor
     is_master = 0;
     console->log("Sector " + sector_id + " created");
     position = new Vector();
-    bound = new Area(1024, 768);
+
+    s_nw = NULL;
+    s_ne = NULL;
+    s_sw = NULL;
+    s_se = NULL;
+    bound = new Area(SECTOR_SIDE, SECTOR_SIDE);
 }
     
 Sector::~Sector() // Destructor
@@ -30,6 +35,14 @@ void Sector::setup_master(void)
     console->log("Master sector initialized.");
 //    bound->x = 500;
 //    bound->y = 500;
+}
+
+void Sector::update_visible(void)
+{
+    visible_entities = entities;
+
+    //if(s_nw)
+    //    visible_entities.append(s_nw->entities);
 }
 
 Entity *Sector::setup_connecting(void)
