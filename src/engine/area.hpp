@@ -3,6 +3,7 @@
 
 #include"SDL.h"
 #include"vector.hpp"
+#include"stdlib.h"
 class Vector;
 class Area {
     public:

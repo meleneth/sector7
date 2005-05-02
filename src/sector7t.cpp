@@ -137,7 +137,7 @@ int test_area(void)
     
     Vector *v = new Vector();
     v->x = 100;
-    v->y = 100;
+    v->y = -23;
 
     assert(area->contains(v));
 

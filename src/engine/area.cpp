@@ -15,8 +15,8 @@ Area::~Area() // Destructor
 
 bool Area::contains(Vector *p)
 {
-    return ((x - p->x) < width) 
-        && ((y - p->y) < height);
+    return (abs(p->x) < width/2) 
+        && (abs(p->y) < height/2);
 }
 // Private members go here.
 // Protected members go here.
