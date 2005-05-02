@@ -8,7 +8,7 @@
 class Camera : public Sector {
     public:
         // Public data members go here.
-        Camera::Camera(std::string camera_id); // Constructor
+        Camera::Camera(std::string camera_id, Uint32 xres, Uint32 yres); // Constructor
         Camera::~Camera(); // Destructor
         void follow(Entity *bird, Area *roam);
     

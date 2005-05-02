@@ -50,7 +50,7 @@ int main(int argc, char *argv[])
     NetClient *client;
     std::list<Sector *> sectors;
 
-    Camera *camera = new Camera("camera1");
+    Camera *camera = new Camera("camera1", xres, yres);
     my_ship = NULL;
     int dirty=0;
 
