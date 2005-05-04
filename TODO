@@ -1,5 +1,5 @@
-physics
-every x frame updates (not every frame)
+* physics
+* every x frame updates (not every frame)
 shoooting
-camera follows ship
+- camera follows ship
 

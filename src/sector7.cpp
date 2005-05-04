@@ -118,8 +118,7 @@ int main(int argc, char *argv[])
                 if (keys[SDLK_d] == SDL_PRESSED){
                 }
 
-                my_ship->v->bounds_check(screensize);
-                
+              
                 mbuttons = SDL_GetMouseState(&mx, &my);
                 if(mbuttons & 1){
                     my_ship->log_info();

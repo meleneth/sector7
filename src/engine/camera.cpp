@@ -5,7 +5,7 @@
 Camera::Camera(std::string sector_id, Uint32 xres, Uint32 yres): Sector(sector_id) // Constructor
 {
     console->log(sector_id);
-    visible_area = new Area(xres, yres);
+    visible_area = new Area(xres/2, yres/2);
 }
     
 Camera::~Camera() // Destructor
