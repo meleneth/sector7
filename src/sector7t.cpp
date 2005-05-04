@@ -152,7 +152,7 @@ int test_area(void)
 
 int test_camera(void)
 {
-    Camera *cam = new Camera("camera1");
+    Camera *cam = new Camera("camera1", 400, 400);
     Entity *ent = new Entity();
 
     ent->v->x = 5000;

@@ -15,7 +15,8 @@ Camera::~Camera() // Destructor
 void Camera::follow(Entity *bird)
 {
     entities = ((Sector *)bird->sector)->entities;
-    //if(position.x > bird->x)  position.x = bird->x
+    position->x = bird->v->x;
+    position->y = bird->v->y;
 }
 
 // Private members go here.
