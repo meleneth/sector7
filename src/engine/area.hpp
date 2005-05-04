@@ -12,6 +12,12 @@ class Area {
         Area::~Area(); // Destructor
 
         bool contains(Vector *p);
+        void follow(Vector *follow, Vector *modify);
+
+        bool point_is_below(Vector *p);
+        bool point_is_above(Vector *p);
+        bool point_is_left(Vector *p);
+        bool point_is_right(Vector *p);
 
         double x, y, width, height;
     private:

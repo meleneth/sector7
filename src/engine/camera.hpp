@@ -13,6 +13,7 @@ class Camera : public Sector {
         void follow(Entity *bird);
     
         Area *visible_area;
+        Area *inner_bound;
     private:
         // Private members go here.
     protected:

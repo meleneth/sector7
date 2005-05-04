@@ -1,6 +1,7 @@
 #include"assert.h"
 
 #include<string>
+#include<iostream.h>
 
 #include"console.hpp"
 #include"camera.hpp"
@@ -148,18 +149,38 @@ int test_area(void)
 
     v->x = 400;
     assert(!area->contains(v));
+
+    assert(area->point_is_right(v));
+
+    v->x = -330;
+    assert(area->point_is_left(v));
+
+    v->y = 300;
+    assert(area->point_is_below(v));
+
+    v->y = -300;
+    assert(area->point_is_above(v));
+
 }
 
 int test_camera(void)
 {
     Camera *cam = new Camera("camera1", 400, 400);
     Entity *ent = new Entity();
+    Sector *sector = new Sector("anime");
+    std::stringstream buf;
 
     ent->v->x = 5000;
     ent->v->y = 5000;
 
+    sector->add_entity(ent);
+
     cam->follow(ent);
 
-    assert(cam->position->x == 4600);
-    assert(cam->position->y == 4600);
+    buf << "X: " << cam->position->x << " Y: " << cam->position->y;
+
+    cout << buf.str();
+
+    assert(cam->position->x == 4800);
+    assert(cam->position->y == 4800);
 }
