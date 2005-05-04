@@ -24,10 +24,10 @@ int Renderer::RenderFrame(Camera *camera)
     static int reticle_angle = 0;
 
     ClearScreen();
-    glOrtho (camera->visible_area->x - camera->visible_area->width,
-             camera->visible_area->x + camera->visible_area->width,
-             camera->visible_area->y - camera->visible_area->height,
-             camera->visible_area->y + camera->visible_area->height, 20, -20);
+    glOrtho (camera->position->x - camera->visible_area->width,
+             camera->position->x + camera->visible_area->width,
+             camera->position->y - camera->visible_area->height,
+             camera->position->y + camera->visible_area->height, 20, -20);
     glColor4f(1, 1, 1, 1);
     camera->render();
     return true;

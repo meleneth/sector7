@@ -25,16 +25,16 @@ void Area::follow(Vector *follow, Vector *modify)
             return;
 
     if(point_is_left(follow))
-            modify->x = follow->x - width;
-
-    if(point_is_right(follow))
             modify->x = follow->x + width;
 
+    if(point_is_right(follow))
+            modify->x = follow->x - width;
+
     if(point_is_above(follow))
-            modify->y = follow->y - height;
+            modify->y = follow->y + height;
 
     if(point_is_below(follow))
-            modify->y = follow->y + height;
+            modify->y = follow->y - height;
 }
 
 bool Area::point_is_left(Vector *p)

@@ -181,6 +181,6 @@ int test_camera(void)
 
     cout << buf.str();
 
-    assert(cam->position->x == 4800);
-    assert(cam->position->y == 4800);
+    assert(cam->position->x == 4900);
+    assert(cam->position->y == 4900);
 }
