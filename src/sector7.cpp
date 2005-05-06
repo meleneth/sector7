@@ -128,7 +128,6 @@ int main(int argc, char *argv[])
                 if(mbuttons & 1){
                     if(my_ship->primary) {
                         my_ship->fire_primary_weapon(mouse_cursor);
-                        printf(".");
                     }
                 }
 

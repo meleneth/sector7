@@ -1,5 +1,9 @@
 * physics
 * every x frame updates (not every frame)
-shoooting
+* shoooting
 - camera follows ship
-
+text / comsole
+remove entities
+collision checking
+bounds checking
+macros for debug logging
