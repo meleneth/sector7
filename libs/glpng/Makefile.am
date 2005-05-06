@@ -3,4 +3,4 @@ libglpng_a_SOURCES = adler32.c   infblock.h  inffast.h   inftrees.h  png.h      
 
 AM_CFLAGS = @GL_CFLAGS@ @SDL_CFLAGS@
 
-LDFLAGS = @GL_LDFLAGS@
+AM_LDFLAGS = @GL_LDFLAGS@

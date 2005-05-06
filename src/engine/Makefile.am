@@ -9,5 +9,5 @@ libengine_a_SOURCES = area.cpp area.hpp camera.cpp camera.hpp console.cpp \
         w_plasmacannon.hpp weapon.cpp weapon.hpp 
 
 AM_CXXFLAGS = @SDL_CFLAGS@ @GL_CFLAGS@ -I../../libs/glpng 
-LDFLAGS = -l../../libs/glpng.la @GL_LDFLAGS@ @SDL_LDFLAGS@
+AM_LDFLAGS = -l../../libs/glpng.la @GL_LDFLAGS@ @SDL_LDFLAGS@
 
