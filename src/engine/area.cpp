@@ -5,6 +5,8 @@ Area::Area(double width, double height) // Constructor
 {
     this->width = width;
     this->height = height;
+    this->halfwidth = width/2;
+    this->halfheight = height/2;
     this->x = 0;
     this->y = 0;
 }
@@ -15,8 +17,19 @@ Area::~Area() // Destructor
 
 bool Area::contains(Vector *p)
 {
-    return (abs(p->x) < width/2) 
-        && (abs(p->y) < height/2);
+    if (p->x >= 0) {
+        if (p->y >= 0) {
+            return ((p->x < x + halfwidth) && (p->y < y + halfheight));
+        } else {
+            return ((p->x < x + halfwidth) && (p->y > y - halfheight));
+        }
+    } else {
+        if (p->y >= 0) {
+            return ((p->x > x - halfwidth) && (p->y < y + halfheight));
+        } else {
+            return ((p->x > x - halfwidth) && (p->y > y - halfheight));
+        }
+    }
 }
 
 void Area::follow(Vector *follow, Vector *modify)
@@ -25,36 +38,36 @@ void Area::follow(Vector *follow, Vector *modify)
             return;
 
     if(point_is_left(follow))
-            modify->x = follow->x + width;
+            modify->x = follow->x + halfwidth;
 
     if(point_is_right(follow))
-            modify->x = follow->x - width;
+            modify->x = follow->x - halfwidth;
 
     if(point_is_above(follow))
-            modify->y = follow->y + height;
+            modify->y = follow->y + halfheight;
 
     if(point_is_below(follow))
-            modify->y = follow->y - height;
+            modify->y = follow->y - halfheight;
 }
 
 bool Area::point_is_left(Vector *p)
 {
-        return (x - width) > p->x;
+        return (x - halfwidth) > p->x;
 }
 
 bool Area::point_is_right(Vector *p)
 {
-        return (x + width) < p->x;
+        return (x + halfwidth) < p->x;
 }
 
 bool Area::point_is_above(Vector *p)
 {
-        return (y - height) > p->y;
+        return (y - halfheight) > p->y;
 }
 
 bool Area::point_is_below(Vector *p)
 {
-        return (y + height) < p->y;
+        return (y + halfheight) < p->y;
 }
 // Private members go here.
 // Protected members go here.

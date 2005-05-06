@@ -139,7 +139,7 @@ int test_vector(void)
 
 int test_area(void)
 {
-    Area *area = new Area(320, 200);
+    Area *area = new Area(400, 400);
     
     Vector *v = new Vector();
     v->x = 100;

@@ -33,8 +33,6 @@ void Sector::setup_master(void)
 {
     is_master = 1;
     console->log("Master sector initialized.");
-//    bound->x = 500;
-//    bound->y = 500;
 }
 
 void Sector::update_visible(void)

@@ -19,7 +19,7 @@ class Area {
         bool point_is_left(Vector *p);
         bool point_is_right(Vector *p);
 
-        double x, y, width, height;
+        double x, y, width, height, halfwidth, halfheight;
     private:
         // Private members go here.
     protected:

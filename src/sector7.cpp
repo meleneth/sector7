@@ -15,9 +15,6 @@ Entity *my_ship;
 
 int main(int argc, char *argv[])
 {
-    console = new Console();
-    console->print_logs = 1;
-
     std::string nickname = "netclient";
     std::string servername = "localhost";
     Uint32 xres = 1024;
@@ -37,6 +34,9 @@ int main(int argc, char *argv[])
                 yres = atoi (optarg); break;
         }
     }
+
+    console = new Console();
+    console->print_logs = 1;
 
     Vector *mouse_cursor = new Vector();
     Area *area = new Area(200, 200);
