@@ -26,7 +26,10 @@ void Weapon::fire_up()
 
 void Weapon::fire_shot(Vector *target)
 {
-
+    Entity *shot = new Entity();
+    shot->v = target;
+    shot->texture = get_tex_id(TILE_LASER);
+    ((Sector *)owner->sector)->add_entity(shot);
 }
 
 

@@ -6,6 +6,7 @@
 #include"vector.hpp"
 #include"camera.hpp"
 #include"globals.hpp"
+#include"weapon.hpp"
 
 NetServer *server = NULL;
 Console *console;
@@ -73,7 +74,7 @@ int main(int argc, char *argv[])
 
     for (speed = 0; speed < 256; speed++)
         keys[speed] = SDL_RELEASED;
-  
+
     while(!quit){
         while (SDL_PollEvent (&event) == 0 && !quit)
         {
@@ -91,6 +92,8 @@ int main(int argc, char *argv[])
                 glRotatef(reticle_angle, 0, 0, 1);
                 glColor4f(0, 1, 0, .65);
                 get_tex_id(TILE_RETICLE)->DrawGLSquare(16);
+
+                if(!my_ship->primary) my_ship->primary = new Weapon(my_ship);
             }
 
             wait_next_frame();
@@ -123,8 +126,9 @@ int main(int argc, char *argv[])
                 mouse_cursor->set_from_screen_coords(mx, my, xres, yres);
 
                 if(mbuttons & 1){
-                    if(my_ship->primary)
+                    if(my_ship->primary) {
                         my_ship->fire_primary_weapon(mouse_cursor);
+                    }
                 }
 
                 my_ship->v->aim(mouse_cursor->x, mouse_cursor->y);
