@@ -6,7 +6,7 @@
 #include"vector.hpp"
 #include"camera.hpp"
 #include"globals.hpp"
-#include"weapon.hpp"
+#include"w_plasmacannon.hpp"
 
 NetServer *server = NULL;
 Console *console;
@@ -93,7 +93,7 @@ int main(int argc, char *argv[])
                 glColor4f(0, 1, 0, .65);
                 get_tex_id(TILE_RETICLE)->DrawGLSquare(16);
 
-                if(!my_ship->primary) my_ship->primary = new Weapon(my_ship);
+                if(!my_ship->primary) my_ship->primary = new PlasmaCannon(my_ship);
             }
 
             wait_next_frame();
@@ -128,6 +128,7 @@ int main(int argc, char *argv[])
                 if(mbuttons & 1){
                     if(my_ship->primary) {
                         my_ship->fire_primary_weapon(mouse_cursor);
+                        printf(".");
                     }
                 }
 

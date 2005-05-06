@@ -26,7 +26,7 @@ int PlasmaCannon::frameupdate(){
 void PlasmaCannon::render(){
 }
 
-void PlasmaCannon::fire_shot(RESTYPE x, RESTYPE y){
+void PlasmaCannon::fire_shot(Vector *target){
     if(!owner)
         return;
     static Sint32 last_fire = 0;
@@ -41,7 +41,7 @@ void PlasmaCannon::fire_shot(RESTYPE x, RESTYPE y){
     // x and y are the aiming points, only the owner can fire.
     Vector *new_vec = new Vector(owner->v);
     new_vec->power = projectile_velocity;
-    new_vec->aim(x, y);
+    new_vec->aim(target->x, target->y);
     Plasma *shot = new Plasma(damage, new_vec, owner);
     ((Sector *)(owner->sector))->add_entity(shot);
 }
