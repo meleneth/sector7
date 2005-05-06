@@ -24,7 +24,7 @@ void Weapon::fire_up()
 {
 }
 
-void Weapon::fire_shot(RESTYPE x, RESTYPE y)
+void Weapon::fire_shot(Vector *target)
 {
 
 }

@@ -42,6 +42,7 @@ void Entity::setup_entity(void)
     score_value = 0;
     experiance_value = 0;
     rotation=0;
+    primary = NULL;
 }
 
 void Entity::update_location(void){
@@ -191,6 +192,12 @@ void Entity::log_info(void){
     buf << " sector: " << ((Sector *)sector)->sector_id;
     }
     console->log(buf.str());
+}
+
+void Entity::fire_primary_weapon(Vector *target)
+{
+    if(primary)
+        primary->fire_shot(target);
 }
 
 // Private members go here.

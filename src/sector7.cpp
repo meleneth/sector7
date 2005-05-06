@@ -120,10 +120,12 @@ int main(int argc, char *argv[])
 
               
                 mbuttons = SDL_GetMouseState(&mx, &my);
-                if(mbuttons & 1){
-                    my_ship->log_info();
-                }
                 mouse_cursor->set_from_screen_coords(mx, my, xres, yres);
+
+                if(mbuttons & 1){
+                    if(my_ship->primary)
+                        my_ship->fire_primary_weapon(mouse_cursor);
+                }
 
                 my_ship->v->aim(mouse_cursor->x, mouse_cursor->y);
 

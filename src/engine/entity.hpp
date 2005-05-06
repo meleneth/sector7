@@ -7,6 +7,7 @@
 #include"vector.hpp"
 #include"netpacket.hpp"
 #include"globals.hpp"
+#include"weapon.hpp"
 
 #define E_PLAYER 1
 #define E_ENEMY 2
@@ -42,6 +43,7 @@ typedef struct {
         Uint32 other_stuff;
 } EntFull;
 
+class Weapon;
 class Entity {
     public:
         ENTID_TYPE ent_id;
@@ -57,6 +59,7 @@ class Entity {
         Uint8 size; // 1/2 value always.. gl :)
         int taken_damage;
         Vector *v;
+        Weapon *primary;
         
         void *sector;
 
@@ -84,6 +87,8 @@ class Entity {
         void kill_me_now(void); 
         void log_info(void);
         void move(Sint32 xdir, Sint32 ydir);
+
+        void fire_primary_weapon(Vector *target);
 
         void inflateLoc(EntLoc *newLoc);
         void inflateFull(EntFull *newFull);
