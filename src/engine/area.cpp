@@ -17,19 +17,16 @@ Area::~Area() // Destructor
 
 bool Area::contains(Vector *p)
 {
-    if (p->x >= 0) {
-        if (p->y >= 0) {
-            return ((p->x < x + halfwidth) && (p->y < y + halfheight));
-        } else {
-            return ((p->x < x + halfwidth) && (p->y > y - halfheight));
-        }
-    } else {
-        if (p->y >= 0) {
-            return ((p->x > x - halfwidth) && (p->y < y + halfheight));
-        } else {
-            return ((p->x > x - halfwidth) && (p->y > y - halfheight));
-        }
-    }
+    if(p->x < x - halfwidth)
+        return 0;
+    if(p->x > x + halfwidth)
+        return 0;
+    if(p->y < y - halfheight)
+        return 0;
+    if(p->y < y - halfheight)
+        return 0;
+
+    return 1;
 }
 
 void Area::follow(Vector *follow, Vector *modify)
