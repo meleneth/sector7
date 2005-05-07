@@ -90,9 +90,6 @@ void Entity::move(Sint32 xdir, Sint32 ydir)
 }
 
 int Entity::chkDeath(void){
-    if((v->y > 500) || (v->y < -400)){
-        return true;
-    }
     if(health > 0)
         return false;
     return true;

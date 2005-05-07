@@ -107,7 +107,6 @@ Entity *EntityMgr::chkCollision (Entity *check)
     }
   return NULL;
 }
-
 // Private members go here.
 
 // Protected members go here.

@@ -20,7 +20,7 @@ class EntityMgr {
         Entity *ent_for_id(Uint32 id);
         void dump_all(void);
 
-        void remove_ent(Entity *entity);
+        virtual void remove_ent(Entity *entity);
         int frameupdate(void);
         virtual int render(void);
 

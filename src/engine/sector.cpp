@@ -149,5 +149,11 @@ int Sector::render(void)
     return true;
 }
 
+void Sector::remove_ent(Entity *entity)
+{
+    visible_entities.remove(entity);
+    EntityMgr::remove_ent(entity);
+}
+
 // Private members go here.
 // Protected members go here.

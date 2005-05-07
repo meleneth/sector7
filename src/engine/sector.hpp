@@ -21,6 +21,7 @@ class Sector : public EntityMgr {
         std::string sector_id;
         int is_master;
         virtual Entity *add_entity (Entity * entity);
+        virtual void remove_ent(Entity *entity);
         void update_visible(void);
         void attach_sector(Sector *sector);
         void detach_sector(Sector *sector);
