@@ -21,9 +21,9 @@ void Camera::render(void)
 
     glColor4f (1, 1, 1, 1);
 
-    for (i = entities.begin (); i != entities.end (); ++i)
+    for (i = visible_entities.begin (); i != visible_entities.end (); ++i)
     {
-          (*i)->render();
+          (*i)->render(position);
           num_ents++;
     }
 }
