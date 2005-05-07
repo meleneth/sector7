@@ -5,6 +5,7 @@
 
 #include"console.hpp"
 #include"camera.hpp"
+#include"w_plasmacannon.hpp"
 #include"netserver.hpp"
 #include"texture.hpp"
 #include"area.hpp"
@@ -15,6 +16,7 @@ Entity *my_ship;
 
 int test_partial_entity_update(void);
 int test_entity_marshalling(void);
+int test_shooting(void);
 int test_camera(void);
 int test_vector(void);
 int test_area(void);
@@ -39,6 +41,9 @@ int main(int argc, char *argv[])
 
     printf ("Testing area\n");
     test_area();
+
+    printf ("Testing shooting\n");
+    test_shooting();
 
     printf ("Testing camera\n");
     test_camera();
@@ -183,4 +188,33 @@ int test_camera(void)
 
     assert(cam->position->x == 4900);
     assert(cam->position->y == 4900);
+}
+
+int test_shooting(void)
+{
+    Sector *sector = new Sector("anime");
+    Entity *ent = new Entity();
+    ent->primary = new PlasmaCannon(ent);
+    sector->add_entity(ent);
+
+    assert(sector->entities.size() == 1);
+
+    ent->primary->fire_shot();
+    assert(sector->entities.size() == 2);
+
+    ent->primary->fire_shot();
+    assert(sector->entities.size() == 2);
+
+    ent->primary->frameupdate();
+    ent->primary->frameupdate();
+    ent->primary->frameupdate();
+    ent->primary->frameupdate();
+    ent->primary->frameupdate();
+    ent->primary->frameupdate();
+    ent->primary->frameupdate();
+    ent->primary->frameupdate();
+    ent->primary->frameupdate();
+    ent->primary->frameupdate();
+    ent->primary->fire_shot();
+    assert(sector->entities.size() == 3);
 }
