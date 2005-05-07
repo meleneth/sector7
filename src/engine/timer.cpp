@@ -5,7 +5,7 @@
 void wait_next_frame(void){
     static Uint32 last_frame = 0;
     static Uint32 next_frame;
-
+    
     if(last_frame == 0){
         last_frame = SDL_GetTicks();
     }   

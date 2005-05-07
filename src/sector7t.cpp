@@ -1,7 +1,6 @@
 #include"assert.h"
 
 #include<string>
-#include<iostream.h>
 
 #include"console.hpp"
 #include"camera.hpp"
@@ -9,6 +8,7 @@
 #include"netserver.hpp"
 #include"texture.hpp"
 #include"area.hpp"
+#include"SDL.h"
 
 Console *console;
 NetServer *server;
@@ -20,6 +20,7 @@ int test_shooting(void);
 int test_camera(void);
 int test_vector(void);
 int test_area(void);
+int test_sdl_delay(void);
 
 int main(int argc, char *argv[])
 {
@@ -33,6 +34,9 @@ int main(int argc, char *argv[])
     foo = "Bar";
     assert(foo.length() ==3);
 
+    printf("Testing SDL_DELAY timing\n");
+    test_sdl_delay();
+    
     printf("Testing partial entity updates\n");
     test_partial_entity_update();
     
@@ -84,6 +88,26 @@ int test_partial_entity_update(void)
     assert(ent->v->rotation == -23);
 }
 
+int test_sdl_delay(void) 
+{
+    if (SDL_Init (SDL_INIT_VIDEO | SDL_INIT_AUDIO) < 0)
+    {
+        fprintf (stderr, "Couldn't initialize SDL: %s\n", SDL_GetError ());
+        exit (1);
+    }
+    fprintf (stderr, "SDL initialized.\n");
+    
+    Uint32 i, time1, time2;
+    std::stringstream buf;
+    
+    for (i = 0; i < 30; ++i){
+        time1 = SDL_GetTicks();
+        SDL_Delay(i);
+        time2 = SDL_GetTicks();
+        buf << "endTicks: " << time2 << " - startTicks " << time1 << " = " << time2-time1 << " actual delay: " << i << "\n";
+        console->log(buf.str());
+    }
+}
 int test_entity_marshalling(void)
 {
     Entity *ent = new Entity();
@@ -184,7 +208,7 @@ int test_camera(void)
 
     buf << "X: " << cam->position->x << " Y: " << cam->position->y;
 
-    cout << buf.str();
+    console->log(buf.str());
 
     assert(cam->position->x == 4900);
     assert(cam->position->y == 4900);

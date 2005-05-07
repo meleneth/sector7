@@ -7,7 +7,6 @@
 #include"camera.hpp"
 #include"globals.hpp"
 #include"w_plasmacannon.hpp"
-#include<strstream>
 
 NetServer *server = NULL;
 Console *console;
