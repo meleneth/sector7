@@ -16,8 +16,6 @@ Camera::~Camera() // Destructor
 
 void Camera::follow(Entity *bird)
 {
-    inner_bound->x = position->x;
-    inner_bound->y = position->y;
     inner_bound->follow(bird->v, this->position);
 }
 

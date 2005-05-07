@@ -71,11 +71,17 @@ void Vector::set_from(Vector *v)
 
 void Vector::bounds_check(Area *boundary)
 {
-    if (x < -(boundary->width/2)) x = (boundary->width/2);
-    if (x > (boundary->width/2))  x = -(boundary->width/2);
+    if (x < -(boundary->halfwidth)) 
+        x = (boundary->halfwidth);
 
-    if (y < -(boundary->height/2)) y = (boundary->height/2);
-    if (y > (boundary->height/2))  y = -(boundary->height/2);
+    if (x > (boundary->halfwidth))  
+        x = -(boundary->halfwidth);
+
+    if (y < -(boundary->halfheight)) 
+        y = (boundary->halfheight);
+
+    if (y > (boundary->halfheight))  
+        y = -(boundary->halfheight);
 }
 
 void Vector::accelerate(Vector *v)

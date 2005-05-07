@@ -7,6 +7,7 @@
 #include"camera.hpp"
 #include"globals.hpp"
 #include"w_plasmacannon.hpp"
+#include<strstream>
 
 NetServer *server = NULL;
 Console *console;
@@ -158,6 +159,13 @@ int main(int argc, char *argv[])
             }
 
             framecount++;
+
+            std::stringstream buf;
+            buf << "CameraX: " << camera->position->x << " CameraY: " << camera->position->y;
+            if(my_ship){
+                buf << " ShipX: " << my_ship->v->x << " ShipY: " << my_ship->v->y;
+            }
+            console->log(buf.str());
         }
         switch (event.type)
         {
