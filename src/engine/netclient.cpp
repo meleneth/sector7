@@ -43,7 +43,6 @@ extern Camera *camera;
 
 Sector *NetClient::do_frame(void)
 {
-    NetPacket *packet = listener->get_next_packet();
     Entity *ent;
     Uint32 ent_id;
     Sector *new_sector = NULL;
@@ -51,8 +50,9 @@ Sector *NetClient::do_frame(void)
     if(sector){
         sector->frameupdate();
     }
+    NetPacket *packet = NULL;
 
-    if(packet)
+    while(packet = listener->get_next_packet())
     {
         std::stringstream buf;
 

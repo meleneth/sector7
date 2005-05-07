@@ -140,8 +140,9 @@ void NetServer::handle_hello(NetPacket *packet)
 
 void NetServer::do_frame(void)
 {
-    NetPacket *packet = listener->get_next_packet();
-    if(packet){
+    NetPacket *packet = NULL;
+    
+    while(packet = listener->get_next_packet()){
         handle_packet(packet);
         delete packet;
     }
@@ -150,8 +151,7 @@ void NetServer::do_frame(void)
 
     for(i = clients.begin() ; i!=clients.end(); i++)
     {
-        packet = (*i)->socket->get_next_packet();
-        if(packet){
+        while(packet = (*i)->socket->get_next_packet()){
             handle_packet(packet);
             delete packet;
         }
