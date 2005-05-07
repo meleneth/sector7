@@ -17,11 +17,6 @@ Sector::Sector(std::string sector_id) // Constructor
     is_master = 0;
     console->log("Sector " + sector_id + " created");
     position = new Vector();
-
-    s_nw = NULL;
-    s_ne = NULL;
-    s_sw = NULL;
-    s_se = NULL;
     bound = new Area(SECTOR_SIDE, SECTOR_SIDE);
 }
     
@@ -83,16 +78,46 @@ Entity *Sector::add_entity (Entity *entity)
 {
     NetPacket *data = new NetPacket(sizeof(EntFull));
     EntFull *entData = (EntFull *) &data->command;
+    std::list < Sector * >::iterator s;
 
     if(server){
         entity->deflateFull(entData);
         entData->cmd = (NetCmd) htonl(INFO_ENT_FULL);
         server->send_all_clients(data);
     }
+
+    for (s = attached_sectors.begin(); s != attached_sectors.end(); s++) {
+        (*s)->visible_entities.push_front(entity);
+    }
     
     entity->sector = this;
     return EntityMgr::add_entity(entity);
 } 
+
+void Sector::attach_sector(Sector *sector)
+{
+    std::list < Sector * >::iterator s;
+    std::list < Entity * >::iterator e;
+
+    for (e = sector->entities.begin(); e != sector->entities.end(); e++) {
+	    visible_entities.push_front(*e);
+        for (s = attached_sectors.begin(); s != attached_sectors.end(); s++) {
+                (*s)->visible_entities.push_front(*e);
+            }
+    }
+
+    for (e = entities.begin(); e != entities.end(); e++) {
+        sector->visible_entities.push_front(*e);
+    }
+
+    attached_sectors.push_front(sector);
+    sector->attached_sectors.push_front(this);
+}
+
+void Sector::detach_sector(Sector *sector)
+{
+    attached_sectors.remove(sector);
+}
 
 // Private members go here.
 // Protected members go here.

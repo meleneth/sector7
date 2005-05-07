@@ -15,7 +15,7 @@ class Renderer {
         Renderer::Renderer(Uint32 xres, Uint32 yres); // Constructor
         Renderer::~Renderer(); // Destructor
         void swap_buffers(void);
-        int RenderFrame(Camera *camera);
+        int RenderFrame(Sector *camera);
         void ClearScreen(void);
 
     private:

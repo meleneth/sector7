@@ -23,7 +23,7 @@ class Weapon {
 
         virtual void fire_down();
         virtual void fire_up();
-        virtual void fire_shot(Vector *target);
+        virtual void fire_shot();
         virtual void render();
     private:
         // Private members go here.

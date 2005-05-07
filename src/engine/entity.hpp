@@ -88,8 +88,6 @@ class Entity {
         void log_info(void);
         void move(Sint32 xdir, Sint32 ydir);
 
-        void fire_primary_weapon(Vector *target);
-
         void inflateLoc(EntLoc *newLoc);
         void inflateFull(EntFull *newFull);
         void deflateLoc(EntLoc *currentLoc);

@@ -15,7 +15,7 @@ class PlasmaCannon : public Weapon {
 
         virtual int frameupdate();
         virtual void render();
-        virtual void fire_shot(Vector *target);
+        virtual void fire_shot();
     private:
         // Private members go here.
 

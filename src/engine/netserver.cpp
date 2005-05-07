@@ -14,6 +14,7 @@
 
 #define MAXBUFLEN 100
 
+#include"w_plasmacannon.hpp"
 #include"console.hpp"
 #include"entity.hpp"
 
@@ -92,6 +93,10 @@ void NetServer::handle_packet(NetPacket *packet)
                 console->log("Server got REQ_ENT_LOC_UPDATE");
                 sector->dump(packet);
                 break;
+            case ENT_FIRE:
+                client = get_client(packet);
+                client->entity->primary->fire_shot();
+                break;
             case INFO_ENT_LOC:
                 EntLoc *entLocData;
                 entLocData = (EntLoc *) &packet->command;
@@ -118,6 +123,7 @@ void NetServer::handle_hello(NetPacket *packet)
      Entity * newEnt = new Entity();
      newEnt->v->random_location(50, 50, 300, 300);
      newEnt->texture = get_tex_id(TILE_SHIP);
+     newEnt->primary = new PlasmaCannon(newEnt);
      sector->add_entity(newEnt); 
 
      buf << packet->command.hello.nickname << " connected.  Directing it to sector: " << sector->sector_id

@@ -194,12 +194,6 @@ void Entity::log_info(void){
     console->log(buf.str());
 }
 
-void Entity::fire_primary_weapon(Vector *target)
-{
-    if(primary)
-        primary->fire_shot(target);
-}
-
 // Private members go here.
 
 // Protected members go here.

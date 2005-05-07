@@ -24,7 +24,7 @@ void Weapon::fire_up()
 {
 }
 
-void Weapon::fire_shot(Vector *target)
+void Weapon::fire_shot()
 {
 //    Entity *shot = new Entity();
 //    shot->v = target;

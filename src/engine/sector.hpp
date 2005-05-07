@@ -22,15 +22,13 @@ class Sector : public EntityMgr {
         int is_master;
         virtual Entity *add_entity (Entity * entity);
         void update_visible(void);
-
+        void attach_sector(Sector *sector);
+        void detach_sector(Sector *sector);
+        
         Vector *position;
         Area *bound;
         std::list<Entity *> visible_entities;
-
-        Sector *s_ne;
-        Sector *s_nw;
-        Sector *s_se;
-        Sector *s_sw;
+        std::list<Sector *> attached_sectors;
 
     private:
         // Private members go here.

@@ -19,15 +19,16 @@ Renderer::~Renderer()		// Destructor
 {
 }
 
-int Renderer::RenderFrame(Camera *camera)
+int Renderer::RenderFrame(Sector *camera)
 {
     static int reticle_angle = 0;
 
     ClearScreen();
-    glOrtho (camera->position->x - camera->visible_area->width,
-             camera->position->x + camera->visible_area->width,
-             camera->position->y - camera->visible_area->height,
-             camera->position->y + camera->visible_area->height, 20, -20);
+    /*glOrtho (camera->position->x - camera->visible_area->width,
+    camera->position->x + camera->visible_area->width,
+    camera->position->y - camera->visible_area->height,
+    camera->position->y + camera->visible_area->height, 20, -20);
+    */
     glColor4f(1, 1, 1, 1);
     camera->render();
     return true;
