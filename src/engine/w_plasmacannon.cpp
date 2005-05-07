@@ -13,14 +13,11 @@ PlasmaCannon::PlasmaCannon(Entity *owner_ent) : Weapon(owner_ent) // Constructor
     damage = 50;
     firedelay = 5;
     projectile_velocity = 1;
+    lastfire = 0;
 }
 
 PlasmaCannon::~PlasmaCannon() // Destructor
 {
-}
-
-int PlasmaCannon::frameupdate(){
-    return true;
 }
 
 void PlasmaCannon::render(){
@@ -29,16 +26,11 @@ void PlasmaCannon::render(){
 void PlasmaCannon::fire_shot(){
     if(!owner)
         return;
-    static Sint32 last_fire = 0;
-    
-    if(last_fire>0){
-        last_fire--;
-        return;
-    }else{
-        last_fire = firedelay;
-    }
 
-    // x and y are the aiming points, only the owner can fire.
+    if(lastfire>0)
+        return;
+    
+    lastfire = firedelay;
     Vector *new_vec = new Vector(owner->v);
     new_vec->power = projectile_velocity;
     Plasma *shot = new Plasma(damage, new_vec, owner);

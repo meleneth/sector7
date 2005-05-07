@@ -10,10 +10,18 @@ Weapon::Weapon(Entity *owner_ent)	// Constructor
     damage = 500;
     firedelay = 20;
     owner = owner_ent;
+    lastfire=0;
 }
 
 Weapon::~Weapon()		// Destructor
 {
+}
+
+void Weapon::frameupdate()
+{
+    if(lastfire){
+        lastfire--;
+    }
 }
 
 void Weapon::fire_down()

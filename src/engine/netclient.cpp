@@ -15,7 +15,7 @@
 #include"globals.hpp"
 #include"entity.hpp"
 #include"sector.hpp"
-
+#include "w_plasmacannon.hpp"
 extern Console *console;
 
 
@@ -92,6 +92,7 @@ Sector *NetClient::do_frame(void)
                 sector->dump_all();
                 my_ship = sector->ent_for_id((ENTID_TYPE)ntohl(*(ENTID_TYPE *)packet->command.datamsg.message));
                 buf << "Client got GRANT_ENT_WRITE for id " << my_ship->ent_id;
+                my_ship->primary = new PlasmaCannon(my_ship);
                 console->log(buf.str());
                 break;
             case GOODBYE:

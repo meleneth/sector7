@@ -62,6 +62,10 @@ int Entity::frameupdate(void){
         ((Sector *)sector)->chkCollision(this);
     }
 
+    if(primary){
+        primary->frameupdate();
+    }
+
     return !chkDeath();
 }
 

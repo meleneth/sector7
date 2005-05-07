@@ -13,7 +13,6 @@ class PlasmaCannon : public Weapon {
         PlasmaCannon::PlasmaCannon(Entity *owner_ent); // Constructor
         PlasmaCannon::~PlasmaCannon(); // Destructor
 
-        virtual int frameupdate();
         virtual void render();
         virtual void fire_shot();
     private:

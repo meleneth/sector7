@@ -20,7 +20,8 @@ class Weapon {
         // Public data members go here.
         Weapon::Weapon(Entity *owner_ent); // Constructor
         virtual Weapon::~Weapon(); // Destructor
-
+        
+        virtual void frameupdate(void);
         virtual void fire_down();
         virtual void fire_up();
         virtual void fire_shot();
