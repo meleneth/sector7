@@ -5,8 +5,8 @@
 Camera::Camera(std::string sector_id, Uint32 xres, Uint32 yres): Sector(sector_id) // Constructor
 {
     console->log(sector_id);
-    visible_area = new Area(xres/2, yres/2);
-    inner_bound = new Area(xres/4, yres/4);
+    visible_area = new Area(xres, yres);
+    inner_bound = new Area(xres/2, yres/2);
     position = new Vector();
 }
     
