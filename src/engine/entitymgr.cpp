@@ -59,7 +59,7 @@ int EntityMgr::frameupdate (void)
     return true;
 }
 
-int EntityMgr::render (void)
+void EntityMgr::render (void)
 {
     std::list < Entity * >::iterator i;
     num_ents = 0;
@@ -71,7 +71,6 @@ int EntityMgr::render (void)
           (*i)->render ();
           num_ents++;
     }
-    return true;
 }
 
 void EntityMgr::remove_ent (Entity *ent)

@@ -14,6 +14,20 @@ Camera::~Camera() // Destructor
 {
 }
 
+void Camera::render(void)
+{
+    std::list < Entity * >::iterator i;
+    num_ents = 0;
+
+    glColor4f (1, 1, 1, 1);
+
+    for (i = entities.begin (); i != entities.end (); ++i)
+    {
+          (*i)->render();
+          num_ents++;
+    }
+}
+
 void Camera::follow(Entity *bird)
 {
     inner_bound->follow(bird->v, this->position);

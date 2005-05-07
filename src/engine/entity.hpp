@@ -75,6 +75,7 @@ class Entity {
 
         virtual void update_location(void);
         virtual void render(void);
+        virtual void render(Vector *offset);
 
         virtual int chkDeath(void);
         virtual int chkCollision(Entity *checkme);

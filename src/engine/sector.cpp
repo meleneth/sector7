@@ -134,7 +134,7 @@ void Sector::detach_sector(Sector *sector)
 
 }
 
-int Sector::render(void)
+void Sector::render(void)
 {
     std::list < Entity * >::iterator i;
     num_ents = 0;
@@ -146,7 +146,6 @@ int Sector::render(void)
           (*i)->render();
           num_ents++;
     }
-    return true;
 }
 
 void Sector::remove_ent(Entity *entity)

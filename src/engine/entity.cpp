@@ -83,6 +83,20 @@ void Entity::render(void){
     }
 }
 
+void Entity::render(Vector *offset){
+    glLoadIdentity();
+    glTranslatef(offset->x - v->x, offset->y - v->y, 0);
+    glRotatef(v->angle-90, 0, 0, 1);
+    if(taken_damage){
+        glColor4f(1.0,0.0,0.0,1.0);
+        texture->DrawGLSquare(size);
+        glColor4f(1.0,1.0,1.0,1.0);
+        taken_damage--;
+    } else {
+        texture->DrawGLSquare(size);
+    }
+}
+
 void Entity::move(Sint32 xdir, Sint32 ydir)
 {
     v->x+=xdir;
