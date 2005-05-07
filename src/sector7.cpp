@@ -62,6 +62,7 @@ int main(int argc, char *argv[])
     int reticle_angle = 0;
 
     Sector *sector = new Sector("connecting");
+    camera->attach_sector(sector);
     camera->follow(sector->setup_connecting());
     sectors.push_front(sector);
     
@@ -78,7 +79,7 @@ int main(int argc, char *argv[])
     while(!quit){
         while (SDL_PollEvent (&event) == 0 && !quit)
         {
-            renderer->RenderFrame(*(sectors.begin()));
+            renderer->RenderFrame(camera);
 
             if(my_ship){
                 camera->follow(my_ship);
@@ -103,6 +104,11 @@ int main(int argc, char *argv[])
             
             if(new_sector){
                 sectors.push_front(new_sector);
+                camera->attach_sector(new_sector);
+                if (sector){
+                    camera->detach_sector(sector);
+                    sector = NULL;
+                }
             }
 
             if (my_ship){

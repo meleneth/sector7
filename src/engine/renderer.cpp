@@ -5,6 +5,7 @@
 #include"entitymgr.hpp"
 #include"texture.hpp"
 #include"engine.hpp"
+#include"camera.hpp"
 
 #include"SDL_opengl.h"
 
@@ -19,7 +20,7 @@ Renderer::~Renderer()		// Destructor
 {
 }
 
-int Renderer::RenderFrame(Sector *camera)
+int Renderer::RenderFrame(Camera *camera)
 {
     static int reticle_angle = 0;
 

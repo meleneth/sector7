@@ -102,8 +102,8 @@ void Sector::attach_sector(Sector *sector)
     for (e = sector->entities.begin(); e != sector->entities.end(); e++) {
 	    visible_entities.push_front(*e);
         for (s = attached_sectors.begin(); s != attached_sectors.end(); s++) {
-                (*s)->visible_entities.push_front(*e);
-            }
+            (*s)->visible_entities.push_front(*e);
+        }
     }
 
     for (e = entities.begin(); e != entities.end(); e++) {
@@ -116,7 +116,37 @@ void Sector::attach_sector(Sector *sector)
 
 void Sector::detach_sector(Sector *sector)
 {
+    std::list < Sector * >::iterator s;
+    std::list < Entity * >::iterator e;
+
     attached_sectors.remove(sector);
+    
+    for (e = entities.begin(); e != entities.end(); e++) {
+        sector->visible_entities.remove(*e);
+    }
+
+    for (e = sector->entities.begin(); e != sector->entities.end(); e++) {
+	    visible_entities.remove(*e);
+        for (s = attached_sectors.begin(); s != attached_sectors.end(); s++) {
+            (*s)->visible_entities.remove(*e);
+        }
+    }
+
+}
+
+int Sector::render(void)
+{
+    std::list < Entity * >::iterator i;
+    num_ents = 0;
+
+    glColor4f (1, 1, 1, 1);
+
+    for (i = visible_entities.begin (); i != visible_entities.end (); ++i)
+    {
+          (*i)->render();
+          num_ents++;
+    }
+    return true;
 }
 
 // Private members go here.

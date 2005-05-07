@@ -24,6 +24,7 @@ class Sector : public EntityMgr {
         void update_visible(void);
         void attach_sector(Sector *sector);
         void detach_sector(Sector *sector);
+        virtual int render(void);
         
         Vector *position;
         Area *bound;

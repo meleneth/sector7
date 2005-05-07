@@ -22,7 +22,7 @@ class EntityMgr {
 
         void remove_ent(Entity *entity);
         int frameupdate(void);
-        int render(void);
+        virtual int render(void);
 
         Entity *chkCollision(Entity *check);
         Uint32 ent_id;
