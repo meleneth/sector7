@@ -202,6 +202,20 @@ int test_camera(void)
     ent->v->x = 5000;
     ent->v->y = 5000;
 
+    Vector *p = new Vector;
+
+    cam->position->x = 0;
+    cam->position->y = 0;
+
+    cam->set_from_screen_coords(p, 100, 100);
+
+    buf << "pX: " << p->x << " pY: " << p->y;
+    console->log(buf.str());
+    buf.str("");
+
+    assert(p->x == -100);
+    assert(p->y == -100);
+
     sector->add_entity(ent);
 
     cam->follow(ent);

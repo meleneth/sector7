@@ -35,8 +35,8 @@ void Camera::follow(Entity *bird)
 
 void Camera::set_from_screen_coords(Vector *v, double screen_x, double screen_y)
 {
-    v->x = position->x + screen_x - visible_area->width;
-    v->y = position->y + screen_y - visible_area->height;
+    v->x = position->x + screen_x - visible_area->halfwidth;
+    v->y = position->y + screen_y - visible_area->halfheight;
 }
 
 
