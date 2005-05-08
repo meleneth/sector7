@@ -33,5 +33,12 @@ void Camera::follow(Entity *bird)
     inner_bound->follow(bird->v, this->position);
 }
 
+void Camera::set_from_screen_coords(Vector *v, double screen_x, double screen_y)
+{
+    v->x = position->x + screen_x - visible_area->width;
+    v->y = position->y + screen_y - visible_area->height;
+}
+
+
 // Private members go here.
 // Protected members go here.

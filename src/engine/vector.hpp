@@ -17,7 +17,6 @@ class Vector {
         void aim(double x, double y);
         void aim(Vector *target);
         void update_location(void);
-        void set_from_screen_coords(double screen_x, double screen_y, Uint32 screen_width, Uint32 screen_height);
         void set_from(Vector *v);
         void bounds_check(Area *boundary);
         void accelerate(Vector *v);

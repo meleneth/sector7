@@ -12,6 +12,7 @@ class Camera : public Sector {
         Camera::~Camera(); // Destructor
         virtual void render(void);
         void follow(Entity *bird);
+        void set_from_screen_coords(Vector *v, double screen_x, double screen_y);
     
         Area *visible_area;
         Area *inner_bound;

@@ -39,7 +39,6 @@ int main(int argc, char *argv[])
     console = new Console();
     console->print_logs = 1;
 
-    Vector *mouse_cursor = new Vector();
     Area *area = new Area(200, 200);
     Area *screensize = new Area(xres, yres);
             
@@ -57,9 +56,9 @@ int main(int argc, char *argv[])
     client = new NetClient(servername, DEFAULT_PORT, nickname);
     
     renderer = new Renderer(xres, yres);
+    Entity *mouse_cursor = new Entity();
+    mouse_cursor->texture = get_tex_id(TILE_RETICLE);
     Texture *no_texture = get_tex_id(TILE_NOTILE);
-    mouse_cursor = new Vector();
-    int reticle_angle = 0;
 
     Sector *sector = new Sector("connecting");
     camera->attach_sector(sector);
@@ -85,14 +84,14 @@ int main(int argc, char *argv[])
                 camera->follow(my_ship);
 
                 glLoadIdentity();
-                glTranslatef(mouse_cursor->x, mouse_cursor->y, 0);
+                glTranslatef(mouse_cursor->v->x, mouse_cursor->v->y, 0);
 
-                reticle_angle += 4;
-                if (reticle_angle > 360)
-                    reticle_angle = 0;
-                glRotatef(reticle_angle, 0, 0, 1);
+                mouse_cursor->v->angle += 4;
+                if (mouse_cursor->v->angle > 360)
+                    mouse_cursor->v->angle = 0;
+
                 glColor4f(0, 1, 0, .65);
-                get_tex_id(TILE_RETICLE)->DrawGLSquare(16);
+                mouse_cursor->render(camera->position);
 
             }
 
@@ -128,13 +127,13 @@ int main(int argc, char *argv[])
 
               
                 mbuttons = SDL_GetMouseState(&mx, &my);
-                mouse_cursor->set_from_screen_coords(mx, my, xres, yres);
+                camera->set_from_screen_coords(mouse_cursor->v, mx, my);
 
                 if(mbuttons & 1){
                    send_net_cmd(client->talker, ENT_FIRE, 0, NULL);
                 }
 
-                my_ship->v->aim(mouse_cursor->x, mouse_cursor->y);
+                my_ship->v->aim(mouse_cursor->v->x, mouse_cursor->v->y);
 
                 if(my_ship->texture != no_texture && !(framecount % 4)){
                     NetPacket *dumper = new NetPacket(sizeof(EntFull));
