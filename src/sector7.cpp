@@ -7,6 +7,7 @@
 #include"camera.hpp"
 #include"globals.hpp"
 #include"w_plasmacannon.hpp"
+#include<strstream>
 
 NetServer *server = NULL;
 Console *console;
@@ -16,6 +17,7 @@ Entity *my_ship;
 
 int main(int argc, char *argv[])
 {
+    std::stringstream buf;
     std::string nickname = "netclient";
     std::string servername = "localhost";
     Uint32 xres = 1024;
@@ -127,6 +129,9 @@ int main(int argc, char *argv[])
 
               
                 mbuttons = SDL_GetMouseState(&mx, &my);
+                buf << "x: " << mx << " y: " << my << "\n";
+                console->log(buf.str());
+                buf.str("");
                 camera->set_from_screen_coords(mouse_cursor->v, mx, my);
 
                 if(mbuttons & 1){
