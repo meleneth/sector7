@@ -3,10 +3,14 @@
 * shoooting
 - camera follows ship
 text / comsole
-remove entities
+remove entities - fix entity death.. Right now it crashes.
+    fix crash on death
+bullets need lifespan - they kill the game with few ~thousand due to every 4 frame updates
 collision checking
 bounds checking
 macros for debug logging
-fix crash on death
 radar
+variable update timing - per ent, only update every X frames.
+allow player death
+keep old entities around for 5 seconds, possibly don't call find_or_create from server on recieve?
 
