@@ -169,10 +169,18 @@ int test_vector(void)
 int test_area(void)
 {
     Area *area = new Area(400, 400);
-    
+    Area *mini = new Area(100, 100);
+    std::stringstream buf;
+
     Vector *v = new Vector();
     v->x = 100;
     v->y = -23;
+
+    buf << "scale_x: " <<  area->scale_x(mini, v);
+    console->log(buf.str());
+    buf.str("");
+
+    assert(area->scale_x(mini, v) == 25);
 
     assert(area->contains(v));
 

@@ -18,6 +18,9 @@ class Area {
         bool point_is_above(Vector *p);
         bool point_is_left(Vector *p);
         bool point_is_right(Vector *p);
+        double scale_x(Area *target, Vector *p);
+        double scale_y(Area *target, Vector *p);
+
 
         double x, y, width, height, halfwidth, halfheight;
     private:

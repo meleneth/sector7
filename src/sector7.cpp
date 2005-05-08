@@ -50,12 +50,12 @@ int main(int argc, char *argv[])
     NetClient *client;
     std::list<Sector *> sectors;
 
-    Camera *camera = new Camera("camera1", xres, yres);
     my_ship = NULL;
 
     client = new NetClient(servername, DEFAULT_PORT, nickname);
     
     renderer = new Renderer(xres, yres);
+    Camera *camera = new Camera("camera1", xres, yres);
     Entity *mouse_cursor = new Entity();
     mouse_cursor->texture = get_tex_id(TILE_RETICLE);
     Texture *no_texture = get_tex_id(TILE_NOTILE);

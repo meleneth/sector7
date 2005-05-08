@@ -4,6 +4,7 @@
 #include"SDL.h"
 #include"sector.hpp"
 #include"area.hpp"
+#include"radar.hpp"
 
 class Camera : public Sector {
     public:
@@ -16,6 +17,7 @@ class Camera : public Sector {
     
         Area *visible_area;
         Area *inner_bound;
+        Radar *radar;
     private:
         // Private members go here.
     protected:

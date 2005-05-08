@@ -64,6 +64,7 @@ void Texture::DrawGL ()
 void load_textures(int dummy)
 {
     textures.push_front(new Texture(dummy, "../graphics/sprites/explosion.png", TILE_EXPLOSION));                 
+    textures.push_front(new Texture(dummy, "../graphics/sprites/white.png", TILE_WHITE));
     textures.push_front(new Texture(dummy, "../graphics/sprites/ship.png", TILE_SHIP));                 
     textures.push_front(new Texture(dummy, "../graphics/sprites/rock1.png", TILE_ROCK1));                 
     textures.push_front(new Texture(dummy, "../graphics/sprites/rock2.png", TILE_ROCK2));                 
