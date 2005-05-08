@@ -53,7 +53,7 @@ void Video::InitGL (int bpp, int fullscreen, float gamma, Uint32 xres, Uint32 yr
     int halfyres = yres/2;
     int halfxres = xres/2;
 
-    glOrtho (-halfxres, halfxres, halfyres, -halfyres, 20, -20);
+    glOrtho (-halfxres, halfxres, -halfyres, halfyres, 20, -20);
     printf ("Init: [%d bpp fullscreen(%d) %f gamma]\n", bpp, fullscreen, gamma);
     glMatrixMode (GL_MODELVIEW);
     glLoadIdentity ();
