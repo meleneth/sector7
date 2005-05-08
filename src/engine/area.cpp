@@ -69,14 +69,12 @@ bool Area::point_is_below(Vector *p)
 
 double Area::scale_x(Area *target, Vector *p)
 {
-    double scalefactor = width / target->width;
-    return ( width / p->x ) * scalefactor;
+    return p->x / (width / target->width);
 }
 
 double Area::scale_y(Area *target, Vector *p)
 {
-    double scalefactor = height / target->height;
-    return ( height / p->y ) * scalefactor;
+    return  p->y / (height / target->height);
 }
 
 // Private members go here.
