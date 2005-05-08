@@ -210,7 +210,7 @@ int test_camera(void)
     ent->v->x = 5000;
     ent->v->y = 5000;
 
-    Vector *p = new Vector;
+    Vector *p = new Vector();
 
     cam->position->x = 0;
     cam->position->y = 0;
