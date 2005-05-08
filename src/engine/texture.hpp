@@ -9,6 +9,7 @@
 #include"SDL_opengl.h"
 
 #include"map_defines.hpp"
+#include"vector.hpp"
 
 
 
@@ -26,6 +27,7 @@ class Texture {
         Texture::~Texture(); // Destructor
         int generate(void);
         void DrawGLSquare(Sint16 size);
+        void DrawGLSquare(Sint16 size, Vector *where);
         void DrawGL(void);
     private:
         // Private members go here.

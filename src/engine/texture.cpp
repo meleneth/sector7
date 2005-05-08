@@ -39,6 +39,22 @@ int Texture::LoadImage (char *filename)
     return true;
 }
 
+void Texture::DrawGLSquare (Sint16 size, Vector *v)
+{
+    glLoadIdentity();
+    glTranslatef(v->x, v->y, 0);
+
+    glRotatef(v->angle + 90, 0, 0, 1);
+
+    glBindTexture (GL_TEXTURE_2D, GLtexID);	// Bind Our Texture
+    glBegin(GL_QUADS);
+    glTexCoord2f(0.0, 1.0); glVertex3f(-size, -size, 0.0);
+    glTexCoord2f(0.0, 0.0); glVertex3f(-size, size, 0.0);
+    glTexCoord2f(1.0, 0.0); glVertex3f(size, size, 0.0);
+    glTexCoord2f(1.0, 1.0); glVertex3f(size, -size, 0.0);
+    glEnd ();			// Done Drawing The Square
+}
+
 void Texture::DrawGLSquare (Sint16 size)
 {
     glBindTexture (GL_TEXTURE_2D, GLtexID);	// Bind Our Texture
