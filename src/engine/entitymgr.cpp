@@ -120,6 +120,7 @@ Entity *EntityMgr::chkCollision (Entity *check)
 {
     std::list < Entity * >::iterator i;
     for (i = entities.begin (); i != entities.end (); ++i){
+        if ((*i)->ent_id != check->ent_id)
         if ((*i)->chkCollision(check) == true){
             return *i;
         }

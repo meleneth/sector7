@@ -1,6 +1,6 @@
 #include "camera.hpp"
 #include"globals.hpp"
-#include<strstream>
+#include<sstream>
 
 // Public data members go here.
 Camera::Camera(std::string sector_id, Uint32 xres, Uint32 yres): Sector(sector_id) // Constructor

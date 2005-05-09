@@ -7,7 +7,7 @@
 #include"camera.hpp"
 #include"globals.hpp"
 #include"w_plasmacannon.hpp"
-#include<strstream>
+#include<sstream>
 
 NetServer *server = NULL;
 Console *console;
@@ -130,7 +130,6 @@ int main(int argc, char *argv[])
                 if (keys[SDLK_d] == SDL_PRESSED){
                 }
 
-              
                 mbuttons = SDL_GetMouseState(&mx, &my);
                 camera->set_from_screen_coords(mouse_cursor->v, mx, my);
 

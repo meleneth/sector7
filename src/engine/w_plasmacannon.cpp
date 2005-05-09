@@ -20,7 +20,8 @@ PlasmaCannon::~PlasmaCannon() // Destructor
 {
 }
 
-void PlasmaCannon::render(){
+void PlasmaCannon::render()
+{
 }
 
 void PlasmaCannon::fire_shot(){

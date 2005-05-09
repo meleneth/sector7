@@ -10,7 +10,7 @@
 
 #include"math.h"
 
-#define SIGNED_OFFSET 10000
+#define SIGNED_OFFSET 100000
 
 // Public data members go here.
 Entity::Entity() // Constructor
@@ -27,7 +27,6 @@ Entity::Entity(ENT_ALIGNMENT ent_alignment) // Constructor
 
 Entity::~Entity() // Destructor
 {
-    console->log("Entity Death\n");
     delete v;
 }
 
@@ -39,7 +38,7 @@ void Entity::setup_entity(void)
     size=32;
     taken_damage = 0;
     texture = get_tex_id(TILE_NOTILE);
-    health = 1;
+    health = 1000;
     score_value = 0;
     experiance_value = 0;
     rotation=0;
