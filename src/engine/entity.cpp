@@ -108,9 +108,10 @@ int Entity::chkDeath(void){
 	
 int Entity::chkCollision(Entity *check)
 {
-    
-    if (abs( m_round(hypot(check->v->x - v->x, check->v->y - v->y))) < (size+check->size))
+    if (abs( m_round(hypot(check->v->x - v->x, check->v->y - v->y))) < (size+check->size)){
+        check->takeDamage(health, this);
         return true;
+    }
     return false;
 }
 

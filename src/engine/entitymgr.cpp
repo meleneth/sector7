@@ -66,7 +66,6 @@ int EntityMgr::frameupdate_with_collisions (void)
 
     for (i = entities.begin(); i != entities.end(); ++i)
     {
-        printf("%p\n",*i);
         chkCollision(*i);
         if (!(*i)->frameupdate())
         {
@@ -120,13 +119,12 @@ Entity *EntityMgr::ent_for_id(Uint32 id)
 Entity *EntityMgr::chkCollision (Entity *check)
 {
     std::list < Entity * >::iterator i;
-    if (!check) return NULL;
-  for (i = entities.begin (); i != entities.end (); ++i)
-    {
-      if ((*i)->chkCollision(check) == true)
-	return *i;
+    for (i = entities.begin (); i != entities.end (); ++i){
+        if ((*i)->chkCollision(check) == true){
+            return *i;
+        }
     }
-  return NULL;
+    return NULL;
 }
 // Private members go here.
 
