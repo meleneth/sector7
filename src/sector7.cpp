@@ -129,9 +129,6 @@ int main(int argc, char *argv[])
 
               
                 mbuttons = SDL_GetMouseState(&mx, &my);
-                buf << "x: " << mx << " y: " << my << "\n";
-                console->log(buf.str());
-                buf.str("");
                 camera->set_from_screen_coords(mouse_cursor->v, mx, my);
 
                 if(mbuttons & 1){

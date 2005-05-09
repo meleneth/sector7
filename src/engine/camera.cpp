@@ -1,12 +1,13 @@
 #include "camera.hpp"
 #include"globals.hpp"
+#include<strstream>
 
 // Public data members go here.
 Camera::Camera(std::string sector_id, Uint32 xres, Uint32 yres): Sector(sector_id) // Constructor
 {
     console->log(sector_id);
     visible_area = new Area(xres, yres);
-    inner_bound = new Area(xres/2, yres/2);
+    inner_bound = new Area(xres/3, yres/3);
     position = new Vector();
     radar = new Radar(visible_area, inner_bound);
 }
@@ -37,8 +38,12 @@ void Camera::follow(Entity *bird)
 
 void Camera::set_from_screen_coords(Vector *v, double screen_x, double screen_y)
 {
-    v->x = position->x - screen_x + visible_area->halfwidth;
-    v->y = position->y + screen_y - visible_area->halfheight;
+    v->x = position->x + screen_x - visible_area->halfwidth;
+    v->y = position->y - screen_y + visible_area->halfheight;
+    std::stringstream buf;
+    buf << "x: " << v->x << " y: " << v->y << "\n";
+    console->log(buf.str());
+    buf.str("");
 }
 
 
