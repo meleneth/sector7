@@ -109,12 +109,6 @@ int Entity::chkDeath(void){
 int Entity::chkCollision(Entity *check)
 {
     
-//    return false;
-
-//    if(!(collision_mask & check->alignment))
-  //      return false;
-    
-    printf("%p\t%p\n", this, check);
     if (abs( m_round(hypot(check->v->x - v->x, check->v->y - v->y))) < (size+check->size))
         return true;
     return false;

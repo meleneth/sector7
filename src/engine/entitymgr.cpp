@@ -65,12 +65,14 @@ int EntityMgr::frameupdate_with_collisions (void)
     std::list < Entity *> dead_ents;
 
     for (i = entities.begin(); i != entities.end(); ++i)
+    {
         printf("%p\n",*i);
         chkCollision(*i);
         if (!(*i)->frameupdate())
         {
             dead_ents.push_front(*i);
         }
+    }
 
     for (i = dead_ents.begin() ; i != dead_ents.end() ; ++i)
     {
