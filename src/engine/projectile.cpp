@@ -43,6 +43,7 @@ int Projectile::frameupdate(void)
 
 int Projectile::chkCollision(Entity *check)
 {
+    if(who_held_the_gun->ent_id != check->ent_id)
     if(Entity::chkCollision(check)){
         check->takeDamage(health, who_held_the_gun);
         health = 0;
