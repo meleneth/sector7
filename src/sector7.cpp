@@ -104,6 +104,9 @@ int main(int argc, char *argv[])
             new_sector = client->do_frame();
             
             if(new_sector){
+                Area *inner_bound = camera->radar->actual_size;
+                delete camera->radar;
+                camera->radar = new Radar(new_sector->bound,  inner_bound);
                 sectors.push_front(new_sector);
                 camera->attach_sector(new_sector);
                 if (sector){
