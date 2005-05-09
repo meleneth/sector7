@@ -21,8 +21,8 @@ void Radar::blip(Vector *p)
 
 
     glLoadIdentity();
-    glTranslatef(-actual_size->scale_x(rendered_size, p),
-                 -actual_size->scale_y(rendered_size, p) , 0);
+    glTranslatef(-actual_size->scale_x(rendered_size, p)/4 ,
+                 -actual_size->scale_y(rendered_size, p)/4 , 0);
 
     texture->DrawGLSquare(P_SIZE);
     glColor4f(1, 1, 1, 1);
