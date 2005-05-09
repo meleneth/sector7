@@ -27,6 +27,7 @@ Entity::Entity(ENT_ALIGNMENT ent_alignment) // Constructor
 
 Entity::~Entity() // Destructor
 {
+    console->log("Entity Death\n");
     delete v;
 }
 
@@ -57,10 +58,6 @@ void Entity::update_location(void){
 int Entity::frameupdate(void){
 
 	update_location();
-
-    if(sector){
-        ((Sector *)sector)->chkCollision(this);
-    }
 
     if(primary){
         primary->frameupdate();
@@ -112,11 +109,12 @@ int Entity::chkDeath(void){
 int Entity::chkCollision(Entity *check)
 {
     
-    return false;
+//    return false;
 
-    if(!(collision_mask & check->alignment))
-        return false;
+//    if(!(collision_mask & check->alignment))
+  //      return false;
     
+    printf("%p\t%p\n", this, check);
     if (abs( m_round(hypot(check->v->x - v->x, check->v->y - v->y))) < (size+check->size))
         return true;
     return false;
@@ -159,22 +157,22 @@ void Entity::kill_me_now(void)
 void Entity::inflateLoc(EntLoc *newLoc)
 {
    
-   v->x        = (double) ntohl(newLoc->x) - SIGNED_OFFSET;
-   v->y        = (double) ntohl(newLoc->y) - SIGNED_OFFSET;
-   v->angle    = (double) ntohl(newLoc->angle) - SIGNED_OFFSET;
-   v->power    = (double) ntohl(newLoc->power) - SIGNED_OFFSET;
-   v->rotation = (double) ntohl(newLoc->rotation) - SIGNED_OFFSET;
+    v->x        = (double) ntohl(newLoc->x) - SIGNED_OFFSET;
+    v->y        = (double) ntohl(newLoc->y) - SIGNED_OFFSET;
+    v->angle    = (double) ntohl(newLoc->angle) - SIGNED_OFFSET;
+    v->power    = (double) ntohl(newLoc->power) - SIGNED_OFFSET;
+    v->rotation = (double) ntohl(newLoc->rotation) - SIGNED_OFFSET;
 }     
 
 void Entity::inflateFull(EntFull *newFull)
 {
-   v->x        = (double) ntohl(newFull->x) - SIGNED_OFFSET;
-   v->y        = (double) ntohl(newFull->y) - SIGNED_OFFSET;
-   v->angle    = (double) ntohl(newFull->angle) - SIGNED_OFFSET;
-   v->power    = (double) ntohl(newFull->power) - SIGNED_OFFSET;
-   v->rotation = (double) ntohl(newFull->rotation) - SIGNED_OFFSET;
-   size        = newFull->size;
-   texture     = get_tex_id((TileNum) ntohl(newFull->textureID));
+    v->x        = (double) ntohl(newFull->x) - SIGNED_OFFSET;
+    v->y        = (double) ntohl(newFull->y) - SIGNED_OFFSET;
+    v->angle    = (double) ntohl(newFull->angle) - SIGNED_OFFSET;
+    v->power    = (double) ntohl(newFull->power) - SIGNED_OFFSET;
+    v->rotation = (double) ntohl(newFull->rotation) - SIGNED_OFFSET;
+    size        = newFull->size;
+    texture     = get_tex_id((TileNum) ntohl(newFull->textureID));
 }
 
 void Entity::deflateLoc(EntLoc *currentLoc)

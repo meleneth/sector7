@@ -19,6 +19,7 @@ class EntityMgr {
         virtual Entity *add_entity(Entity *entity);
         Entity *ent_for_id(Uint32 id);
         void dump_all(void);
+        int EntityMgr::frameupdate_with_collisions (void);
 
         virtual void remove_ent(Entity *entity);
         int frameupdate(void);

@@ -8,7 +8,7 @@
 
 extern NetServer *server;
 
-#define SECTOR_SIDE 9000
+#define SECTOR_SIDE 90000
 
 // Public data members go here.
 Sector::Sector(std::string sector_id) // Constructor

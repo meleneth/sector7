@@ -40,7 +40,6 @@ typedef struct {
         unsigned char size;
         Uint32 rotation;
         Uint32 textureID;
-        Uint32 other_stuff;
 } EntFull;
 
 class Weapon;

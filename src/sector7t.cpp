@@ -21,6 +21,7 @@ int test_camera(void);
 int test_vector(void);
 int test_area(void);
 int test_sdl_delay(void);
+int test_collision_detection(void);
 
 int main(int argc, char *argv[])
 {
@@ -48,6 +49,9 @@ int main(int argc, char *argv[])
 
     printf ("Testing shooting\n");
     test_shooting();
+    
+    printf ("Testing collision detection");
+    test_collision_detection();
 
     printf ("Testing camera\n");
     test_camera();
@@ -234,6 +238,25 @@ int test_camera(void)
 
     assert(cam->position->x == 4900);
     assert(cam->position->y == 4900);
+}
+
+int test_collision_detection(void)
+{
+    Sector *sector = new Sector("anime");
+    
+    Entity *ent = new Entity();
+    ent->v->x = 0;
+    ent->v->y = 0;
+    sector->add_entity(ent);
+    ent->log_info();
+
+    ent = new Entity();
+    ent->v->x = 0;
+    ent->v->y = 0;
+    sector->add_entity(ent);
+    ent->log_info();
+
+    sector->frameupdate_with_collisions();
 }
 
 int test_shooting(void)

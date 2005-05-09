@@ -59,6 +59,26 @@ int EntityMgr::frameupdate (void)
     return true;
 }
 
+int EntityMgr::frameupdate_with_collisions (void)
+{
+    std::list < Entity * >::iterator i;
+    std::list < Entity *> dead_ents;
+
+    for (i = entities.begin(); i != entities.end(); ++i)
+        printf("%p\n",*i);
+        chkCollision(*i);
+        if (!(*i)->frameupdate())
+        {
+            dead_ents.push_front(*i);
+        }
+
+    for (i = dead_ents.begin() ; i != dead_ents.end() ; ++i)
+    {
+        remove_ent(*i);
+    }
+    return true;
+}
+
 void EntityMgr::render (void)
 {
     std::list < Entity * >::iterator i;
@@ -98,7 +118,7 @@ Entity *EntityMgr::ent_for_id(Uint32 id)
 Entity *EntityMgr::chkCollision (Entity *check)
 {
     std::list < Entity * >::iterator i;
-
+    if (!check) return NULL;
   for (i = entities.begin (); i != entities.end (); ++i)
     {
       if ((*i)->chkCollision(check) == true)
