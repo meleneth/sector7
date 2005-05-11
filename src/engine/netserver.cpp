@@ -25,12 +25,11 @@ extern Console *console;
 #include<sstream>
 
 // Public data members go here.
-NetServer::NetServer(int port) // Constructor
+NetServer::NetServer(int port, std::string sector_id) : Sector(sector_id) // Constructor
 {
     console->log("Starting net server..");
     listener = new UDPSocket();
     listener->setup_for_listen(port);
-    sector = NULL;
 }
     
 NetServer::~NetServer() // Destructor
@@ -74,7 +73,7 @@ void NetServer::handle_packet(NetPacket *packet)
                 break;
             case REQ_ENT_FULL_UPDATE:
                 console->log("Server got REQ_ENT_FULL_UPDATE");
-                sector->dump(packet);
+                dump(packet);
                 break;
             case INFO_ENT_FULL:
                 EntFull *entdata;
@@ -82,7 +81,7 @@ void NetServer::handle_packet(NetPacket *packet)
                 ent_id = ntohl(entdata->entID);
 
                 client = get_client(packet);
-                ent =  sector->ent_for_id(ent_id);
+                ent =  ent_for_id(ent_id);
 
                 if(client->entity->ent_id == ent_id){
                     client->entity->inflateFull(entdata);
@@ -91,7 +90,7 @@ void NetServer::handle_packet(NetPacket *packet)
                 break;
             case REQ_ENT_LOC_UPDATE:
                 console->log("Server got REQ_ENT_LOC_UPDATE");
-                sector->dump(packet);
+                dump(packet);
                 break;
             case ENT_FIRE:
                 client = get_client(packet);
@@ -103,7 +102,7 @@ void NetServer::handle_packet(NetPacket *packet)
                 ent_id = ntohl(entLocData->entID);
 
                 client = get_client(packet);
-                ent =  sector->ent_for_id(ent_id);
+                ent =  ent_for_id(ent_id);
 
                 if(client->entity->ent_id == ent_id){
                     client->entity->inflateLoc(entLocData);
@@ -124,9 +123,9 @@ void NetServer::handle_hello(NetPacket *packet)
      newEnt->v->random_location(50, 50, 300, 300);
      newEnt->texture = get_tex_id(TILE_SHIP);
      newEnt->primary = new PlasmaCannon(newEnt);
-     sector->add_entity(newEnt); 
+     add_entity(newEnt); 
 
-     buf << packet->command.hello.nickname << " connected.  Directing it to sector: " << sector->sector_id
+     buf << packet->command.hello.nickname << " connected.  Directing it to sector: " << sector_id
          << " ent_id: " << newEnt->ent_id;
      console->log(buf.str());
 
@@ -134,7 +133,7 @@ void NetServer::handle_hello(NetPacket *packet)
 
      NetServerClient *netserverclient = new NetServerClient(add_client_socket(&packet->their_addr), newEnt);
      clients.push_front(netserverclient);
-     send_hello(netserverclient->socket, sector->sector_id);
+     send_hello(netserverclient->socket, sector_id);
      send_net_cmd(netserverclient->socket, GRANT_ENT_WRITE, sizeof(ENTID_TYPE), &entid);
 }
 

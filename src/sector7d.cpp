@@ -45,7 +45,7 @@ int main(int argc, char *argv[])
     my_ship = NULL;
     std::list<Sector *> sectors;
 
-    server = new NetServer(DEFAULT_PORT);
+    server = new NetServer(DEFAULT_PORT, "initialD");
     nickname = "SERVER";
     servername = "localhost";
 
@@ -53,10 +53,8 @@ int main(int argc, char *argv[])
 
     std::list<Sector *>::iterator i;
 
-    Sector *main_sector = new Sector("initialD");
-    main_sector->setup_master();
-    sectors.push_front(main_sector);
-    server->sector = main_sector;
+    server->setup_master();
+    sectors.push_front(server);
     
     while(1){
         // Select loop here
@@ -73,9 +71,7 @@ int main(int argc, char *argv[])
                 input += (char)key;
             }
         }
-        if(server){
-            server->do_frame();
-        }
+        server->do_frame();
 
         for(i = sectors.begin() ; i != sectors.end(); ++i){
             (*i)->frameupdate_with_collisions();
@@ -92,8 +88,7 @@ int main(int argc, char *argv[])
 static void finish(int sig)
 {
     endwin();
-    if(server)
-        delete server;
+    delete server;
     delete console;
     exit(0);
 }

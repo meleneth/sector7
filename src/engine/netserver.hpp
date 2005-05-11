@@ -9,10 +9,10 @@
 #include"sector.hpp"
 #include"netserverclient.hpp"
 
-class NetServer {
+class NetServer : public Sector {
     public:
         // Public data members go here.
-        NetServer::NetServer(int bar); // Constructor
+        NetServer::NetServer(int port, std::string sector_id); // Constructor
         NetServer::~NetServer(); // Destructor
         void send_all_clients(int length, void *data);
         void send_all_clients(NetPacket *packet);
@@ -25,7 +25,6 @@ class NetServer {
         
         UDPSocket *listener;
         std::list< NetServerClient * > clients;
-        Sector *sector;
     private:
         // Private members go here.
     protected:
