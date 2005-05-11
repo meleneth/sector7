@@ -118,12 +118,8 @@ void NetServer::handle_packet(NetPacket *packet)
 void NetServer::handle_hello(NetPacket *packet)
 {
      std::stringstream buf;
+     Entity * newEnt = new_player_ship();
 
-     Entity * newEnt = new Entity();
-     newEnt->v->random_location(50, 50, 300, 300);
-     newEnt->texture = get_tex_id(TILE_SHIP);
-     newEnt->primary = new PlasmaCannon(newEnt);
-     add_entity(newEnt); 
 
      buf << packet->command.hello.nickname << " connected.  Directing it to sector: " << sector_id
          << " ent_id: " << newEnt->ent_id;
@@ -135,6 +131,16 @@ void NetServer::handle_hello(NetPacket *packet)
      clients.push_front(netserverclient);
      send_hello(netserverclient->socket, sector_id);
      send_net_cmd(netserverclient->socket, GRANT_ENT_WRITE, sizeof(ENTID_TYPE), &entid);
+}
+
+Entity *NetServer::new_player_ship()
+{
+     Entity * newEnt = new Entity();
+     newEnt->v->random_location(50, 50, 300, 300);
+     newEnt->texture = get_tex_id(TILE_SHIP);
+     newEnt->primary = new PlasmaCannon(newEnt);
+     add_entity(newEnt); 
+     return newEnt;
 }
   
 void NetServer::remove_ent(Entity *entity)
@@ -148,6 +154,10 @@ void NetServer::remove_ent(Entity *entity)
             Sint32 cmd = htonl(entity->ent_id);
             memcpy(&packet->command.datamsg.message, &cmd, sizeof(cmd));
             send_all_clients(packet);
+
+            Entity *newEnt = new_player_ship();
+            ENTID_TYPE entid = htonl(newEnt->ent_id);
+            send_net_cmd((*i)->socket, GRANT_ENT_WRITE, sizeof(ENTID_TYPE), &entid);
         }
     }
     

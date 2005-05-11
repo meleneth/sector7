@@ -81,6 +81,16 @@ Sector *NetClient::do_frame(void)
                 ent =  sector->ent_for_id(ent_id);
                 ent->inflateLoc(entLocData);
                 break;
+            case ENT_DEATH:
+                EntLoc *entData;
+                entData = (EntLoc *) &packet->command;
+                ent_id = ntohl(entData->entID);
+                ent =  sector->ent_for_id(ent_id);
+                if(ent == my_ship)
+                        my_ship = NULL;
+
+                ent->kill_me_now();
+                break;
             case CHATMSG:
 //                buf << "<client> Recieved: [" << packet->command.chatmsg.message << "] on port " << packet->their_addr.sin_port 
 //                    << " from " << inet_ntoa(packet->their_addr.sin_addr);

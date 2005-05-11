@@ -23,6 +23,7 @@ class NetServer : public Sector {
         NetServerClient *get_client(NetPacket *packet);
         void handle_hello(NetPacket *packet);
         void remove_ent(Entity *entity);
+        Entity *new_player_ship(void);
 
         
         UDPSocket *listener;

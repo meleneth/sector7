@@ -38,7 +38,7 @@ void Entity::setup_entity(void)
     size=32;
     taken_damage = 0;
     texture = get_tex_id(TILE_NOTILE);
-    health = 1000;
+    health = 100;
     score_value = 0;
     experiance_value = 0;
     rotation=0;
