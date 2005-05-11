@@ -7,7 +7,7 @@ Camera::Camera(std::string sector_id, Uint32 xres, Uint32 yres): Sector(sector_i
 {
     console->log(sector_id);
     visible_area = new Area(xres, yres);
-    inner_bound = new Area(xres/3, yres/3);
+    inner_bound = new Area(xres/2, yres/2);
     position = new Vector();
     radar = new Radar(visible_area, inner_bound);
 }
