@@ -23,7 +23,7 @@ enum NetCmd { HELLO, CHATMSG, GOODBYE,
             GRANT_ENT_WRITE, 
             INFO_ENT_LOC, INFO_ENT_FULL,
 				REQ_ENT_FULL_UPDATE, REQ_ENT_LOC_UPDATE,
-                    ENT_FIRE
+                    ENT_FIRE, ENT_DEATH
 }; 
 
 struct NetCmd_Hello {

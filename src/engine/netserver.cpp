@@ -81,9 +81,9 @@ void NetServer::handle_packet(NetPacket *packet)
                 ent_id = ntohl(entdata->entID);
 
                 client = get_client(packet);
-                ent =  ent_for_id(ent_id);
+                ent =  find_ent_for_id(ent_id);
 
-                if(client->entity->ent_id == ent_id){
+                if(ent && client->entity->ent_id == ent_id){
                     client->entity->inflateFull(entdata);
                     send_all_clients(packet, client);
                 }
@@ -135,6 +135,23 @@ void NetServer::handle_hello(NetPacket *packet)
      clients.push_front(netserverclient);
      send_hello(netserverclient->socket, sector_id);
      send_net_cmd(netserverclient->socket, GRANT_ENT_WRITE, sizeof(ENTID_TYPE), &entid);
+}
+  
+void NetServer::remove_ent(Entity *entity)
+{
+    std::list< NetServerClient * >::iterator i;
+
+    for(i = clients.begin() ; i!=clients.end(); i++){
+        if ((*i)->entity == entity){
+            NetPacket *packet = new NetPacket(sizeof(ENTID_TYPE));
+            packet->set_command(ENT_DEATH);
+            Sint32 cmd = htonl(entity->ent_id);
+            memcpy(&packet->command.datamsg.message, &cmd, sizeof(cmd));
+            send_all_clients(packet);
+        }
+    }
+    
+    Sector::remove_ent(entity);
 }
 
 void NetServer::do_frame(void)

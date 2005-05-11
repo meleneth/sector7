@@ -101,7 +101,7 @@ void EntityMgr::remove_ent (Entity *ent)
     delete ent;
 }
 
-Entity *EntityMgr::ent_for_id(Uint32 id)
+Entity *EntityMgr::find_ent_for_id(Uint32 id)
 {
     std::list < Entity * >::iterator i;
     Entity *newEnt;
@@ -109,6 +109,15 @@ Entity *EntityMgr::ent_for_id(Uint32 id)
     for (i = entities.begin (); i != entities.end (); ++i) {
         if ((*i)->ent_id == id) return *i;
     }
+    return NULL;
+}
+
+Entity *EntityMgr::ent_for_id(Uint32 id)
+{
+    Entity *newEnt = find_ent_for_id(id);
+
+    if(newEnt)
+        return newEnt;
 
     newEnt = new Entity();
     newEnt->ent_id = id;

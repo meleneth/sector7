@@ -22,6 +22,8 @@ class NetServer : public Sector {
         void handle_packet(NetPacket *packet);
         NetServerClient *get_client(NetPacket *packet);
         void handle_hello(NetPacket *packet);
+        void remove_ent(Entity *entity);
+
         
         UDPSocket *listener;
         std::list< NetServerClient * > clients;
