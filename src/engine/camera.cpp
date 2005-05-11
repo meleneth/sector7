@@ -40,10 +40,6 @@ void Camera::set_from_screen_coords(Vector *v, double screen_x, double screen_y)
 {
     v->x = position->x + screen_x - visible_area->halfwidth;
     v->y = position->y - screen_y + visible_area->halfheight;
-    std::stringstream buf;
-    buf << "x: " << v->x << " y: " << v->y << "\n";
-    console->log(buf.str());
-    buf.str("");
 }
 
 
