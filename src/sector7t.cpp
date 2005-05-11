@@ -226,7 +226,7 @@ int test_camera(void)
     buf.str("");
 
     assert(p->x == -100);
-    assert(p->y == -100);
+    assert(p->y == 100);
 
     sector->add_entity(ent);
 

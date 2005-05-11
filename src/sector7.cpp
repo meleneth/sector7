@@ -83,7 +83,6 @@ int main(int argc, char *argv[])
             renderer->RenderFrame(camera);
 
             if(my_ship){
-                camera->follow(my_ship);
 
                 glLoadIdentity();
                 glTranslatef(mouse_cursor->v->x, mouse_cursor->v->y, 0);
@@ -95,6 +94,7 @@ int main(int argc, char *argv[])
                 glColor4f(0, 1, 0, .65);
                 mouse_cursor->render(camera->position);
 
+                camera->follow(my_ship);
             }
 
             wait_next_frame();
