@@ -81,12 +81,24 @@ Sector *NetClient::do_frame(Camera *camera)
                 ent =  sector->ent_for_id(ent_id);
                 ent->inflateLoc(entLocData);
                 break;
+            case ENT_FIRE:
+                console->log("client reciened ent_fire\n");
+                EntLoc *entFireData;
+                entFireData = (EntLoc *) &packet->command;
+                ent_id = ntohl(entFireData->entID);
+                ent = sector->ent_for_id(ent_id);
+                if(ent){
+                    if(ent->primary){
+                        ent->primary->fire_shot();
+                    }
+                }
+                break;
             case ENT_DEATH:
                 console->log("client received ent_death\n");
                 EntLoc *entData;
                 entData = (EntLoc *) &packet->command;
                 ent_id = ntohl(entData->entID);
-                ent =  sector->ent_for_id(ent_id);
+                ent = sector->ent_for_id(ent_id);
                 if(ent == my_ship)
                         my_ship = NULL;
 
