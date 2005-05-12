@@ -14,6 +14,8 @@ class Vector {
         Vector::~Vector();		// Destructor
 
         double calc_angle(double x, double y);
+        double calc_angle(Vector *target);
+        double distance(Vector *target);
         void aim(double x, double y);
         void aim(Vector *target);
         void update_location(void);

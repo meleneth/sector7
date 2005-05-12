@@ -33,7 +33,7 @@ void Camera::render(void)
 
 void Camera::follow(Entity *bird)
 {
-    inner_bound->follow(bird->v, this->position);
+    inner_bound->follow(bird->v, this->position, inner_bound->width);
 }
 
 void Camera::set_from_screen_coords(Vector *v, double screen_x, double screen_y)

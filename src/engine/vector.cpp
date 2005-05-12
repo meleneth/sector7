@@ -23,6 +23,11 @@ Vector::~Vector ()		// Destructor
 {
 }
 
+double Vector::calc_angle(Vector *v)
+{
+    return calc_angle(v->x, v->y);
+}
+
 double Vector::calc_angle(double targx, double targy)
 {
     double myangle;
@@ -36,6 +41,11 @@ double Vector::calc_angle(double targx, double targy)
     return (leg2 < 0
         ? myangle * (180 / M_PI) - 180 
         : myangle * (180/M_PI));
+}
+
+double Vector::distance(Vector *target)
+{
+    return abs(m_round(hypot(x - target->x, y - target->y)));
 }
 
 void Vector::aim(double targx, double targy)

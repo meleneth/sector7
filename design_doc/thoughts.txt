@@ -51,3 +51,9 @@ how many layers of rendering will there be?
 
 on collision detection:
 in order to speed up collision detection for a sector, it needs to build a collision list (all entities in itself and neighboring sectors) and use that list, not it's main list, to check against
+
+
+on following:
+think of the follow radius as a string between the target and the vector.
+find the angle of the 2 points, and move along it to get where you need to be
+

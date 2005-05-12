@@ -12,7 +12,7 @@ class Area {
         Area::~Area(); // Destructor
 
         bool contains(Vector *p);
-        void follow(Vector *follow, Vector *modify);
+        void follow(Vector *follow, Vector *modify, double leash_length);
 
         bool point_is_below(Vector *p);
         bool point_is_above(Vector *p);

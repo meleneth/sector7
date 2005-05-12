@@ -1,4 +1,5 @@
 #include "area.hpp"
+#include"globals.hpp"
 
 // Public data members go here.
 Area::Area(double width, double height) // Constructor
@@ -29,22 +30,16 @@ bool Area::contains(Vector *p)
     return 1;
 }
 
-void Area::follow(Vector *follow, Vector *modify)
+void Area::follow(Vector *follow, Vector *modify, double leash_length)
 {
-    if(contains(follow))
-            return;
+    double distance = follow->distance(modify);
+    if( leash_length > distance )
+        return;
+    
+    double angle = follow->calc_angle(modify);
 
-    if(point_is_left(follow))
-            modify->x = follow->x + halfwidth;
-
-    if(point_is_right(follow))
-            modify->x = follow->x - halfwidth;
-
-    if(point_is_above(follow))
-            modify->y = follow->y + halfheight;
-
-    if(point_is_below(follow))
-            modify->y = follow->y - halfheight;
+    modify->x += ((distance - leash_length) * cos(angle * (PI/180)));
+    modify->y += ((distance - leash_length) * sin(angle * (PI/180)));
 }
 
 bool Area::point_is_left(Vector *p)
