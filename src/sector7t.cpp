@@ -22,6 +22,7 @@ int test_vector(void);
 int test_area(void);
 int test_sdl_delay(void);
 int test_collision_detection(void);
+int test_netServer_remove_ent(void);
 
 int main(int argc, char *argv[])
 {
@@ -49,6 +50,9 @@ int main(int argc, char *argv[])
 
     printf ("Testing shooting\n");
     test_shooting();
+
+    printf("Testing NetServer::remove_ent\n");
+    test_netServer_remove_ent();
     
     printf ("Testing collision detection");
     test_collision_detection();
@@ -112,6 +116,13 @@ int test_sdl_delay(void)
         console->log(buf.str());
     }
 }
+
+int test_netServer_remove_ent(void)
+{
+    NetServer *server = new NetServer(DEFAULT_PORT, "initialD");
+
+}
+
 int test_entity_marshalling(void)
 {
     Entity *ent = new Entity();

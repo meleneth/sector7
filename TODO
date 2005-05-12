@@ -14,3 +14,4 @@ variable update timing - per ent, only update every X frames.
 allow player death
 keep old entities around for 5 seconds, possibly don't call find_or_create from server on recieve?
 
+sector has a visible_entities, but it shouldn't since only the camera knows which entities are close enough to be visible

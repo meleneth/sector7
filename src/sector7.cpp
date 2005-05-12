@@ -63,8 +63,8 @@ int main(int argc, char *argv[])
     Texture *no_texture = get_tex_id(TILE_NOTILE);
 
     Sector *sector = new Sector("connecting");
+    sector->setup_connecting();
     camera->attach_sector(sector);
-    camera->follow(sector->setup_connecting());
     sectors.push_front(sector);
     
     SDL_Event event;
@@ -80,6 +80,7 @@ int main(int argc, char *argv[])
     while(!quit){
         while (SDL_PollEvent (&event) == 0 && !quit)
         {
+    //        camera->update_visible();
             renderer->RenderFrame(camera);
 
             if(my_ship){
@@ -101,7 +102,7 @@ int main(int argc, char *argv[])
 
             renderer->swap_buffers();
 
-            new_sector = client->do_frame();
+            new_sector = client->do_frame(camera);
             
             if(new_sector){
                 Area *inner_bound = camera->radar->actual_size;

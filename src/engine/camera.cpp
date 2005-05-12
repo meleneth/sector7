@@ -23,6 +23,14 @@ void Camera::render(void)
 
     glColor4f (1, 1, 1, 1);
 
+    std::list < Sector * >::iterator s;
+    std::list < Entity * >::iterator e;
+    
+    for (s = attached_sectors.begin(); s != attached_sectors.end(); s++) {
+        for (e = (*s)->visible_entities.begin(); e != (*s)->visible_entities.end(); e++) {
+            visible_entities.push_front(*e);
+        }
+    }
     for (i = visible_entities.begin (); i != visible_entities.end (); ++i)
     {
           (*i)->render(position);
@@ -31,6 +39,15 @@ void Camera::render(void)
     }
 }
 
+void Camera::remove_ent(Entity *entity)
+{
+    std::list < Sector * >::iterator s;
+    
+    visible_entities.remove(entity);
+    for (s = attached_sectors.begin(); s != attached_sectors.end(); s++) {
+        (*s)->remove_ent(entity);
+    }
+}
 void Camera::follow(Entity *bird)
 {
     inner_bound->follow(bird->v, this->position, inner_bound->width);

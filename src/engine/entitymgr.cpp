@@ -67,7 +67,7 @@ int EntityMgr::frameupdate_with_collisions (void)
     for (i = entities.begin(); i != entities.end(); ++i)
     {
         chkCollision(*i);
-        if (!(*i)->frameupdate())
+        if (!((*i)->frameupdate()))
         {
             dead_ents.push_front(*i);
         }

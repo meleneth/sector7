@@ -39,9 +39,9 @@ NetClient::~NetClient() // Destructor
 }
 
 extern Entity *my_ship;
-extern Camera *camera;
+//extern Camera *camera;
 
-Sector *NetClient::do_frame(void)
+Sector *NetClient::do_frame(Camera *camera)
 {
     Entity *ent;
     Uint32 ent_id;
@@ -82,6 +82,7 @@ Sector *NetClient::do_frame(void)
                 ent->inflateLoc(entLocData);
                 break;
             case ENT_DEATH:
+                console->log("client received ent_death\n");
                 EntLoc *entData;
                 entData = (EntLoc *) &packet->command;
                 ent_id = ntohl(entData->entID);
@@ -89,6 +90,7 @@ Sector *NetClient::do_frame(void)
                 if(ent == my_ship)
                         my_ship = NULL;
 
+                camera->remove_ent(ent);
                 ent->kill_me_now();
                 break;
             case CHATMSG:
