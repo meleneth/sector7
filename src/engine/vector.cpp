@@ -103,10 +103,10 @@ void Vector::random_location(double x1, double y1, double x2, double y2)
 {
     Sint32 random = rand();
     random = random % (int)(floor(x2 - x1));
-    x = x1 + random;;
+    x = x1 + random - ((x2 - x1)/2);
     random = rand();
     random = random % (int)(floor(x2 - x1));
-    y = y1 + random;
+    y = y1 + random - ((y2 - y1)/2);
 }
 
 // Private members go here.

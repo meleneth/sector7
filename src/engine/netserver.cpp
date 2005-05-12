@@ -95,7 +95,7 @@ void NetServer::handle_packet(NetPacket *packet)
             case ENT_FIRE:
                 client = get_client(packet);
                 client->entity->primary->fire_shot();
-                send_all_clients(packet, client);
+                //send_all_clients(packet, client);
                 break;
             case INFO_ENT_LOC:
                 EntLoc *entLocData;
@@ -137,7 +137,7 @@ void NetServer::handle_hello(NetPacket *packet)
 Entity *NetServer::new_player_ship()
 {
      Entity * newEnt = new Entity();
-     newEnt->v->random_location(50, 50, 300, 300);
+     newEnt->v->random_location(0, 0, 640, 480);
      newEnt->texture = get_tex_id(TILE_SHIP);
      newEnt->primary = new PlasmaCannon(newEnt);
      add_entity(newEnt); 
@@ -156,6 +156,7 @@ void NetServer::remove_ent(Entity *entity)
             send_all_clients(packet);
 
             Entity *newEnt = new_player_ship();
+            (*i)->entity = newEnt;
             ENTID_TYPE entid = htonl(newEnt->ent_id);
             send_net_cmd((*i)->socket, GRANT_ENT_WRITE, sizeof(ENTID_TYPE), &entid);
         } else {
