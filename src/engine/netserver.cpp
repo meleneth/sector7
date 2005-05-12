@@ -95,6 +95,7 @@ void NetServer::handle_packet(NetPacket *packet)
             case ENT_FIRE:
                 client = get_client(packet);
                 client->entity->primary->fire_shot();
+                send_all_clients(packet, client);
                 break;
             case INFO_ENT_LOC:
                 EntLoc *entLocData;
