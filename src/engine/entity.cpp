@@ -139,7 +139,9 @@ void Entity::has_killed(Entity *victim)
 
 void Entity::death()
 {
-
+    std::stringstream buf;
+    buf << "Entity died: " << this;
+    console->log(buf.str());
 }
 
 void Entity::kill_me_now(void)

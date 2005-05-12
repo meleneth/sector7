@@ -23,7 +23,7 @@ Entity *EntityMgr::add_entity (Entity * entity)
       ent_id++;
       entity->ent_id = ent_id;
       std::stringstream buf;
-      buf << "Entity " << ent_id << " is Reporting for Duty (SIR!!)";
+      buf << "Entity " << ent_id << " at " << entity << "is Reporting for Duty (SIR!!)";
       console->log(buf.str());
   }
 
