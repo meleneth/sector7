@@ -12,7 +12,7 @@ libengine_a_SOURCES = area.cpp area.hpp camera.cpp camera.hpp console.cpp \
 AM_CXXFLAGS = @SDL_CFLAGS@ @GL_CFLAGS@ -I../../libs/glpng 
 AM_LDFLAGS = -l../../libs/glpng.la @GL_LDFLAGS@ @SDL_LDFLAGS@
 
-entity_wrap.cxx : entity.i entity.hpp
+entity_wrap.cxx : entity.i entity.hpp 
 	$(SWIG) -c++ -python entity.i
 
 entity_wrap.o : entity_wrap.cxx

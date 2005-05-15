@@ -371,7 +371,7 @@ AC_DEFUN([AC_PROG_SWIG],[
                 SWIG='echo "Error: SWIG is not installed. You should look at http://www.swig.org" ; false'
         elif test -n "$1" ; then
                 AC_MSG_CHECKING([for SWIG version])
-                [swig_version=`$SWIG -version 2&gt;&amp;1 | grep 'SWIG Version' | sed 's/.*\([0-9][0-9]*\.[0-9][0-9]*\.[0-9][0-9]*\).*/\1/g'`]
+                [swig_version=`$SWIG -version 2>&1 | grep 'SWIG Version' | sed 's/.*\([0-9][0-9]*\.[0-9][0-9]*\.[0-9][0-9]*\).*/\1/g'`]
                 AC_MSG_RESULT([$swig_version])
                 if test -n "$swig_version" ; then
                         # Calculate the required version number components
@@ -409,8 +409,8 @@ AC_DEFUN([AC_PROG_SWIG],[
                         if test $available_major -ne $required_major \
                                 -o $available_minor -ne $required_minor \
                                 -o $available_patch -lt $required_patch ; then
-                                AC_MSG_WARN([SWIG version &gt;= $1 is required.  You have $swig_version.  You should look at http://www.swig.org])
-                                SWIG='echo "Error: SWIG version &gt;= $1 is required.  You have '"$swig_version"'.  You should look at http://www.swig.org" ; false'
+                                AC_MSG_WARN([SWIG version >= $1 is required.  You have $swig_version.  You should look at http://www.swig.org])
+                                SWIG='echo "Error: SWIG version >= $1 is required.  You have '"$swig_version"'.  You should look at http://www.swig.org" ; false'
                         else
                                 AC_MSG_NOTICE([SWIG executable is '$SWIG'])
                                 SWIG_LIB=`$SWIG -swiglib`
@@ -467,6 +467,7 @@ AC_DEFUN([SWIG_PYTHON],[
 ])
 
 
+
 dnl @synopsis AC_LIB_WAD
 dnl
 dnl This macro searches for installed WAD library.
@@ -492,4 +493,3 @@ AC_DEFUN([AC_LIB_WAD],
                 AC_SUBST(WADPY)
         fi
 ])
-
