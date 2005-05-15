@@ -45,7 +45,7 @@ void Camera::remove_ent(Entity *entity)
     
     visible_entities.remove(entity);
     for (s = attached_sectors.begin(); s != attached_sectors.end(); s++) {
-        (*s)->remove_ent(entity);
+        (*s)->visible_entities.remove(entity);
     }
 }
 void Camera::follow(Entity *bird)

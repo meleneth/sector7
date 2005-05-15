@@ -156,7 +156,6 @@ void NetServer::remove_ent(Entity *entity)
             send_all_clients(packet);
 
             Entity *newEnt = new_player_ship();
-            (*i)->entity = newEnt;
             ENTID_TYPE entid = htonl(newEnt->ent_id);
             send_net_cmd((*i)->socket, GRANT_ENT_WRITE, sizeof(ENTID_TYPE), &entid);
         } else {
