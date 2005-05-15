@@ -1,5 +1,6 @@
 #include "sector.hpp"
 #include "globals.hpp"
+#include "asteroid.hpp"
 #include "entity.hpp"
 #include "netpacket.hpp"
 #include "netserver.hpp"
@@ -27,6 +28,7 @@ Sector::~Sector() // Destructor
 void Sector::setup_master(void)
 {
     is_master = 1;
+    add_entity(new Asteroid(64));
     console->log("Master sector initialized.");
 }
 

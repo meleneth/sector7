@@ -7,7 +7,7 @@ libengine_a_SOURCES = area.cpp area.hpp camera.cpp camera.hpp console.cpp \
         sector.cpp sector.hpp texture.cpp texture.hpp timer.cpp timer.hpp udpsocket.cpp \
         udpsocket.hpp util.cpp vector.cpp vector.hpp video.cpp video.hpp w_plasmacannon.cpp \
         w_plasmacannon.hpp weapon.cpp weapon.hpp radar.cpp radar.hpp types.hpp globals.hpp  \
-        map_defines.hpp entitymgr.hpp stdutil.hpp engine.hpp
+        map_defines.hpp entitymgr.hpp stdutil.hpp engine.hpp asteroid.cpp asteroid.hpp
 
 AM_CXXFLAGS = @SDL_CFLAGS@ @GL_CFLAGS@ -I../../libs/glpng 
 AM_LDFLAGS = -l../../libs/glpng.la @GL_LDFLAGS@ @SDL_LDFLAGS@

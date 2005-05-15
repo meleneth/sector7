@@ -2,7 +2,7 @@
 #include "asteroid.hpp"
 #include"map_defines.hpp"
 #include"texture.hpp"
-#include"soundcore.hpp"
+#include"sector.hpp"
 
 #include<math.h>
 
@@ -35,10 +35,10 @@ void Asteroid::setup_asteroid(void)
     if(size < 10)
         size = 12;
     health = size * 20;
-    v->x = HALFXRES - (rand() % XRES);
-    v->y = 0;
+    v->x = rand() % 200;
+    v->y = rand() % 500;
     v->angle = (rand() % 45) + 67;
-    v->power = rand() % 2+1;
+    v->power = 0 ; //rand() % 2+1;
     v->rotation = 3 - (rand() % 6);
     TileNum tex_id;
     tex_id = asteroid_tile_map[(rand() %6)];
@@ -58,13 +58,13 @@ void Asteroid::death(void)
     Sint16 number = rand()%4+2;
     Sint16 ctr = number;
     if(health<0){
-        soundmgr->get_sound_id(SHOT_DESTROYED)
-                 ->play();
+        // soundmgr->get_sound_id(SHOT_DESTROYED)
+        //          ->play();
     }
 
     if(size>32){
         while(ctr--){
-            entmgr->add_entity(new Asteroid(this, size/number));
+            ((Sector *)sector)->add_entity(new Asteroid(this, size));
         }
     }
 }
@@ -75,8 +75,8 @@ int Asteroid::chkCollision(Entity *check)
     
     if(Entity::chkCollision(check)){
         check->takeDamage(health, this);
-        soundmgr->get_sound_id(SHOT_HIT)
-                 ->play();
+        //soundmgr->get_sound_id(SHOT_HIT)
+        //         ->play();
         return 1;
     }
 
