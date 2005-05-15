@@ -34,4 +34,6 @@ libs7.so : area.o asteroid.o camera.o console.o entity.o entity_wrap.o entitymgr
 
 all-local: libs7.so _entity.so
 
-
+clean-local:
+	rm libs7.so
+	rm _entity.so
