@@ -21,7 +21,17 @@ entity_wrap.o : entity_wrap.cxx
 _entity.so : entity_wrap.o
 	ld -shared libs7.so entity_wrap.o -o _entity.so
 
+libs7.so : area.o asteroid.o camera.o console.o entity.o entity_wrap.o entitymgr.o \
+			netclient.o netpacket.o netserver.o netserverclient.o p_plasma.o \
+			particles.o physics.o projectile.o radar.o renderer.o sector.o \
+			texture.o timer.o udpsocket.o util.o vector.o video.o w_plasmacannon.o \
+			weapon.o
+	ld -shared -o libs7.so area.o asteroid.o camera.o console.o entity.o entity_wrap.o entitymgr.o \
+			netclient.o netpacket.o netserver.o netserverclient.o p_plasma.o \
+			particles.o physics.o projectile.o radar.o renderer.o sector.o \
+			texture.o timer.o udpsocket.o util.o vector.o video.o w_plasmacannon.o \
+			weapon.o
 
-all-local: _entity.so
+all-local: libs7.so _entity.so
 
 
