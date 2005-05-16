@@ -13,7 +13,7 @@ AM_CXXFLAGS = @SDL_CFLAGS@ @GL_CFLAGS@ -I../../libs/glpng
 AM_LDFLAGS = -l../../libs/glpng.la @GL_LDFLAGS@ @SDL_LDFLAGS@
 
 entity_wrap.cxx : entity.i entity.hpp 
-	$(SWIG) -c++ -python entity.i
+	$(SWIG) -c++ -python -nodefault entity.i
 
 entity_wrap.o : entity_wrap.cxx
 	g++ -c entity_wrap.cxx @SDL_CFLAGS@ @GL_CFLAGS@ -I../../libs/glpng $(PYTHON_CPPFLAGS)
@@ -37,3 +37,5 @@ all-local: libs7.so _entity.so
 clean-local:
 	rm libs7.so
 	rm _entity.so
+	rm entity_wrap.cxx
+
