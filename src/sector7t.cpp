@@ -226,6 +226,31 @@ int test_vector(void)
 
     assert(p->x == -512);
     assert(p->y == -384);
+
+    Vector *t = new Vector();
+
+    p->x = 100;
+    p->y = 0;
+
+    t->x = 0;
+    t->y = 0;
+
+    t->follow(p, 50);
+
+    assert(t->x == 50);
+    assert(t->y == 0);
+
+    p->x = -100;
+    p->y = 0;
+
+    t->x = 0;
+    t->y = 0;
+
+    t->follow(p, 50);
+
+    assert(t->x == -50);
+    assert(t->y == 0);
+
 }
 
 int test_area(void)
@@ -286,14 +311,10 @@ int test_camera(void)
 
     sector->add_entity(ent);
 
-    cam->follow(ent);
-
     buf << "X: " << cam->position->x << " Y: " << cam->position->y;
 
     console->log(buf.str());
 
-    assert(cam->position->x == 4900);
-    assert(cam->position->y == 4900);
 }
 
 int test_collision_detection(void)

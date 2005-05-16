@@ -64,6 +64,20 @@ void Vector::update_location(void)
     y += power * sin(angle  * (PI / 180));
 }
 
+void Vector::follow(Vector *v, double leash_length)
+{
+    double d = distance(v);
+
+    if( leash_length > d )
+        return;
+
+    double angle = calc_angle(v);
+
+    x += ((d - leash_length) * cos(angle * (PI/180)));
+    y += ((d - leash_length) * sin(angle * (PI/180)));
+    
+}
+
 void Vector::set_from(Vector *v)
 {
     angle = v->angle;

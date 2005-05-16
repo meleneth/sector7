@@ -30,18 +30,6 @@ bool Area::contains(Vector *p)
     return 1;
 }
 
-void Area::follow(Vector *follow, Vector *modify, double leash_length)
-{
-    double distance = follow->distance(modify);
-    if( leash_length > distance )
-        return;
-    
-    double angle = follow->calc_angle(modify);
-
-    modify->x += ((distance - leash_length) * cos(angle * (PI/180)));
-    modify->y += ((distance - leash_length) * sin(angle * (PI/180)));
-}
-
 bool Area::point_is_left(Vector *p)
 {
         return (x + halfwidth) > p->x;

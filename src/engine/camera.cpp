@@ -48,9 +48,10 @@ void Camera::remove_ent(Entity *entity)
         (*s)->visible_entities.remove(entity);
     }
 }
+
 void Camera::follow(Entity *bird)
 {
-    inner_bound->follow(bird->v, this->position, inner_bound->width);
+    position->follow(bird->v, inner_bound->width / 2);
 }
 
 void Camera::set_from_screen_coords(Vector *v, double screen_x, double screen_y)

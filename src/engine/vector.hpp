@@ -16,12 +16,14 @@ class Vector {
         double calc_angle(double x, double y);
         double calc_angle(Vector *target);
         double distance(Vector *target);
+
         void aim(double x, double y);
         void aim(Vector *target);
         void update_location(void);
         void set_from(Vector *v);
         void bounds_check(Area *boundary);
         void accelerate(Vector *v);
+        void follow(Vector *v, double leash_length);
         void random_location(double x1, double y1, double x2, double y2);
 
         double angle,power,rotation;
