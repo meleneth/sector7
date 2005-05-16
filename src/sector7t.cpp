@@ -115,8 +115,9 @@ int test_sdl_delay(void)
         time1 = SDL_GetTicks();
         SDL_Delay(i);
         time2 = SDL_GetTicks();
-        buf << "endTicks: " << time2 << " - startTicks " << time1 << " = " << time2-time1 << " actual delay: " << i << "\n";
+        buf << "endTicks: " << time2 << " - startTicks " << time1 << " = " << time2-time1 << " actual delay: " << i;
         console->log(buf.str());
+        buf.str("");
     }
 }
 int test_sector_add_remove_ent(void)
