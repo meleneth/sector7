@@ -13,6 +13,7 @@
 Console *console;
 NetServer *server;
 Entity *my_ship;
+std::stringstream buf;
 
 int test_partial_entity_update(void);
 int test_entity_marshalling(void);
@@ -61,11 +62,11 @@ int main(int argc, char *argv[])
     printf ("Testing collision detection");
     test_collision_detection();
 
-    printf ("Testing camera\n");
-    test_camera();
-
     printf ("Testing entity marshalling\n");
     test_entity_marshalling();
+
+    printf ("Testing camera\n");
+    test_camera();
 }
 
 int test_partial_entity_update(void)
@@ -109,7 +110,6 @@ int test_sdl_delay(void)
     fprintf (stderr, "SDL initialized.\n");
     
     Uint32 i, time1, time2;
-    std::stringstream buf;
     
     for (i = 0; i < 30; ++i){
         time1 = SDL_GetTicks();
@@ -121,7 +121,44 @@ int test_sdl_delay(void)
 }
 int test_sector_add_remove_ent(void)
 {
+    std::list < Sector * >::iterator s;
+    std::list < Entity * >::iterator e;
     
+    Sector *sector1 = new Sector("cowboy");
+    Sector *sector2 = new Sector("bebop");
+    
+    sector1->attach_sector(sector2);
+    
+    Entity *ent = new Entity();
+    ent->v->x = 0;
+    ent->v->y = 0;
+    sector1->add_entity(ent);
+    ent->log_info();
+
+    for (s = sector1->attached_sectors.begin(); s != sector1->attached_sectors.end(); s++) {
+        buf << "In sector: " << (*s)->sector_id << " there exist entities \n";
+        console->log(buf.str());
+        buf.str("");
+        for (e = (*s)->entities.begin(); e != (*s)->entities.end(); e++) {
+            buf << (*e)->ent_id << "\n";
+        }
+    }
+    
+
+    ent = new Entity();
+    ent->v->x = 0;
+    ent->v->y = 0;
+    sector1->add_entity(ent);
+    ent->log_info();
+
+    for (s = sector1->attached_sectors.begin(); s != sector1->attached_sectors.end(); s++) {
+        buf << "In sector: " << (*s)->sector_id << " there exist entities \n";
+        console->log(buf.str());
+        buf.str("");
+        for (e = (*s)->entities.begin(); e != (*s)->entities.end(); e++) {
+            buf << (*e)->ent_id << "\n";
+        }
+    }
 }
 
 int test_netServer_add_remove_ent(void)
@@ -139,9 +176,9 @@ int test_entity_marshalling(void)
 
     foo = ntohl(htonl(foo));
 
-    std::stringstream buf;
     buf << "TILE_SHIP is " << (int) TILE_SHIP << " and TILE_NOTILE is " << (int) TILE_NOTILE;
     console->log(buf.str());
+    buf.str("");
 
     assert(foo == -50);
     
@@ -192,7 +229,6 @@ int test_area(void)
 {
     Area *area = new Area(400, 400);
     Area *mini = new Area(100, 100);
-    std::stringstream buf;
 
     Vector *v = new Vector();
     v->x = 100;
@@ -227,7 +263,6 @@ int test_camera(void)
     Camera *cam = new Camera("camera1", 400, 400);
     Entity *ent = new Entity();
     Sector *sector = new Sector("anime");
-    std::stringstream buf;
 
     ent->v->x = 5000;
     ent->v->y = 5000;
