@@ -258,16 +258,38 @@ int test_vector(void)
     assert(t->x == 50);
     assert(t->y == 0);
 
-    p->x = -100;
+    p->x = 4900;
     p->y = 0;
+
+    t->x = 5000;
+    t->y = 0;
+
+    t->follow(p, 50);
+
+    assert(t->x == 4950);
+    assert(t->y == 0);
+
+    p->x = 0;
+    p->y = 100;
 
     t->x = 0;
     t->y = 0;
 
     t->follow(p, 50);
 
-    assert(t->x == -50);
-    assert(t->y == 0);
+    assert(t->x == 0);
+    assert(t->y == 50);
+
+    p->x = 0;
+    p->y = -100;
+
+    t->x = 0;
+    t->y = 0;
+
+    t->follow(p, 50);
+
+    assert(t->x == 0);
+    assert(t->y == -50);
 
 }
 

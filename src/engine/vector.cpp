@@ -36,11 +36,7 @@ double Vector::calc_angle(double targx, double targy)
     leg1 = targy - y; 
     leg2 = targx - x;
 
-    myangle  = atan(leg1 / leg2) ;
-
-    return (leg2 < 0
-        ? myangle * (180 / M_PI) - 180 
-        : myangle * (180/M_PI));
+    return atan(leg2 / leg1) ;
 }
 
 double Vector::distance(Vector *target)
@@ -73,8 +69,8 @@ void Vector::follow(Vector *v, double leash_length)
 
     double angle = calc_angle(v);
 
-    x += ((d - leash_length) * cos(angle * (PI/180)));
-    y += ((d - leash_length) * sin(angle * (PI/180)));
+    x = ((d - leash_length) * cos(angle * (PI/180)));
+    y = ((d - leash_length) * sin(angle * (PI/180)));
     
 }
 
