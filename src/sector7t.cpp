@@ -45,7 +45,7 @@ int main(int argc, char *argv[])
     test_partial_entity_update();
     
     console->log("Testing vector");
-    test_vector();
+    //test_vector();
 
     console->log("Testing area");
     test_area();
@@ -124,39 +124,60 @@ int test_sector_add_remove_ent(void)
     std::list < Sector * >::iterator s;
     std::list < Entity * >::iterator e;
     
-    Sector *sector1 = new Sector("cowboy");
-    Sector *sector2 = new Sector("bebop");
+    Sector *sector1 = new Sector("anime");
+    Sector *sector2 = new Sector("cowboy");
+    Sector *sector3 = new Sector("bebop");
     
     sector1->attach_sector(sector2);
+    sector1->attach_sector(sector3);
     
     Entity *ent = new Entity();
     ent->v->x = 0;
     ent->v->y = 0;
-    sector1->add_entity(ent);
     ent->log_info();
+    sector1->add_entity(ent);
 
+    buf << "In sector: " << sector1->sector_id << " there exist entities \n";
+    console->log(buf.str());
+    buf.str("");
+    for (e = sector1->visible_entities.begin(); e != sector1->visible_entities.end(); e++) {
+        buf << (*e)->ent_id << "\n";
+        console->log(buf.str());
+        buf.str("");
+    }
     for (s = sector1->attached_sectors.begin(); s != sector1->attached_sectors.end(); s++) {
         buf << "In sector: " << (*s)->sector_id << " there exist entities \n";
         console->log(buf.str());
         buf.str("");
-        for (e = (*s)->entities.begin(); e != (*s)->entities.end(); e++) {
+        for (e = (*s)->visible_entities.begin(); e != (*s)->visible_entities.end(); e++) {
             buf << (*e)->ent_id << "\n";
+            console->log(buf.str());
+            buf.str("");
         }
     }
-    
 
     ent = new Entity();
     ent->v->x = 0;
     ent->v->y = 0;
-    sector1->add_entity(ent);
     ent->log_info();
+    sector1->add_entity(ent);
 
+    buf << "In sector: " << sector1->sector_id << " there exist entities \n";
+    console->log(buf.str());
+    buf.str("");
+    for (e = sector1->visible_entities.begin(); e != sector1->visible_entities.end(); e++) {
+        buf << (*e)->ent_id << "\n";
+        console->log(buf.str());
+        buf.str("");
+    }
     for (s = sector1->attached_sectors.begin(); s != sector1->attached_sectors.end(); s++) {
         buf << "In sector: " << (*s)->sector_id << " there exist entities \n";
         console->log(buf.str());
         buf.str("");
         for (e = (*s)->entities.begin(); e != (*s)->entities.end(); e++) {
             buf << (*e)->ent_id << "\n";
+            console->log(buf.str());
+            buf.str("");
         }
     }
 }

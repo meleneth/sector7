@@ -79,11 +79,11 @@ void Sector::dump(NetPacket *packet)
 
 Entity *Sector::add_entity (Entity *entity)
 {
-    NetPacket *data = new NetPacket(sizeof(EntFull));
-    EntFull *entData = (EntFull *) &data->command;
     std::list < Sector * >::iterator s;
 
     if(server){
+        NetPacket *data = new NetPacket(sizeof(EntFull));
+        EntFull *entData = (EntFull *) &data->command;
         entity->deflateFull(entData);
         entData->cmd = (NetCmd) htonl(INFO_ENT_FULL);
         server->send_all_clients(data);
