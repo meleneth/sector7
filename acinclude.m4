@@ -312,7 +312,6 @@ dnl bugfix: dont forget to cache this variables, too
   have_glut="$mdl_cv_have_glut"
 ])
 dnl endof bugfix -ainan
-
 AC_DEFUN([AC_PYTHON_DEVEL],[
         #
         # should allow for checking of python version here...
