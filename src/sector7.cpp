@@ -102,7 +102,7 @@ int main(int argc, char *argv[])
 
             renderer->swap_buffers();
 
-            new_sector = client->do_frame(camera);
+            new_sector = client->do_frame();
             
             if(new_sector){
                 Area *inner_bound = camera->radar->actual_size;
