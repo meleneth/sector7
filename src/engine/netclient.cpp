@@ -12,7 +12,6 @@
 #include <netdb.h>
 
 #include"console.hpp"
-#include"camera.hpp"
 #include"globals.hpp"
 #include"entity.hpp"
 #include"sector.hpp"
@@ -39,9 +38,8 @@ NetClient::~NetClient() // Destructor
 }
 
 extern Entity *my_ship;
-//extern Camera *camera;
 
-Sector *NetClient::do_frame(Camera *camera)
+Sector *NetClient::do_frame()
 {
     Entity *ent;
     Uint32 ent_id;
@@ -90,7 +88,6 @@ Sector *NetClient::do_frame(Camera *camera)
                 if(ent == my_ship)
                         my_ship = NULL;
 
-                camera->remove_ent(ent);
                 ent->kill_me_now();
                 break;
             case CHATMSG:
