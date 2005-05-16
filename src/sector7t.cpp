@@ -38,29 +38,32 @@ int main(int argc, char *argv[])
     foo = "Bar";
     assert(foo.length() ==3);
 
-    printf("Testing SDL_DELAY timing\n");
+    console->log("Testing SDL_DELAY timing");
     test_sdl_delay();
     
-    printf("Testing partial entity updates\n");
+    console->log("Testing partial entity updates");
     test_partial_entity_update();
     
-    printf ("Testing vector\n");
+    console->log("Testing vector");
     test_vector();
 
-    printf ("Testing area\n");
+    console->log("Testing area");
     test_area();
 
-    printf ("Testing shooting\n");
+    console->log("Testing shooting");
     test_shooting();
     
-    printf("Testing Sector::(add_ent | remove_ent)\n");
+    console->log("Testing Sector::(add_ent | remove_ent)");
     test_sector_add_remove_ent();
 
-    printf("Testing NetServer::(add_ent | remove_ent)\n");
+    console->log("Testing NetServer::(add_ent | remove_ent)");
     test_netServer_add_remove_ent();
 
-    printf ("Testing collision detection");
+    console->log("Testing collision detection");
     test_collision_detection();
+
+    printf ("Testing camera\n");
+    test_camera();
 
     printf ("Testing entity marshalling\n");
     test_entity_marshalling();
