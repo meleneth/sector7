@@ -62,13 +62,10 @@ int main(int argc, char *argv[])
     console->log("Testing collision detection");
     test_collision_detection();
 
-    printf ("Testing camera\n");
-    test_camera();
-
-    printf ("Testing entity marshalling\n");
+    console->log("Testing entity marshalling");
     test_entity_marshalling();
 
-    printf ("Testing camera\n");
+    console->log("Testing camera");
     test_camera();
 }
 
