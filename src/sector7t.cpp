@@ -131,6 +131,7 @@ int test_sector_add_remove_ent(void)
     
     sector1->attach_sector(sector2);
     sector1->attach_sector(sector3);
+    sector2->attach_sector(sector3);
     
     Entity *ent = new Entity();
     ent->v->x = 0;
@@ -152,11 +153,45 @@ int test_sector_add_remove_ent(void)
         }
     }
 
-    ent = new Entity();
+    Entity *ent1 = new Entity();
     ent->v->x = 0;
     ent->v->y = 0;
-    sector2->add_entity(ent);
+    sector1->add_entity(ent1);
 
+    buf << "In sector: " << sector1->sector_id << " there exist entities";
+    console->log(buf.str());
+    buf.str("");
+    for (e = sector1->visible_entities.begin(); e != sector1->visible_entities.end(); e++) {
+        (*e)->log_info();
+    }
+    for (s = sector1->attached_sectors.begin(); s != sector1->attached_sectors.end(); s++) {
+        buf << "In sector: " << (*s)->sector_id << " there exist entities";
+        console->log(buf.str());
+        buf.str("");
+        for (e = (*s)->visible_entities.begin(); e != (*s)->visible_entities.end(); e++) {
+            (*e)->log_info();
+        }
+    }
+    
+    sector1->remove_ent(ent);
+    
+    buf << "In sector: " << sector1->sector_id << " there exist entities";
+    console->log(buf.str());
+    buf.str("");
+    for (e = sector1->visible_entities.begin(); e != sector1->visible_entities.end(); e++) {
+        (*e)->log_info();
+    }
+    for (s = sector1->attached_sectors.begin(); s != sector1->attached_sectors.end(); s++) {
+        buf << "In sector: " << (*s)->sector_id << " there exist entities";
+        console->log(buf.str());
+        buf.str("");
+        for (e = (*s)->visible_entities.begin(); e != (*s)->visible_entities.end(); e++) {
+            (*e)->log_info();
+        }
+    }
+    
+    sector1->remove_ent(ent1);
+    
     buf << "In sector: " << sector1->sector_id << " there exist entities";
     console->log(buf.str());
     buf.str("");

@@ -153,6 +153,11 @@ void Sector::render(void)
 
 void Sector::remove_ent(Entity *entity)
 {
+    std::list < Sector * >::iterator s;
+    
+    for (s = attached_sectors.begin(); s != attached_sectors.end(); s++) {
+        (*s)->visible_entities.remove(entity);
+    }
     visible_entities.remove(entity);
     EntityMgr::remove_ent(entity);
 }
