@@ -89,11 +89,11 @@ Entity *Sector::add_entity (Entity *entity)
         server->send_all_clients(data);
     }
 
+    entity->sector = this;
+    visible_entities.push_front(entity); 
     for (s = attached_sectors.begin(); s != attached_sectors.end(); s++) {
         (*s)->visible_entities.push_front(entity);
     }
-    
-    entity->sector = this;
     return EntityMgr::add_entity(entity);
 } 
 
