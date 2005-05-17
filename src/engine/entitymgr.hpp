@@ -27,7 +27,6 @@ class EntityMgr {
         virtual void render(void);
 
         Entity *chkCollision(Entity *check);
-        Uint32 ent_id;
         
         std::list< Entity * > entities;
         Uint32 num_ents;

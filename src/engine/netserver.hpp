@@ -22,10 +22,12 @@ class NetServer : public Sector {
         void handle_packet(NetPacket *packet);
         NetServerClient *get_client(NetPacket *packet);
         void handle_hello(NetPacket *packet);
+        virtual Entity *add_entity(Entity *entity);
         virtual void remove_ent(Entity *entity);
         Entity *new_player_ship(void);
 
         
+        Uint32 ent_id;
         UDPSocket *listener;
         std::list< NetServerClient * > clients;
     private:

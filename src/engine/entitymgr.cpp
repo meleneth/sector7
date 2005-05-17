@@ -8,7 +8,6 @@
 // Public data members go here.
 EntityMgr::EntityMgr ()		// Constructor
 {
-  ent_id = 0;
 }
 
 EntityMgr::~EntityMgr ()	// Destructor
@@ -17,17 +16,8 @@ EntityMgr::~EntityMgr ()	// Destructor
 
 Entity *EntityMgr::add_entity (Entity * entity)
 {
-  entities.push_front (entity);
-
-  if(entity->ent_id == 0){
-      ent_id++;
-      entity->ent_id = ent_id;
-      std::stringstream buf;
-      buf << "Entity " << ent_id << " at " << entity << " is Reporting for Duty (SIR!!)";
-      console->log(buf.str());
-  }
-
-  return entity;
+    entities.push_front(entity);
+    return entity;
 }
 
 void EntityMgr::dump_all(void)

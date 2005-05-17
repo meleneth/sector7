@@ -27,6 +27,7 @@ extern Console *console;
 // Public data members go here.
 NetServer::NetServer(int port, std::string sector_id) : Sector(sector_id) // Constructor
 {
+    ent_id = 0;
     console->log("Starting net server..");
     listener = new UDPSocket();
     listener->setup_for_listen(port);
@@ -143,6 +144,18 @@ Entity *NetServer::new_player_ship()
      return newEnt;
 }
   
+Entity *NetServer::add_entity(Entity *entity)
+{
+    if(entity->ent_id == 0){
+        ent_id++;
+        entity->ent_id = ent_id;
+        std::stringstream buf;
+        buf << "Entity " << ent_id << " at " << entity << " is Reporting for Duty (SIR!!)";
+        console->log(buf.str());
+    }
+    return Sector::add_entity(entity);
+}    
+
 void NetServer::remove_ent(Entity *entity)
 {
     std::list< NetServerClient * >::iterator i;
