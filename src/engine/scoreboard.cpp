@@ -42,18 +42,17 @@ int ScoreBoard::DrawDigit(int digit)
 
     glBegin(GL_QUADS);
 
-    glTexCoord2f(.1 * digit, 1);
+    glTexCoord2f(.10 * (digit + 1), 1);
     glVertex3f(-8, 8, 0.0);
 
-    glTexCoord2f(.1 * digit, 0.0);
+    glTexCoord2f(.10 * (digit + 1), 0.0);
     glVertex3f(-8, -8, 0.0);
 
-    glTexCoord2f(.10 * (digit + 1), 0.0);
+    glTexCoord2f(.1 * digit, 0.0);
     glVertex3f(8, -8, 0.0);
 
-    glTexCoord2f(.10 * (digit + 1), 1.0);
+    glTexCoord2f(.1 * digit, 1.0);
     glVertex3f(8, 8, 0.0);
-
 
     glEnd();			// Done Drawing The Square
 
@@ -74,15 +73,13 @@ int ScoreBoard::DrawNumAt(Sint32 num, Uint16 numdigits, Sint32 x, Sint32 y){
     glTranslatef(x, y, 0);
 
     while (numdigits--) {
-
         if (pScore < value) {
             DrawDigit(0);
-            glTranslatef(-16, 0, 0);
-
+            glTranslatef(16, 0, 0);
         value=value*10;
         } else {
             DrawDigit(m_round(pScore / value));
-            glTranslatef(-16, 0, 0);
+            glTranslatef(16, 0, 0);
 	 value=value*10;
 
         }

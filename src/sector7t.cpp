@@ -44,9 +44,6 @@ int main(int argc, char *argv[])
     console->log("Testing partial entity updates");
     test_partial_entity_update();
     
-    console->log("Testing vector");
-    //test_vector();
-
     console->log("Testing area");
     test_area();
 
@@ -67,6 +64,9 @@ int main(int argc, char *argv[])
 
     console->log("Testing camera");
     test_camera();
+    
+    console->log("Testing vector");
+    test_vector();
 }
 
 int test_partial_entity_update(void)

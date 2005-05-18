@@ -84,7 +84,6 @@ int main(int argc, char *argv[])
     while(!quit){
         while (SDL_PollEvent (&event) == 0 && !quit)
         {
-    //        camera->update_visible();
             renderer->RenderFrame(camera);
 
             if(my_ship){
@@ -96,12 +95,14 @@ int main(int argc, char *argv[])
                 if (mouse_cursor->v->angle > 360)
                     mouse_cursor->v->angle = 0;
 
-                scoreboard->DrawNumAt(floor(my_ship->v->x), 4, 0, 0);
                 glColor4f(0, 1, 0, .65);
                 mouse_cursor->render(camera->position);
+                scoreboard->DrawNumAt(floor(my_ship->v->x), 5, -200, -200);
+                scoreboard->DrawNumAt(floor(my_ship->v->y), 5, -200, -184);
 
-                camera->follow(my_ship);
             }
+                scoreboard->DrawNumAt(floor(camera->position->x), 5, 200, -200);
+                scoreboard->DrawNumAt(floor(camera->position->y), 5, 200, -184);
 
             wait_next_frame();
 
@@ -168,6 +169,7 @@ int main(int argc, char *argv[])
             }
 
             framecount++;
+            camera->follow(my_ship);
 
 /*            std::stringstream buf;
             buf << "CameraX: " << camera->position->x << " CameraY: " << camera->position->y;
