@@ -83,21 +83,6 @@ void Vector::set_from(Vector *v)
     y=v->y;
 }
 
-void Vector::bounds_check(Area *boundary)
-{
-    if (x < -(boundary->halfwidth)) 
-        x = (boundary->halfwidth);
-
-    if (x > (boundary->halfwidth))  
-        x = -(boundary->halfwidth);
-
-    if (y < -(boundary->halfheight)) 
-        y = (boundary->halfheight);
-
-    if (y > (boundary->halfheight))  
-        y = -(boundary->halfheight);
-}
-
 void Vector::accelerate(Vector *v)
 {
     //angle = v->angle;

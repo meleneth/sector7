@@ -12,6 +12,7 @@ class Area {
         Area::~Area(); // Destructor
 
         bool contains(Vector *p);
+        void wrap_within(Vector *p);
 
         bool point_is_below(Vector *p);
         bool point_is_above(Vector *p);

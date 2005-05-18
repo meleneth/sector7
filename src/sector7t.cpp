@@ -258,7 +258,7 @@ int test_vector(void)
     p->x = 200;
     p->y = 200;
 
-    p->bounds_check(bound);
+    bound->wrap_within(p);
 
     assert(p->x == 200);
     assert(p->y == 200);
@@ -266,7 +266,7 @@ int test_vector(void)
     p->x = 513;
     p->y = 385;
 
-    p->bounds_check(bound);
+    bound->wrap_within(p);
 
     assert(p->x == -512);
     assert(p->y == -384);

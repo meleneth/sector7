@@ -60,5 +60,20 @@ double Area::scale_y(Area *target, Vector *p)
     return  (p->y - y) / (height / target->height);
 }
 
+void Area::wrap_within(Vector *p)
+{
+    if (p->x < x - halfwidth) 
+        p->x = x + halfwidth;
+
+    if (p->x > x + halfwidth) 
+        p->x = x - halfwidth;
+
+    if (p->y < y - halfwidth) 
+        p->y = y + halfwidth;
+
+    if (p->y > y + halfwidth) 
+        p->y = y - halfwidth;
+
+}
 // Private members go here.
 // Protected members go here.
