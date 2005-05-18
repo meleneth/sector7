@@ -57,7 +57,7 @@ int EntityMgr::frameupdate_with_collisions (void)
     for (i = entities.begin(); i != entities.end(); ++i)
     {
         chkCollision(*i);
-        if (!((*i)->frameupdate()))
+        if (!(*i)->frameupdate())
         {
             dead_ents.push_front(*i);
         }
@@ -65,6 +65,7 @@ int EntityMgr::frameupdate_with_collisions (void)
 
     for (i = dead_ents.begin() ; i != dead_ents.end() ; ++i)
     {
+        console->log("i'm not dead!");
         remove_ent(*i);
     }
     return true;
@@ -119,9 +120,13 @@ Entity *EntityMgr::chkCollision (Entity *check)
 {
     std::list < Entity * >::iterator i;
     for (i = entities.begin (); i != entities.end (); ++i){
-        if (*i != check)
-        if ((*i)->chkCollision(check) == true){
-            return *i;
+        if (*i != check) {
+            if ((*i)->chkCollision(check) == true){
+                std::stringstream buf;
+                buf << "Collision! " << (*i) << " collided with " << check;
+                console->log(buf.str());
+                return *i;
+            }
         }
     }
     return NULL;

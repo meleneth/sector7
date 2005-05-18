@@ -11,11 +11,11 @@ class Projectile : public Entity {
         Uint16 lifespan;
 
         Projectile::Projectile(Sint16 dmg, Vector *direction, Entity *firing_party); // Constructor
-        Projectile::Projectile(Projectile *source);
         Projectile::~Projectile(); // Destructor
 
         virtual int frameupdate(void);
         virtual int chkCollision(Entity *check);
+        virtual void log_info(void);
     private:
         // Private members go here.
 

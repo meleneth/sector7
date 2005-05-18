@@ -15,13 +15,9 @@
 // Public data members go here.
 Entity::Entity() // Constructor
 {
-    setup_entity();
-}
-
-Entity::Entity(ENT_ALIGNMENT ent_alignment) // Constructor
-{
-    alignment = ent_alignment;
-    collision_mask = alignment == E_PLAYER ? E_ENEMY : E_PLAYER;
+    std::stringstream buf;
+    buf << "Entity at " << this << " created.";
+    console->log(buf.str());
     setup_entity();
 }
 
@@ -197,6 +193,7 @@ void Entity::log_info(void){
     std::stringstream buf;
     buf << "Entity [" << ent_id << "] Info: ";
     buf << "x: " << v->x << " y: " << v->y << " size: " << (int) size << " tid: " << (int)texture->tilenum;
+    buf << " health: " << health;
     if(sector){
     buf << " sector: " << ((Sector *)sector)->sector_id;
     }

@@ -11,18 +11,18 @@
 TileNum asteroid_tile_map[] = {TILE_ROCK1, TILE_ROCK2, TILE_ROCK3, TILE_ROCK4, TILE_ROCK5, TILE_ROCK6};
 
 // Public data members go here.
-Asteroid::Asteroid(Uint16 mass):Entity(E_ENEMY)	// Constructor
+Asteroid::Asteroid(Uint16 mass)	// Constructor
 {
     size = mass;
     setup_asteroid();
 }
 
-Asteroid::Asteroid():Entity(E_ENEMY) {
+Asteroid::Asteroid(){
     size = rand() % 128;
     setup_asteroid();
 }
 
-Asteroid::Asteroid(Asteroid *parent, Uint16 mass):Entity(E_ENEMY)
+Asteroid::Asteroid(Asteroid *parent, Uint16 mass)
 {
     size = mass;
     setup_asteroid();

@@ -137,7 +137,7 @@ void NetServer::handle_hello(NetPacket *packet)
 Entity *NetServer::new_player_ship()
 {
      Entity * newEnt = new Entity();
-     newEnt->v->random_location(0, 0, 640, 480);
+     newEnt->v->random_location(0, 0, 320, 240);
      newEnt->texture = get_tex_id(TILE_SHIP);
      newEnt->primary = new PlasmaCannon(newEnt);
      add_entity(newEnt); 

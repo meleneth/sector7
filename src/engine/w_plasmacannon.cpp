@@ -36,6 +36,7 @@ void PlasmaCannon::fire_shot(){
     new_vec->power = projectile_velocity;
     Plasma *shot = new Plasma(damage, new_vec, owner);
     ((Sector *)(owner->sector))->add_entity(shot);
+    shot->log_info();
 }
 
 // Private members go here.

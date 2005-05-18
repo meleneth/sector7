@@ -5,10 +5,6 @@
 // Public data members go here.
 Projectile::Projectile(Sint16 dmg, Vector *direction, Entity *firing_party) // Constructor
 {
-    alignment = firing_party->alignment;
-    collision_mask = alignment == E_PLAYER 
-                    ? E_ENEMY 
-                    : E_PLAYER;
     health = dmg;
     delete v;
     v=direction;
@@ -16,17 +12,8 @@ Projectile::Projectile(Sint16 dmg, Vector *direction, Entity *firing_party) // C
     who_held_the_gun = firing_party;
     lifespan = 300;
     v->rotation = 0;
-}
 
-Projectile::Projectile(Projectile *source)
-{
-    alignment = source->alignment;
-    collision_mask = source->collision_mask;
-    health = source->health;
-    taken_damage = 0;
-    who_held_the_gun = source->who_held_the_gun;
-    lifespan = source->lifespan;
-    v->set_from(source->v);
+    log_info();
 }
 
 Projectile::~Projectile() // Destructor
@@ -37,13 +24,13 @@ int Projectile::frameupdate(void)
 {
     lifespan--;
     if(lifespan == 0) 
-        health = 0;
+        kill_me_now();
     return Entity::frameupdate();
 }
 
 int Projectile::chkCollision(Entity *check)
 {
-    if(who_held_the_gun->ent_id != check->ent_id)
+    if(who_held_the_gun != check)
     if(Entity::chkCollision(check)){
         check->takeDamage(health, who_held_the_gun);
         health = 0;
@@ -51,6 +38,13 @@ int Projectile::chkCollision(Entity *check)
     }
     return 0;
 
+}
+
+void Projectile::log_info()
+{
+    std::stringstream buf;
+    buf << this << "'s who_held is " << who_held_the_gun;
+    Entity::log_info();
 }
 
 // Private members go here.

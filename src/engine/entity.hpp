@@ -46,8 +46,6 @@ class Weapon;
 class Entity {
     public:
         ENTID_TYPE ent_id;
-        ENT_ALIGNMENT alignment;
-        int collision_mask;
 
         Sint32 health;
         RESTYPE rotation;
@@ -64,7 +62,6 @@ class Entity {
 
         // Public data members go here.
         Entity::Entity(); // Constructor
-        Entity::Entity(ENT_ALIGNMENT ent_type); // Constructor
 
         void setup_entity(void);
         void add_timed_event(int time_offset, void *function, Entity *who_is_acting);
@@ -85,7 +82,7 @@ class Entity {
         virtual int takeDamage(Sint16 dmg, Entity *who_was_holding_the_gun);
         virtual void death();
         void kill_me_now(void); 
-        void log_info(void);
+        virtual void log_info(void);
         void move(Sint32 xdir, Sint32 ydir);
 
         void inflateLoc(EntLoc *newLoc);
