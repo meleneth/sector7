@@ -7,11 +7,13 @@
 #include"camera.hpp"
 #include"globals.hpp"
 #include"w_plasmacannon.hpp"
+#include"scoreboard.hpp"
 #include<sstream>
 
 NetServer *server = NULL;
 Console *console;
 Entity *my_ship;
+ScoreBoard *scoreboard;
 
 #define SHIP_SPEED 3
 
@@ -62,6 +64,8 @@ int main(int argc, char *argv[])
     mouse_cursor->texture = get_tex_id(TILE_RETICLE);
     Texture *no_texture = get_tex_id(TILE_NOTILE);
 
+    scoreboard = new ScoreBoard();
+        
     Sector *sector = new Sector("connecting");
     sector->setup_connecting();
     camera->attach_sector(sector);
@@ -92,6 +96,7 @@ int main(int argc, char *argv[])
                 if (mouse_cursor->v->angle > 360)
                     mouse_cursor->v->angle = 0;
 
+                scoreboard->DrawNumAt(floor(my_ship->v->x), 4, 0, 0);
                 glColor4f(0, 1, 0, .65);
                 mouse_cursor->render(camera->position);
 
@@ -99,6 +104,7 @@ int main(int argc, char *argv[])
             }
 
             wait_next_frame();
+
 
             renderer->swap_buffers();
 
