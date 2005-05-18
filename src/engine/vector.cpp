@@ -36,7 +36,11 @@ double Vector::calc_angle(double targx, double targy)
     leg1 = targy - y; 
     leg2 = targx - x;
 
-    return atan(leg2 / leg1) ;
+    myangle  = atan(leg1 / leg2) ;
+
+    return (leg2 < 0
+        ? myangle * (180 / M_PI) - 180 
+        : myangle * (180/M_PI));
 }
 
 double Vector::distance(Vector *target)
@@ -102,6 +106,15 @@ void Vector::random_location(double x1, double y1, double x2, double y2)
     random = rand();
     random = random % (int)(floor(x2 - x1));
     y = y1 + random - ((y2 - y1)/2);
+}
+
+Vector *Vector::difference(Vector *p)
+{
+    Vector *new_vec = new Vector();
+
+    new_vec->x = x - p->x;
+    new_vec->y = y - p->y;
+    return new_vec;
 }
 
 // Private members go here.

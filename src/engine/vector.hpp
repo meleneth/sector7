@@ -25,6 +25,7 @@ class Vector {
         void accelerate(Vector *v);
         void follow(Vector *v, double leash_length);
         void random_location(double x1, double y1, double x2, double y2);
+        Vector *difference(Vector *p);
 
         double angle,power,rotation;
         double x;
