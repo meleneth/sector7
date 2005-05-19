@@ -12,6 +12,7 @@ Projectile::Projectile(Sint16 dmg, Vector *direction, Entity *firing_party) // C
     who_held_the_gun = firing_party;
     lifespan = 300;
     v->rotation = 0;
+    parent = firing_party;
 
     log_info();
 }
@@ -44,6 +45,7 @@ void Projectile::log_info()
 {
     std::stringstream buf;
     buf << this << "'s who_held is " << who_held_the_gun;
+    console->log(buf.str());
     Entity::log_info();
 }
 

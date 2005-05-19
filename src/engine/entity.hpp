@@ -57,6 +57,8 @@ class Entity {
         int taken_damage;
         Vector *v;
         Weapon *primary;
+        Entity *parent;
+        
         
         void *sector;
 

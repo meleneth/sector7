@@ -39,6 +39,7 @@ void Entity::setup_entity(void)
     experiance_value = 0;
     rotation=0;
     primary = NULL;
+    parent = NULL;
 }
 
 void Entity::update_location(void){
