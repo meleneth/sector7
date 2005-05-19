@@ -63,11 +63,11 @@ class Entity {
         void *sector;
 
         // Public data members go here.
-        Entity::Entity(); // Constructor
+        Entity(); // Constructor
 
         void setup_entity(void);
         void add_timed_event(int time_offset, void *function, Entity *who_is_acting);
-        virtual Entity::~Entity(); // Destructor
+        virtual ~Entity(); // Destructor
 
         virtual int frameupdate(void);
 
