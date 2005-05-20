@@ -136,6 +136,7 @@ void NetServer::handle_hello(NetPacket *packet)
 
 Entity *NetServer::new_player_ship()
 {
+     console->log("New player ship()");
      Entity * newEnt = new Entity();
      newEnt->v->random_location(0, 0, 320, 240);
      newEnt->texture = get_tex_id(TILE_SHIP);

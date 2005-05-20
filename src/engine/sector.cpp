@@ -48,7 +48,8 @@ Entity *Sector::setup_connecting(void)
     ship->v->x = 20;
     ship->v->y = 20;
     ship->size = 128;
-    ship->texture = get_tex_id(TILE_SHIP);
+    ship->v->angle = 90;
+    ship->texture = get_tex_id(TILE_CONNECTINGSCREEN);
 	ship->sector = this;
     ship->ent_id = 31337;
     add_entity(ship);

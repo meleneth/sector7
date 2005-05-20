@@ -111,6 +111,7 @@ void load_textures(int dummy)
     textures.push_front(new Texture(dummy, "../graphics/menu/quit.png", TILE_QUIT));                 
     textures.push_front(new Texture(dummy, "../graphics/screens/titlescreen.png", TILE_TITLESCREEN));                 
     textures.push_front(new Texture(dummy, "../graphics/screens/galaxies.png", TILE_GALAXIES));                 
+    textures.push_front(new Texture(dummy, "../graphics/screens/connecting.png", TILE_CONNECTINGSCREEN));                 
 }
 
 Texture *get_tex_id(TileNum tile_id)
