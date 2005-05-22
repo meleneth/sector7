@@ -35,15 +35,22 @@ int EntityMgr::frameupdate (void)
 {
     std::list < Entity * >::iterator i;
     std::list < Entity *> dead_ents;
+    std::stringstream buf;
 
     for (i = entities.begin(); i != entities.end(); ++i)
         if (!(*i)->frameupdate())
         {
+            buf << "found dead ent " << (*i);
+            console->log(buf.str());
+            buf << "";
             dead_ents.push_front(*i);
         }
 
     for (i = dead_ents.begin() ; i != dead_ents.end() ; ++i)
     {
+            buf << "removing dead ent " << (*i);
+            console->log(buf.str());
+            buf << "";
         remove_ent(*i);
     }
     return true;
