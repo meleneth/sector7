@@ -300,6 +300,10 @@ int test_vector(void)
 
     t->follow(p, 50);
 
+    buf << "tX: " << t->x << " tY: " << t->y;
+    console->log(buf.str());
+    buf.str("");
+
     assert(t->x == 4950);
     assert(t->y == 0);
 
@@ -311,6 +315,10 @@ int test_vector(void)
 
     t->follow(p, 50);
 
+    buf << "tX: " << t->x << " tY: " << t->y;
+    console->log(buf.str());
+    buf.str("");
+
     assert(t->x == 0);
     assert(t->y == 50);
 
@@ -321,6 +329,10 @@ int test_vector(void)
     t->y = 0;
 
     t->follow(p, 50);
+
+    buf << "tX: " << t->x << " tY: " << t->y;
+    console->log(buf.str());
+    buf.str("");
 
     assert(t->x == 0);
     assert(t->y == -50);

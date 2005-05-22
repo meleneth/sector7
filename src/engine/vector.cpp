@@ -76,8 +76,8 @@ void Vector::follow(Vector *v, double leash_length)
 
     double angle = calc_angle(v);
 
-    x = ((d - leash_length) * cos(angle * (PI/180)));
-    y = ((d - leash_length) * sin(angle * (PI/180)));
+    x += ((d - leash_length) * cos(angle * (PI/180)));
+    y += ((d - leash_length) * sin(angle * (PI/180)));
     
 }
 
