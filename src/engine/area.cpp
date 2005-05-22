@@ -18,13 +18,13 @@ Area::~Area() // Destructor
 
 bool Area::contains(Vector *p)
 {
-    if(p->x < x - halfwidth)
+    if(point_is_left(p))
         return 0;
-    if(p->x > x + halfwidth)
+    if(point_is_right(p))
         return 0;
-    if(p->y < y - halfheight)
+    if(point_is_above(p))
         return 0;
-    if(p->y > y + halfheight)
+    if(point_is_below(p))
         return 0;
 
     return 1;
@@ -32,22 +32,22 @@ bool Area::contains(Vector *p)
 
 bool Area::point_is_left(Vector *p)
 {
-        return (x + halfwidth) > p->x;
+        return (x - halfwidth) > p->x;
 }
 
 bool Area::point_is_right(Vector *p)
 {
-        return (x - halfwidth) < p->x;
+        return (x + halfwidth) < p->x;
 }
 
 bool Area::point_is_above(Vector *p)
 {
-        return (y + halfheight) > p->y;
+        return (y + halfheight) < p->y;
 }
 
 bool Area::point_is_below(Vector *p)
 {
-        return (y - halfheight) < p->y;
+        return (y - halfheight) > p->y;
 }
 
 double Area::scale_x(Area *target, Vector *p)
@@ -62,18 +62,19 @@ double Area::scale_y(Area *target, Vector *p)
 
 void Area::wrap_within(Vector *p)
 {
-    if (p->x < x - halfwidth) 
-        p->x = x + halfwidth;
+    if (point_is_above(p)) 
+        p->y = y - halfheight;
 
-    if (p->x > x + halfwidth) 
+    if (point_is_below(p)) 
+        p->y = y + halfheight;
+
+    if (point_is_right(p)) 
         p->x = x - halfwidth;
 
-    if (p->y < y - halfwidth) 
-        p->y = y + halfwidth;
-
-    if (p->y > y + halfwidth) 
-        p->y = y - halfwidth;
+    if (point_is_left(p)) 
+        p->x = x + halfwidth;
 
 }
+
 // Private members go here.
 // Protected members go here.

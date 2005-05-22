@@ -260,6 +260,10 @@ int test_vector(void)
 
     bound->wrap_within(p);
 
+    buf << "pX: " << p->x << " pY: " << p->y;
+    console->log(buf.str());
+    buf.str("");
+
     assert(p->x == 200);
     assert(p->y == 200);
 
@@ -267,6 +271,10 @@ int test_vector(void)
     p->y = 385;
 
     bound->wrap_within(p);
+
+    buf << "pX: " << p->x << " pY: " << p->y;
+    console->log(buf.str());
+    buf.str("");
 
     assert(p->x == -512);
     assert(p->y == -384);
@@ -344,10 +352,10 @@ int test_area(void)
     v->x = -330;
     assert(area->point_is_left(v));
 
-    v->y = 300;
+    v->y = -300;
     assert(area->point_is_below(v));
 
-    v->y = -300;
+    v->y = 300;
     assert(area->point_is_above(v));
 
 }
@@ -380,6 +388,7 @@ int test_camera(void)
     buf << "X: " << cam->position->x << " Y: " << cam->position->y;
 
     console->log(buf.str());
+    buf.str("");
 
 }
 

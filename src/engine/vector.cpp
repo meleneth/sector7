@@ -67,6 +67,9 @@ void Vector::update_location(void)
 void Vector::follow(Vector *v, double leash_length)
 {
     double d = distance(v);
+    std::stringstream buf;
+    buf << "leash_length: " << leash_length << " distance: " << d;
+    console->log(buf.str());
 
     if( leash_length > d )
         return;
