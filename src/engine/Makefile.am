@@ -10,8 +10,8 @@ libengine_a_SOURCES = area.cpp area.hpp camera.cpp camera.hpp console.cpp \
         map_defines.hpp entitymgr.hpp stdutil.hpp engine.hpp asteroid.cpp asteroid.hpp \
 		scoreboard.hpp scoreboard.cpp
 
-AM_CXXFLAGS = @SDL_CFLAGS@ @GL_CFLAGS@ -I../../libs/glpng 
-AM_LDFLAGS = -l../../libs/glpng.la @GL_LDFLAGS@ @SDL_LDFLAGS@
+AM_CXXFLAGS = @SDL_CFLAGS@ @GL_CFLAGS@ -I../../libs/glpng
+AM_LDFLAGS = -l../../libs/glpng.la @GL_LDFLAGS@ @SDL_LDFLAGS@ 
 
 entity_wrap.cxx : entity.i entity.hpp 
 	$(SWIG) -c++ -python -nodefault entity.i

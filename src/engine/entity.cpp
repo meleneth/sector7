@@ -46,7 +46,7 @@ void Entity::update_location(void){
     v->update_location();
 
     if(sector){
-        ((Sector *)sector)->bound->wrap_within(v);
+//        ((Sector *)sector)->bound->wrap_within(v);
     }
     rotation += v->rotation;
 }

@@ -84,6 +84,10 @@ int main(int argc, char *argv[])
     while(!quit){
         while (SDL_PollEvent (&event) == 0 && !quit)
         {
+            if(my_ship){
+                camera->follow(my_ship);
+            }
+
             renderer->RenderFrame(camera);
 
             if(my_ship){
@@ -97,6 +101,8 @@ int main(int argc, char *argv[])
 
                 glColor4f(0, 1, 0, .65);
                 mouse_cursor->render(camera->position);
+                
+
                 scoreboard->DrawNumAt(floor(my_ship->v->x), 5, -200, -200);
                 scoreboard->DrawNumAt(floor(my_ship->v->y), 5, -200, -184);
 
@@ -169,7 +175,6 @@ int main(int argc, char *argv[])
             }
 
             framecount++;
-            camera->follow(my_ship);
 
 /*            std::stringstream buf;
             buf << "CameraX: " << camera->position->x << " CameraY: " << camera->position->y;
