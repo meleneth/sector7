@@ -60,6 +60,11 @@ void Camera::set_from_screen_coords(Vector *v, double screen_x, double screen_y)
     v->y = position->y - screen_y + visible_area->halfheight;
 }
 
+void Camera::attach_sector(Sector *sector)
+{
+    radar->actual_size = sector->bound;
+}
+
 
 // Private members go here.
 // Protected members go here.

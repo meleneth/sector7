@@ -15,6 +15,7 @@ class Camera : public Sector {
         virtual void remove_ent(Entity *entity);
         void follow(Entity *bird);
         void set_from_screen_coords(Vector *v, double screen_x, double screen_y);
+        virtual void attach_sector(Sector *sector);
     
         Area *visible_area;
         Area *inner_bound;
