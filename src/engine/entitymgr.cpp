@@ -100,6 +100,7 @@ void EntityMgr::remove_ent (Entity *ent)
 
 Entity *EntityMgr::find_ent_for_id(Uint32 id)
 {
+    std::stringstream buf;
     std::list < Entity * >::iterator i;
     Entity *newEnt;
 

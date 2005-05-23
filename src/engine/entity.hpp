@@ -20,6 +20,12 @@
 enum ENT_TYPE { ENT_ASTEROID, ENT_PLAYER, ENT_PLAYERSHOT };
 
 #define ENTID_TYPE Uint32
+
+typedef struct {
+        NetCmd cmd;
+        ENTID_TYPE entID;
+} EntCmd;
+
 typedef struct {
         NetCmd cmd;
         ENTID_TYPE entID;

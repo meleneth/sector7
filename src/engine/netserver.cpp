@@ -183,25 +183,19 @@ Entity *NetServer::add_entity(Entity *entity)
 void NetServer::remove_ent(Entity *entity)
 {
     std::list< NetServerClient * >::iterator i;
-    for(i = clients.begin() ; i!=clients.end(); i++){
+    for(i = clients.begin() ; i!=clients.end(); ++i){
         if ((*i)->entity == entity){
-            NetPacket *packet = new NetPacket(sizeof(ENTID_TYPE));
-            packet->set_command(ENT_DEATH);
-            Sint32 cmd = htonl(entity->ent_id);
-            memcpy(&packet->command.datamsg.message, &cmd, sizeof(cmd));
-            send_all_clients(packet);
-
             Entity *newEnt = new_player_ship();
             ENTID_TYPE entid = htonl(newEnt->ent_id);
             send_net_cmd((*i)->socket, GRANT_ENT_WRITE, sizeof(ENTID_TYPE), &entid);
-        } else {
-            NetPacket *packet = new NetPacket(sizeof(ENTID_TYPE));
-            packet->set_command(ENT_DEATH);
-            Sint32 cmd = htonl(entity->ent_id);
-            memcpy(&packet->command.datamsg.message, &cmd, sizeof(cmd));
-            send_all_clients(packet);
         }
     }
+    NetPacket *packet = new NetPacket(sizeof(EntCmd));
+    packet->set_command(ENT_DEATH);
+    ENTID_TYPE cmd = htonl(entity->ent_id);
+    memcpy(&packet->command.datamsg.message, &cmd, sizeof(cmd));
+    send_all_clients(packet);
+        
     Sector::remove_ent(entity);
 }
 
