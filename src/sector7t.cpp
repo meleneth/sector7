@@ -136,76 +136,22 @@ int test_sector_add_remove_ent(void)
     Entity *ent = new Entity();
     ent->v->x = 0;
     ent->v->y = 0;
+    
     sector1->add_entity(ent);
-
-    buf << "In sector: " << sector1->sector_id << " there exist entities";
-    console->log(buf.str());
-    buf.str("");
-    for (e = sector1->visible_entities.begin(); e != sector1->visible_entities.end(); e++) {
-        (*e)->log_info();
-    }
-    for (s = sector1->attached_sectors.begin(); s != sector1->attached_sectors.end(); s++) {
-        buf << "In sector: " << (*s)->sector_id << " there exist entities";
-        console->log(buf.str());
-        buf.str("");
-        for (e = (*s)->visible_entities.begin(); e != (*s)->visible_entities.end(); e++) {
-            (*e)->log_info();
-        }
-    }
-
+    sector1->list_ents();
+    
     Entity *ent1 = new Entity();
     ent->v->x = 0;
     ent->v->y = 0;
+    
     sector1->add_entity(ent1);
-
-    buf << "In sector: " << sector1->sector_id << " there exist entities";
-    console->log(buf.str());
-    buf.str("");
-    for (e = sector1->visible_entities.begin(); e != sector1->visible_entities.end(); e++) {
-        (*e)->log_info();
-    }
-    for (s = sector1->attached_sectors.begin(); s != sector1->attached_sectors.end(); s++) {
-        buf << "In sector: " << (*s)->sector_id << " there exist entities";
-        console->log(buf.str());
-        buf.str("");
-        for (e = (*s)->visible_entities.begin(); e != (*s)->visible_entities.end(); e++) {
-            (*e)->log_info();
-        }
-    }
+    sector1->list_ents();
     
     sector1->remove_ent(ent);
-    
-    buf << "In sector: " << sector1->sector_id << " there exist entities";
-    console->log(buf.str());
-    buf.str("");
-    for (e = sector1->visible_entities.begin(); e != sector1->visible_entities.end(); e++) {
-        (*e)->log_info();
-    }
-    for (s = sector1->attached_sectors.begin(); s != sector1->attached_sectors.end(); s++) {
-        buf << "In sector: " << (*s)->sector_id << " there exist entities";
-        console->log(buf.str());
-        buf.str("");
-        for (e = (*s)->visible_entities.begin(); e != (*s)->visible_entities.end(); e++) {
-            (*e)->log_info();
-        }
-    }
+    sector1->list_ents();
     
     sector1->remove_ent(ent1);
-    
-    buf << "In sector: " << sector1->sector_id << " there exist entities";
-    console->log(buf.str());
-    buf.str("");
-    for (e = sector1->visible_entities.begin(); e != sector1->visible_entities.end(); e++) {
-        (*e)->log_info();
-    }
-    for (s = sector1->attached_sectors.begin(); s != sector1->attached_sectors.end(); s++) {
-        buf << "In sector: " << (*s)->sector_id << " there exist entities";
-        console->log(buf.str());
-        buf.str("");
-        for (e = (*s)->visible_entities.begin(); e != (*s)->visible_entities.end(); e++) {
-            (*e)->log_info();
-        }
-    }
+    sector1->list_ents();
 }
 
 int test_netServer_add_remove_ent(void)

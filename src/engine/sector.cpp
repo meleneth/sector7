@@ -6,6 +6,7 @@
 #include "netserver.hpp"
 #include "udpsocket.hpp"
 #include "area.hpp"
+#include<sstream>
 
 extern NetServer *server;
 
@@ -132,6 +133,28 @@ void Sector::remove_ent(Entity *entity)
     }
     visible_entities.remove(entity);
     EntityMgr::remove_ent(entity);
+}
+
+void Sector::list_ents()
+{
+    std::stringstream buf;
+    std::list < Sector * >::iterator s;
+    std::list < Entity * >::iterator e;
+
+    buf << "In sector: " << sector_id << " there exist entities";
+    console->log(buf.str());
+    buf.str("");
+    for (e = visible_entities.begin(); e != visible_entities.end(); e++) {
+        (*e)->log_info();
+    }
+    for (s = attached_sectors.begin(); s != attached_sectors.end(); s++) {
+        buf << "In sector: " << (*s)->sector_id << " there exist entities";
+        console->log(buf.str());
+        buf.str("");
+        for (e = (*s)->visible_entities.begin(); e != (*s)->visible_entities.end(); e++) {
+            (*e)->log_info();
+        }
+    }
 }
 
 // Private members go here.
