@@ -55,40 +55,11 @@ Entity *Sector::setup_connecting(void)
     add_entity(ship);
 }
 
-void Sector::dump(NetPacket *packet)
-{
-    if(!server){
-        return;
-    }
-
-    NetServerClient *client = server->get_client(packet);
-
-    NetPacket *dumper = new NetPacket(sizeof(EntFull));
-
-
-    EntFull *entData = (EntFull *) &dumper->command;
-    entData->cmd = (NetCmd) htonl(INFO_ENT_FULL);
-    std::list< Entity * >::iterator i;
-    for (i = entities.begin(); i != entities.end(); ++i) {
-        (*i)->deflateFull(entData);
-        client->socket->send(dumper);
-    }    
-
-    delete dumper;
-}
 
 
 Entity *Sector::add_entity (Entity *entity)
 {
     std::list < Sector * >::iterator s;
-
-    if(server){
-        NetPacket *data = new NetPacket(sizeof(EntFull));
-        EntFull *entData = (EntFull *) &data->command;
-        entity->deflateFull(entData);
-        entData->cmd = (NetCmd) htonl(INFO_ENT_FULL);
-        server->send_all_clients(data);
-    }
 
     entity->sector = this;
     visible_entities.push_front(entity); 

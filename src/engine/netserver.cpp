@@ -44,6 +44,23 @@ NetServer::~NetServer() // Destructor
     delete listener;
 }
 
+void NetServer::dump(NetPacket *packet)
+{
+    NetServerClient *client = get_client(packet);
+
+    NetPacket *dumper = new NetPacket(sizeof(EntFull));
+
+    EntFull *entData = (EntFull *) &dumper->command;
+    entData->cmd = (NetCmd) htonl(INFO_ENT_FULL);
+    std::list< Entity * >::iterator i;
+    for (i = entities.begin(); i != entities.end(); ++i) {
+        (*i)->deflateFull(entData);
+        client->socket->send(dumper);
+    }    
+
+    delete dumper;
+}
+
 void NetServer::handle_packet(NetPacket *packet)
 {
     UDPSocket *replysock;
@@ -154,6 +171,12 @@ Entity *NetServer::add_entity(Entity *entity)
         buf << "Entity " << ent_id << " at " << entity << " is Reporting for Duty (SIR!!)";
         console->log(buf.str());
     }
+    NetPacket *data = new NetPacket(sizeof(EntFull));
+    EntFull *entData = (EntFull *) &data->command;
+    entity->deflateFull(entData);
+    entData->cmd = (NetCmd) htonl(INFO_ENT_FULL);
+    send_all_clients(data);
+
     return Sector::add_entity(entity);
 }    
 

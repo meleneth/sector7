@@ -25,6 +25,7 @@ class NetServer : public Sector {
         virtual Entity *add_entity(Entity *entity);
         virtual void remove_ent(Entity *entity);
         Entity *new_player_ship(void);
+        void dump(NetPacket *packet);
 
         
         Uint32 ent_id;

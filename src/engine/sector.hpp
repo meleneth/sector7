@@ -17,7 +17,6 @@ class Sector : public EntityMgr {
         
         void setup_master(void);
         Entity *setup_connecting(void);
-        void dump(NetPacket *packet);
         std::string sector_id;
         int is_master;
         virtual Entity *add_entity (Entity * entity);
