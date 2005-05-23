@@ -42,7 +42,7 @@ int EntityMgr::frameupdate (void)
         {
             buf << "found dead ent " << (*i);
             console->log(buf.str());
-            buf << "";
+            buf.str("");
             dead_ents.push_front(*i);
         }
 
@@ -50,7 +50,7 @@ int EntityMgr::frameupdate (void)
     {
             buf << "removing dead ent " << (*i);
             console->log(buf.str());
-            buf << "";
+            buf.str("");
         remove_ent(*i);
     }
     return true;
