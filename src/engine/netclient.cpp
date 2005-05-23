@@ -16,6 +16,8 @@
 #include"entity.hpp"
 #include"sector.hpp"
 #include "w_plasmacannon.hpp"
+#include<sstream>
+
 extern Console *console;
 
 
@@ -84,7 +86,12 @@ Sector *NetClient::do_frame()
                 EntLoc *entData;
                 entData = (EntLoc *) &packet->command;
                 ent_id = ntohl(entData->entID);
-                ent = sector->ent_for_id(ent_id);
+                console->log(buf.str());
+                ent = sector->find_ent_for_id(ent_id);
+                if(!ent) break;
+                buf << "Entity " << ent_id << " at " << ent << " is going to DIE!!";
+                console->log(buf.str());
+                buf.str("");
                 if(ent == my_ship)
                         my_ship = NULL;
 
