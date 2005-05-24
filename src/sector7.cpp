@@ -165,12 +165,6 @@ int main(int argc, char *argv[])
                 }
             }
             
-            if (keys[SDLK_RETURN] == SDL_PRESSED)
-                quit = true;
-            
-            if (keys[SDLK_ESCAPE] == SDL_PRESSED)
-                quit = true;
-            
             for(i = sectors.begin() ; i != sectors.end(); ++i){
                 (*i)->frameupdate();
             }
@@ -203,19 +197,25 @@ int main(int argc, char *argv[])
                 switch( event.key.keysym.sym ){
                     case SDLK_SPACE:
                         my_ship->v->power = 1;
+                        break;
                 }
                 keys[event.key.keysym.sym] = 0;
-
                 break;
 
             case SDL_KEYDOWN:
                 switch( event.key.keysym.sym ){
                     case SDLK_SPACE:
                         my_ship->v->power = 15;
+                        break;
+                    case SDLK_ESCAPE:
+                        quit = true;
+                        break;
+                    case SDLK_RETURN:
+                        quit = true;
+                        break;
                 }
                 keys[event.key.keysym.sym] = SDL_PRESSED;
                 break;
-
         }
 
     }
