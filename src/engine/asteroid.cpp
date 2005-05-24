@@ -38,7 +38,7 @@ void Asteroid::setup_asteroid(void)
     v->x = rand() % 200;
     v->y = rand() % 500;
     v->angle = (rand() % 45) + 67;
-    v->power = 0 ; //rand() % 2+1;
+    v->power = rand() % 2+1;
     v->rotation = 3 - (rand() % 6);
     TileNum tex_id;
     tex_id = asteroid_tile_map[(rand() %6)];
