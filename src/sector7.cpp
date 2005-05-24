@@ -137,12 +137,12 @@ int main(int argc, char *argv[])
                 }
 
                 if (keys[SDLK_s] == SDL_PRESSED){
-                    if(my_ship->v->power) my_ship->v->power -= 0.1;
+                    if(my_ship->v->power > 0) my_ship->v->power -= 0.1;
                 }
 
                 if (keys[SDLK_d] == SDL_PRESSED){
                 }
-
+                
                 mbuttons = SDL_GetMouseState(&mx, &my);
                 camera->set_from_screen_coords(mouse_cursor->v, mx, my);
 
@@ -200,10 +200,19 @@ int main(int argc, char *argv[])
                 break;
                 
             case SDL_KEYUP:
+                switch( event.key.keysym.sym ){
+                    case SDLK_SPACE:
+                        my_ship->v->power = 1;
+                }
                 keys[event.key.keysym.sym] = 0;
+
                 break;
 
             case SDL_KEYDOWN:
+                switch( event.key.keysym.sym ){
+                    case SDLK_SPACE:
+                        my_ship->v->power = 15;
+                }
                 keys[event.key.keysym.sym] = SDL_PRESSED;
                 break;
 
