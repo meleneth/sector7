@@ -138,7 +138,7 @@ void NetServer::handle_hello(NetPacket *packet)
      std::stringstream buf;
      Entity * newEnt = new_player_ship();
 
-
+    newEnt->alignment = newEnt->ent_id;
      buf << packet->command.hello.nickname << " connected.  Directing it to sector: " << sector_id
          << " ent_id: " << newEnt->ent_id;
      console->log(buf.str());
@@ -147,6 +147,7 @@ void NetServer::handle_hello(NetPacket *packet)
 
      NetServerClient *netserverclient = new NetServerClient(add_client_socket(&packet->their_addr), newEnt);
      clients.push_front(netserverclient);
+
      send_hello(netserverclient->socket, sector_id);
      send_net_cmd(netserverclient->socket, GRANT_ENT_WRITE, sizeof(ENTID_TYPE), &entid);
 }

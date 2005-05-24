@@ -29,7 +29,8 @@ Sector::~Sector() // Destructor
 void Sector::setup_master(void)
 {
     is_master = 1;
-    add_entity(new Asteroid(64));
+    Entity *asteroid = add_entity(new Asteroid(64));
+    asteroid->alignment = asteroid->ent_id;
     console->log("Master sector initialized.");
 }
 

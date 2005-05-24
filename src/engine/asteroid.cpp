@@ -28,6 +28,7 @@ Asteroid::Asteroid(Asteroid *parent, Uint16 mass)
     setup_asteroid();
     v->set_from(parent->v);
     v->angle =  (rand() % 45) + 67;
+    alignment = parent->alignment;
 }
 
 void Asteroid::setup_asteroid(void)
@@ -38,7 +39,7 @@ void Asteroid::setup_asteroid(void)
     v->x = rand() % 200;
     v->y = rand() % 500;
     v->angle = (rand() % 45) + 67;
-    v->power = rand() % 2+1;
+    v->power = 0; //rand() % 2+1;
     v->rotation = 3 - (rand() % 6);
     TileNum tex_id;
     tex_id = asteroid_tile_map[(rand() %6)];

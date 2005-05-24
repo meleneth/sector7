@@ -21,6 +21,8 @@ enum ENT_TYPE { ENT_ASTEROID, ENT_PLAYER, ENT_PLAYERSHOT };
 
 #define ENTID_TYPE Uint32
 
+#define ALIGNMENT_ASTEROID 1
+
 typedef struct {
         NetCmd cmd;
         ENTID_TYPE entID;
@@ -64,6 +66,7 @@ class Entity {
         Vector *v;
         Weapon *primary;
         Entity *parent;
+        Uint32 alignment;
         
         
         void *sector;
