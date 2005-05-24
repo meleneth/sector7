@@ -101,34 +101,6 @@ int main(int argc, char *argv[])
                 glColor4f(0, 1, 0, .65);
                 mouse_cursor->render(camera->position);
                 
-
-                scoreboard->DrawNumAt(floor(my_ship->v->x), 5, -200, -200);
-                scoreboard->DrawNumAt(floor(my_ship->v->y), 5, -200, -184);
-
-            }
-                scoreboard->DrawNumAt(floor(camera->position->x), 5, 200, -200);
-                scoreboard->DrawNumAt(floor(camera->position->y), 5, 200, -184);
-
-            wait_next_frame();
-
-
-            renderer->swap_buffers();
-
-            new_sector = client->do_frame();
-            
-            if(new_sector){
-                Area *inner_bound = camera->radar->actual_size;
-                delete camera->radar;
-                camera->radar = new Radar(new_sector->bound,  inner_bound);
-                sectors.push_front(new_sector);
-                camera->attach_sector(new_sector);
-                if (sector){
-                    camera->detach_sector(sector);
-                    sector = NULL;
-                }
-            }
-
-            if (my_ship){
                 if (keys[SDLK_w] == SDL_PRESSED){
                     if(my_ship->v->power < 7) my_ship->v->power += 0.1;
                 }
@@ -163,6 +135,31 @@ int main(int argc, char *argv[])
 
                     delete dumper;
                 }
+
+                scoreboard->DrawNumAt(floor(my_ship->v->x), 5, -200, -200);
+                scoreboard->DrawNumAt(floor(my_ship->v->y), 5, -200, -184);
+
+                scoreboard->DrawNumAt(floor(camera->position->x), 5, 200, -200);
+                scoreboard->DrawNumAt(floor(camera->position->y), 5, 200, -184);
+
+            }
+
+            wait_next_frame();
+
+            renderer->swap_buffers();
+
+            new_sector = client->do_frame();
+            
+            if(new_sector){
+                Area *inner_bound = camera->radar->actual_size;
+                delete camera->radar;
+                camera->radar = new Radar(new_sector->bound,  inner_bound);
+                sectors.push_front(new_sector);
+                camera->attach_sector(new_sector);
+                if (sector){
+                    camera->detach_sector(sector);
+                    sector = NULL;
+                }
             }
             
             for(i = sectors.begin() ; i != sectors.end(); ++i){
@@ -196,7 +193,8 @@ int main(int argc, char *argv[])
             case SDL_KEYUP:
                 switch( event.key.keysym.sym ){
                     case SDLK_SPACE:
-                        my_ship->v->power = 1;
+                        if (my_ship) 
+                            my_ship->v->power = 1;
                         break;
                 }
                 keys[event.key.keysym.sym] = 0;
@@ -205,7 +203,8 @@ int main(int argc, char *argv[])
             case SDL_KEYDOWN:
                 switch( event.key.keysym.sym ){
                     case SDLK_SPACE:
-                        my_ship->v->power = 15;
+                        if (my_ship) 
+                            my_ship->v->power = 15;
                         break;
                     case SDLK_ESCAPE:
                         quit = true;
