@@ -11,7 +11,7 @@
 PlasmaCannon::PlasmaCannon(Entity *owner_ent) : Weapon(owner_ent) // Constructor
 {
     damage = 50;
-    firedelay = 3;
+    firedelay = 10;
     projectile_velocity = 10;
     lastfire = 0;
 }

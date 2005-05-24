@@ -43,7 +43,6 @@ int main(int argc, char *argv[])
     console = new Console();
     console->print_logs = 1;
 
-    Area *area = new Area(200, 200);
     Area *screensize = new Area(xres, yres);
             
     int mx, my;
@@ -148,7 +147,9 @@ int main(int argc, char *argv[])
                 camera->set_from_screen_coords(mouse_cursor->v, mx, my);
 
                 if(mbuttons & 1){
-                   send_net_cmd(client->talker, ENT_FIRE, 0, NULL);
+                    if(!(my_ship->primary->lastfire)){
+                        send_net_cmd(client->talker, ENT_FIRE, 0, NULL);
+                    }
                 }
 
                 my_ship->v->aim(mouse_cursor->v->x, mouse_cursor->v->y);
