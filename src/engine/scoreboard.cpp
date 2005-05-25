@@ -83,6 +83,7 @@ int ScoreBoard::DrawDot()
 
     return true;
 }
+
 int ScoreBoard::DrawDigit(int digit)
 {
     Texture *texture;
@@ -109,6 +110,34 @@ int ScoreBoard::DrawDigit(int digit)
     glEnd();			// Done Drawing The Square
 
     return true;
+}
+
+int ScoreBoard::DrawLetter(int letter)
+{
+    Texture *texture;
+    
+    texture = get_tex_id(TILE_ALPHA);
+
+    glBindTexture(GL_TEXTURE_2D, texture->GLtexID);	// Bind Our Texture
+
+    glBegin(GL_QUADS);
+
+    glTexCoord2f(.1 * (letter + 1), 1);
+    glVertex3f(-8, 8, 0.0);
+
+    glTexCoord2f(.1 * (letter + 1), 0.0);
+    glVertex3f(-8, -8, 0.0);
+
+    glTexCoord2f(.1 * letter, 0.0);
+    glVertex3f(8, -8, 0.0);
+
+    glTexCoord2f(.1 * letter, 1.0);
+    glVertex3f(8, 8, 0.0);
+
+    glEnd();			// Done Drawing The Square
+
+    return true;
+    
 }
 
 int ScoreBoard::DrawNumAt(double num, Uint16 numdigits, Sint32 x, Sint32 y){
@@ -164,9 +193,24 @@ int ScoreBoard::DrawNumAt(double num, Uint16 numdigits, Sint32 x, Sint32 y){
         DrawDash();
     }
     return true;
-
 }
 
+int ScoreBoard::DrawStringAt(std::string msg, Uint16 numdigits, Sint32 x, Sint32 y)
+{
+    glLoadIdentity();
+    glTranslatef(x, y, 0);
+
+    DrawLetter(0);
+    glTranslatef(-16, 0, 0);
+    DrawLetter(1);
+    glTranslatef(-16, 0, 0);
+    DrawLetter(2);
+    glTranslatef(-16, 0, 0);
+    
+    return true; 
+}
+
+ 
 // Private members go here.
 
 // Protected members go here.

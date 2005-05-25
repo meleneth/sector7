@@ -95,6 +95,7 @@ void load_textures(int dummy)
     textures.push_front(new Texture(dummy, "../graphics/sprites/rocket.png", TILE_ROCKET));                 
     textures.push_front(new Texture(dummy, "../graphics/sprites/dashdot.png", TILE_DASHDOT));                 
     textures.push_front(new Texture(dummy, "../graphics/sprites/digits.png", TILE_NUMBERS));                 
+    textures.push_front(new Texture(dummy, "../graphics/sprites/alpha.png", TILE_ALPHA));                 
     textures.push_front(new Texture(dummy, "../graphics/sprites/notex.png", TILE_NOTILE));                 
     textures.push_front(new Texture(dummy, "../graphics/sprites/powerup.png", TILE_POWERUP));                 
     textures.push_front(new Texture(dummy, "../graphics/sprites/shield.png", TILE_SHIELD));                 

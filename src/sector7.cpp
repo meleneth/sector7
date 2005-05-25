@@ -142,6 +142,7 @@ int main(int argc, char *argv[])
                 scoreboard->DrawNumAt(camera->position->x, 5, 200, -200);
                 scoreboard->DrawNumAt(camera->position->y, 5, 200, -184);
 
+                scoreboard->DrawStringAt("abc", 3, 100, 100);
             }
 
             wait_next_frame();
