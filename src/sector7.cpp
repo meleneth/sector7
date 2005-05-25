@@ -136,15 +136,19 @@ int main(int argc, char *argv[])
                     delete dumper;
                 }
 
-                scoreboard->DrawNumAt(my_ship->v->x, 5, -200, -200);
-                scoreboard->DrawNumAt(my_ship->v->y, 5, -200, -184);
+                if (scoreboard->on){
+                    scoreboard->DrawNumAt(my_ship->v->x, 5, -200, -200);
+                    scoreboard->DrawNumAt(my_ship->v->y, 5, -200, -184);
 
-                scoreboard->DrawNumAt(camera->position->x, 5, 200, -200);
-                scoreboard->DrawNumAt(camera->position->y, 5, 200, -184);
+                    scoreboard->DrawNumAt(camera->position->x, 5, 200, -200);
+                    scoreboard->DrawNumAt(camera->position->y, 5, 200, -184);
 
-                scoreboard->DrawStringAt("zyzowzorzyou", 12, 100, 100);
-                scoreboard->DrawStringAt("zyzowzorzyou", 12, 100, 200);
-                scoreboard->DrawStringAt("zyzowzorzyou", 12, 100, 300);
+                    scoreboard->DrawStringAt("abcdefghijklmnopqrstuvwxyz", 26, 300, -216);
+                    
+                    scoreboard->DrawStringAt("zyzowzorzyou", 12, 100, 100);
+                    scoreboard->DrawStringAt("zyzowzorzyou", 12, 100, 200);
+                    scoreboard->DrawStringAt("zyzowzorzyou", 12, 100, 300);
+                }
             }
 
             wait_next_frame();
@@ -201,6 +205,13 @@ int main(int argc, char *argv[])
                     case SDLK_SPACE:
                         if (my_ship) 
                             my_ship->v->power *= 4;
+                        break;
+                    case SDLK_b:
+                        if(scoreboard->on){
+                            scoreboard->on = false;
+                            break;
+                        }
+                        scoreboard->on = true;
                         break;
                     case SDLK_ESCAPE:
                         quit = true;

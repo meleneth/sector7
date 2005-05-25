@@ -10,6 +10,7 @@
 ScoreBoard::ScoreBoard()	// Constructor
 {
     score = 0;
+    on = false;
 }
 
 ScoreBoard::~ScoreBoard()	// Destructor

@@ -10,6 +10,7 @@ class ScoreBoard {
     public:
         // Public data members go here.
         Sint32 score;
+        bool on;
 
         ScoreBoard::ScoreBoard(); // Constructor
         ScoreBoard::~ScoreBoard(); // Destructor
