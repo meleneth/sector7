@@ -16,6 +16,8 @@ class ScoreBoard {
         int render(void);
         int add(Sint16 myscore);
         int DrawDigit(int digit);
+        int DrawDash(void);
+        int DrawDot(void);
         int DrawNumAt(Sint32 num, Uint16 numdigits, Sint32 x, Sint32 y);
 
     private:

@@ -167,13 +167,6 @@ int main(int argc, char *argv[])
             }
 
             framecount++;
-
-/*            std::stringstream buf;
-            buf << "CameraX: " << camera->position->x << " CameraY: " << camera->position->y;
-            if(my_ship){
-                buf << " ShipX: " << my_ship->v->x << " ShipY: " << my_ship->v->y;
-            }
-            console->log(buf.str());*/
         }
         switch (event.type)
         {
@@ -194,7 +187,7 @@ int main(int argc, char *argv[])
                 switch( event.key.keysym.sym ){
                     case SDLK_SPACE:
                         if (my_ship) 
-                            my_ship->v->power = 1;
+                            my_ship->v->power /= 4;
                         break;
                 }
                 keys[event.key.keysym.sym] = 0;
@@ -204,7 +197,7 @@ int main(int argc, char *argv[])
                 switch( event.key.keysym.sym ){
                     case SDLK_SPACE:
                         if (my_ship) 
-                            my_ship->v->power = 15;
+                            my_ship->v->power *= 4;
                         break;
                     case SDLK_ESCAPE:
                         quit = true;

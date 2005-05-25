@@ -31,10 +31,62 @@ int ScoreBoard::add(Sint16 myscore)
     return true;
 }
 
+int ScoreBoard::DrawDash()
+{
+    Texture *texture;
+    texture = get_tex_id(TILE_DASHDOT);
+
+    glBindTexture(GL_TEXTURE_2D, texture->GLtexID);	// Bind Our Texture
+
+    glBegin(GL_QUADS);
+
+    int digit = 0;
+    glTexCoord2f(.1 * (digit + 1), 1);
+    glVertex3f(-8, 8, 0.0);
+
+    glTexCoord2f(.1 * (digit + 1), 0.0);
+    glVertex3f(-8, -8, 0.0);
+
+    glTexCoord2f(.1 * digit, 0.0);
+    glVertex3f(8, -8, 0.0);
+
+    glTexCoord2f(.1 * digit, 1.0);
+    glVertex3f(8, 8, 0.0);
+
+    glEnd();			// Done Drawing The Square
+
+    return true;
+}
+int ScoreBoard::DrawDot()
+{
+    Texture *texture;
+    texture = get_tex_id(TILE_DASHDOT);
+
+    glBindTexture(GL_TEXTURE_2D, texture->GLtexID);	// Bind Our Texture
+
+    glBegin(GL_QUADS);
+
+    int digit = 1;
+    glTexCoord2f(.1 * (digit + 1), 1);
+    glVertex3f(-8, 8, 0.0);
+
+    glTexCoord2f(.1 * (digit + 1), 0.0);
+    glVertex3f(-8, -8, 0.0);
+
+    glTexCoord2f(.1 * digit, 0.0);
+    glVertex3f(8, -8, 0.0);
+
+    glTexCoord2f(.1 * digit, 1.0);
+    glVertex3f(8, 8, 0.0);
+
+    glEnd();			// Done Drawing The Square
+
+    return true;
+}
 int ScoreBoard::DrawDigit(int digit)
 {
     Texture *texture;
-
+    
     digit = digit % 10;		//zapow
     texture = get_tex_id(TILE_NUMBERS);
 
@@ -42,16 +94,16 @@ int ScoreBoard::DrawDigit(int digit)
 
     glBegin(GL_QUADS);
 
-    glTexCoord2f((1.0/12.0) * (digit + 1), 1);
+    glTexCoord2f(.1 * (digit + 1), 1);
     glVertex3f(-8, 8, 0.0);
 
-    glTexCoord2f((1.0/12.0) * (digit + 1), 0.0);
+    glTexCoord2f(.1 * (digit + 1), 0.0);
     glVertex3f(-8, -8, 0.0);
 
-    glTexCoord2f((1.0/12.0) * digit, 0.0);
+    glTexCoord2f(.1 * digit, 0.0);
     glVertex3f(8, -8, 0.0);
 
-    glTexCoord2f((1.0/12.0) * digit, 1.0);
+    glTexCoord2f(.1 * digit, 1.0);
     glVertex3f(8, 8, 0.0);
 
     glEnd();			// Done Drawing The Square
@@ -60,14 +112,12 @@ int ScoreBoard::DrawDigit(int digit)
 }
 
 int ScoreBoard::DrawNumAt(Sint32 num, Uint16 numdigits, Sint32 x, Sint32 y){
-	 Sint32 value = 1;
+	Sint32 value = 1;
 
     Sint32 pScore;
-    if (num < 0)
-        glColor4f(1.0, .4, .4, 1);
-
+    
     pScore = num;
-
+    
     pScore = abs(pScore);
     glLoadIdentity();
     glTranslatef(x, y, 0);
@@ -76,13 +126,15 @@ int ScoreBoard::DrawNumAt(Sint32 num, Uint16 numdigits, Sint32 x, Sint32 y){
         if (pScore < value) {
             DrawDigit(0);
             glTranslatef(16, 0, 0);
-        value=value*10;
+            value=value*10;
         } else {
             DrawDigit(m_round(pScore / value));
             glTranslatef(16, 0, 0);
-	 value=value*10;
-
+	        value=value*10;
         }
+    }
+    if (num < 0){
+        DrawDash();
     }
     return true;
 
