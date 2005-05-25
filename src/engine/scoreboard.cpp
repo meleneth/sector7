@@ -120,18 +120,20 @@ int ScoreBoard::DrawLetter(int letter)
 
     glBindTexture(GL_TEXTURE_2D, texture->GLtexID);	// Bind Our Texture
 
-    glBegin(GL_QUADS);
+    double scale = 1.0/26.0;
 
-    glTexCoord2f(.1 * (letter + 1), 1);
+    glBegin(GL_QUADS);
+    
+    glTexCoord2f(scale * (letter + 1), 1);
     glVertex3f(-8, 8, 0.0);
 
-    glTexCoord2f(.1 * (letter + 1), 0.0);
+    glTexCoord2f(scale * (letter + 1), 0.0);
     glVertex3f(-8, -8, 0.0);
 
-    glTexCoord2f(.1 * letter, 0.0);
+    glTexCoord2f(scale * letter, 0.0);
     glVertex3f(8, -8, 0.0);
 
-    glTexCoord2f(.1 * letter, 1.0);
+    glTexCoord2f(scale * letter, 1.0);
     glVertex3f(8, 8, 0.0);
 
     glEnd();			// Done Drawing The Square
@@ -195,16 +197,15 @@ int ScoreBoard::DrawNumAt(double num, Uint16 numdigits, Sint32 x, Sint32 y){
     return true;
 }
 
-int ScoreBoard::DrawStringAt(std::string msg, Uint16 numdigits, Sint32 x, Sint32 y)
+int ScoreBoard::DrawStringAt(std::string msg, Uint16 numletters, Sint32 x, Sint32 y)
 {
     glLoadIdentity();
     glTranslatef(x, y, 0);
-
-    for (int i = 0; i < 26; ++i){
-        DrawLetter(i);
+    
+    for (int i = 0; i < numletters; ++i){
+        DrawLetter(((int) msg[i]) - 97);
         glTranslatef(-16, 0, 0);
     }
-    
     return true; 
 }
 

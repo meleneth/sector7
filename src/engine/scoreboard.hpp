@@ -21,7 +21,7 @@ class ScoreBoard {
         int DrawDash(void);
         int DrawDot(void);
         int DrawNumAt(double num, Uint16 numdigits, Sint32 x, Sint32 y);
-        int DrawStringAt(std::string msg, Uint16 numdigits, Sint32 x, Sint32 y);
+        int DrawStringAt(std::string msg, Uint16 numletters, Sint32 x, Sint32 y);
 
     private:
         // Private members go here.

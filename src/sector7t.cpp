@@ -85,6 +85,12 @@ int toy_test(void)
     buf << "int part: " << int_part << " fractional part " << fract_part;
     console->log(buf.str());
     buf.str("");
+        
+    char c = ' ';
+    int i = (int) c;
+    buf << c << "  " << i;
+    console->log(buf.str());
+    buf.str("");
 }
 
 int test_partial_entity_update(void)
