@@ -200,12 +200,20 @@ int ScoreBoard::DrawStringAt(std::string msg, Uint16 numdigits, Sint32 x, Sint32
     glLoadIdentity();
     glTranslatef(x, y, 0);
 
-    DrawLetter(0);
-    glTranslatef(-16, 0, 0);
-    DrawLetter(1);
-    glTranslatef(-16, 0, 0);
-    DrawLetter(2);
-    glTranslatef(-16, 0, 0);
+    for (int i = 0; i < 26; ++i){
+        DrawLetter(i);
+        glTranslatef(-16, 0, 0);
+    }
+    
+    glTranslatef(x, y+100, 0);
+    for (int i = 0; i < 3; ++i){
+        DrawLetter(26);
+        glTranslatef(-16, 0, 0);
+        DrawLetter(25);
+        glTranslatef(-16, 0, 0);
+        DrawLetter(26);
+        glTranslatef(-32, 0, 0);
+    }
     
     return true; 
 }
