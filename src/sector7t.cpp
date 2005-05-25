@@ -15,6 +15,7 @@ NetServer *server;
 Entity *my_ship;
 std::stringstream buf;
 
+int toy_test(void);
 int test_partial_entity_update(void);
 int test_entity_marshalling(void);
 int test_shooting(void);
@@ -37,6 +38,9 @@ int main(int argc, char *argv[])
     std::string foo;
     foo = "Bar";
     assert(foo.length() ==3);
+    
+    console->log("Testing toy");
+    toy_test();
 
     console->log("Testing SDL_DELAY timing");
     test_sdl_delay();
@@ -67,6 +71,20 @@ int main(int argc, char *argv[])
     
     console->log("Testing vector");
     test_vector();
+}
+
+int toy_test(void)
+{
+    double num = -12345.6789;
+
+    Sint32 int_part = trunc(num);
+
+    double fract_part = num - (double)int_part;
+
+    std::stringstream buf;
+    buf << "int part: " << int_part << " fractional part " << fract_part;
+    console->log(buf.str());
+    buf.str("");
 }
 
 int test_partial_entity_update(void)

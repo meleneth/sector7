@@ -18,7 +18,7 @@ class ScoreBoard {
         int DrawDigit(int digit);
         int DrawDash(void);
         int DrawDot(void);
-        int DrawNumAt(Sint32 num, Uint16 numdigits, Sint32 x, Sint32 y);
+        int DrawNumAt(double num, Uint16 numdigits, Sint32 x, Sint32 y);
 
     private:
         // Private members go here.

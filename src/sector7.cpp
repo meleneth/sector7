@@ -136,11 +136,11 @@ int main(int argc, char *argv[])
                     delete dumper;
                 }
 
-                scoreboard->DrawNumAt(floor(my_ship->v->x), 5, -200, -200);
-                scoreboard->DrawNumAt(floor(my_ship->v->y), 5, -200, -184);
+                scoreboard->DrawNumAt(my_ship->v->x, 5, -200, -200);
+                scoreboard->DrawNumAt(my_ship->v->y, 5, -200, -184);
 
-                scoreboard->DrawNumAt(floor(camera->position->x), 5, 200, -200);
-                scoreboard->DrawNumAt(floor(camera->position->y), 5, 200, -184);
+                scoreboard->DrawNumAt(camera->position->x, 5, 200, -200);
+                scoreboard->DrawNumAt(camera->position->y, 5, 200, -184);
 
             }
 

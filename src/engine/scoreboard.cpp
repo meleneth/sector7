@@ -41,16 +41,16 @@ int ScoreBoard::DrawDash()
     glBegin(GL_QUADS);
 
     int digit = 0;
-    glTexCoord2f(.1 * (digit + 1), 1);
+    glTexCoord2f(.5 * (digit + 1), 1);
     glVertex3f(-8, 8, 0.0);
 
-    glTexCoord2f(.1 * (digit + 1), 0.0);
+    glTexCoord2f(.5 * (digit + 1), 0.0);
     glVertex3f(-8, -8, 0.0);
 
-    glTexCoord2f(.1 * digit, 0.0);
+    glTexCoord2f(.5 * digit, 0.0);
     glVertex3f(8, -8, 0.0);
 
-    glTexCoord2f(.1 * digit, 1.0);
+    glTexCoord2f(.5 * digit, 1.0);
     glVertex3f(8, 8, 0.0);
 
     glEnd();			// Done Drawing The Square
@@ -67,16 +67,16 @@ int ScoreBoard::DrawDot()
     glBegin(GL_QUADS);
 
     int digit = 1;
-    glTexCoord2f(.1 * (digit + 1), 1);
+    glTexCoord2f(.5 * (digit + 1), 1);
     glVertex3f(-8, 8, 0.0);
 
-    glTexCoord2f(.1 * (digit + 1), 0.0);
+    glTexCoord2f(.5 * (digit + 1), 0.0);
     glVertex3f(-8, -8, 0.0);
 
-    glTexCoord2f(.1 * digit, 0.0);
+    glTexCoord2f(.5 * digit, 0.0);
     glVertex3f(8, -8, 0.0);
 
-    glTexCoord2f(.1 * digit, 1.0);
+    glTexCoord2f(.5 * digit, 1.0);
     glVertex3f(8, 8, 0.0);
 
     glEnd();			// Done Drawing The Square
@@ -111,24 +111,51 @@ int ScoreBoard::DrawDigit(int digit)
     return true;
 }
 
-int ScoreBoard::DrawNumAt(Sint32 num, Uint16 numdigits, Sint32 x, Sint32 y){
+int ScoreBoard::DrawNumAt(double num, Uint16 numdigits, Sint32 x, Sint32 y){
 	Sint32 value = 1;
 
-    Sint32 pScore;
+    Sint32 integer_part;
+    double fraction_part;
+    Uint32 tenth, hunth;
+    std::stringstream buf;
+
+    buf << num;
+    console->log(buf.str());
+    buf.str("");
     
-    pScore = num;
+    integer_part = (Sint32) trunc(num);
+    fraction_part = num - (double) integer_part;    
+    integer_part = abs(integer_part);
+    //fraction_part = abs(fraction_part);
     
-    pScore = abs(pScore);
+    buf << num << "   "<< integer_part << "   " << fraction_part;
+    console->log(buf.str());
+    buf.str("");
+    
     glLoadIdentity();
     glTranslatef(x, y, 0);
 
+    tenth = (Uint32) trunc(fraction_part * 10);
+    fraction_part = fraction_part * 10 - tenth;
+    hunth = (Uint32) trunc(fraction_part * 10);
+
+    buf << tenth << "   " << hunth;
+    console->log(buf.str());
+    buf.str("");
+    
+    DrawDigit(hunth);
+    glTranslatef(16, 0, 0);
+    DrawDigit(tenth);
+    glTranslatef(16, 0, 0);
+    DrawDot();
+    glTranslatef(16, 0, 0);
     while (numdigits--) {
-        if (pScore < value) {
+        if (integer_part < value) {
             DrawDigit(0);
             glTranslatef(16, 0, 0);
             value=value*10;
         } else {
-            DrawDigit(m_round(pScore / value));
+            DrawDigit(m_round(integer_part / value));
             glTranslatef(16, 0, 0);
 	        value=value*10;
         }
