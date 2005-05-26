@@ -158,7 +158,7 @@ int ScoreBoard::DrawNumAt(double num, Uint16 numdigits, Sint32 x, Sint32 y){
     integer_part = (Sint32) trunc(num);
     fraction_part = num - (double) integer_part;    
     integer_part = abs(integer_part);
-    //fraction_part = abs(fraction_part);
+    if (fraction_part < 0) fraction_part *= -1.0;
     
     buf << num << "   "<< integer_part << "   " << fraction_part;
     console->log(buf.str());
