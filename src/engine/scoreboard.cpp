@@ -149,31 +149,18 @@ int ScoreBoard::DrawNumAt(double num, Uint16 numdigits, Sint32 x, Sint32 y){
     Sint32 integer_part;
     double fraction_part;
     Uint32 tenth, hunth;
-    std::stringstream buf;
 
-    buf << num;
-    console->log(buf.str());
-    buf.str("");
-    
     integer_part = (Sint32) trunc(num);
     fraction_part = num - (double) integer_part;    
     integer_part = abs(integer_part);
     if (fraction_part < 0) fraction_part *= -1.0;
-    
-    buf << num << "   "<< integer_part << "   " << fraction_part;
-    console->log(buf.str());
-    buf.str("");
-    
-    glLoadIdentity();
-    glTranslatef(x, y, 0);
 
     tenth = (Uint32) trunc(fraction_part * 10);
     fraction_part = fraction_part * 10 - tenth;
     hunth = (Uint32) trunc(fraction_part * 10);
 
-    buf << tenth << "   " << hunth;
-    console->log(buf.str());
-    buf.str("");
+    glLoadIdentity();
+    glTranslatef(x, y, 0);
     
     DrawDigit(hunth);
     glTranslatef(16, 0, 0);
@@ -203,11 +190,6 @@ int ScoreBoard::DrawStringAt(std::string msg, Uint16 numletters, Sint32 x, Sint3
     glLoadIdentity();
     glTranslatef(x, y, 0);
     
-    console->log("got here");
-    std::stringstream buf;
-    buf << msg;
-    console->log(buf.str());
-    buf.str("");
     for (int i = 0; i < numletters; ++i){
         DrawLetter(((int) msg[i]) - 97);
         glTranslatef(-16, 0, 0);
