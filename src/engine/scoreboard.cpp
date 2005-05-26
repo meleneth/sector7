@@ -203,6 +203,11 @@ int ScoreBoard::DrawStringAt(std::string msg, Uint16 numletters, Sint32 x, Sint3
     glLoadIdentity();
     glTranslatef(x, y, 0);
     
+    console->log("got here");
+    std::stringstream buf;
+    buf << msg;
+    console->log(buf.str());
+    buf.str("");
     for (int i = 0; i < numletters; ++i){
         DrawLetter(((int) msg[i]) - 97);
         glTranslatef(-16, 0, 0);

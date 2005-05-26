@@ -9,6 +9,7 @@
 #include"w_plasmacannon.hpp"
 #include"scoreboard.hpp"
 #include<sstream>
+#include<curses.h>
 
 NetServer *server = NULL;
 Console *console;
@@ -19,6 +20,9 @@ ScoreBoard *scoreboard;
 
 int main(int argc, char *argv[])
 {
+    int typing = 0;
+    int msglife = 0;
+    std::string input;
     std::stringstream buf;
     std::string nickname = "netclient";
     std::string servername = "localhost";
@@ -101,20 +105,21 @@ int main(int argc, char *argv[])
                 glColor4f(0, 1, 0, .65);
                 mouse_cursor->render(camera->position);
                 
-                if (keys[SDLK_w] == SDL_PRESSED){
-                    if(my_ship->v->power < 7) my_ship->v->power += 0.1;
-                }
-    
-                if (keys[SDLK_a] == SDL_PRESSED){
-                }
+                if (!typing){
+                    if (keys[SDLK_w] == SDL_PRESSED){
+                        if(my_ship->v->power < 7) my_ship->v->power += 0.1;
+                    }
+        
+                    if (keys[SDLK_a] == SDL_PRESSED){
+                    }
 
-                if (keys[SDLK_s] == SDL_PRESSED){
-                    if(my_ship->v->power > 0) my_ship->v->power -= 0.1;
-                }
+                    if (keys[SDLK_s] == SDL_PRESSED){
+                        if(my_ship->v->power > 0) my_ship->v->power -= 0.1;
+                    }
 
-                if (keys[SDLK_d] == SDL_PRESSED){
-                }
-                
+                    if (keys[SDLK_d] == SDL_PRESSED){
+                    }
+                } 
                 mbuttons = SDL_GetMouseState(&mx, &my);
                 camera->set_from_screen_coords(mouse_cursor->v, mx, my);
 
@@ -142,12 +147,11 @@ int main(int argc, char *argv[])
 
                     scoreboard->DrawNumAt(camera->position->x, 5, 200, -200);
                     scoreboard->DrawNumAt(camera->position->y, 5, 200, -184);
-
-                    scoreboard->DrawStringAt("abcdefghijklmnopqrstuvwxyz", 26, 300, -216);
-                    
-                    scoreboard->DrawStringAt("zyzowzorzyou", 12, 100, 100);
-                    scoreboard->DrawStringAt("zyzowzorzyou", 12, 100, 200);
-                    scoreboard->DrawStringAt("zyzowzorzyou", 12, 100, 300);
+                    if (--msglife){
+                        scoreboard->DrawStringAt(input, input.length(), 0, 0);
+                    } else {    
+                        input = "";
+                    }
                 }
             }
 
@@ -201,29 +205,121 @@ int main(int argc, char *argv[])
                 break;
 
             case SDL_KEYDOWN:
-                switch( event.key.keysym.sym ){
-                    case SDLK_SPACE:
-                        if (my_ship) 
-                            my_ship->v->power *= 4;
-                        break;
-                    case SDLK_b:
-                        if(scoreboard->on){
-                            scoreboard->on = false;
+                if (typing){
+                    switch( event.key.keysym.sym ){
+                        case SDLK_RETURN:
+                            if (typing = 1){
+                                typing = 0;
+                                msglife = 150;
+                            }
                             break;
-                        }
-                        scoreboard->on = true;
-                        break;
-                    case SDLK_ESCAPE:
-                        quit = true;
-                        break;
-                    case SDLK_RETURN:
-                        quit = true;
-                        break;
+                        case SDLK_SPACE:
+                            input += ' ';
+                            break;
+                        case SDLK_a:
+                            input += 'a';
+                            break;
+                        case SDLK_b:
+                            input += 'b';
+                            break;
+                        case SDLK_c:
+                            input += 'c';
+                            break;
+                        case SDLK_d:
+                            input += 'd';
+                            break;
+                        case SDLK_e:
+                            input += 'e';
+                            break;
+                        case SDLK_f:
+                            input += 'f';
+                            break;
+                        case SDLK_g:
+                            input += 'g';
+                            break;
+                        case SDLK_h:
+                            input += 'h';
+                            break;
+                        case SDLK_i:
+                            input += 'i';
+                            break;
+                        case SDLK_j:
+                            input += 'j';
+                            break;
+                        case SDLK_k:
+                            input += 'k';
+                            break;
+                        case SDLK_l:
+                            input += 'l';
+                            break;
+                        case SDLK_m:
+                            input += 'm';
+                            break;
+                        case SDLK_n:
+                            input += 'n';
+                            break;
+                        case SDLK_o:
+                            input += 'o';
+                            break;
+                        case SDLK_p:
+                            input += 'p';
+                            break;
+                        case SDLK_q:
+                            input += 'q';
+                            break;
+                        case SDLK_r:
+                            input += 'r';
+                            break;
+                        case SDLK_s:
+                            input += 's';
+                            break;
+                        case SDLK_t:
+                            input += 't';
+                            break;
+                        case SDLK_u:
+                            input += 'u';
+                            break;
+                        case SDLK_v:
+                            input += 'v';
+                            break;
+                        case SDLK_w:
+                            input += 'w';
+                            break;
+                        case SDLK_x:
+                            input += 'x';
+                            break;
+                        case SDLK_y:
+                            input += 'y';
+                            break;
+                        case SDLK_z:
+                            input += 'z';
+                            break;
+                    }
+                } else {
+                    switch( event.key.keysym.sym ){
+                        case SDLK_SPACE:
+                            if (my_ship) 
+                                my_ship->v->power *= 4;
+                            break;
+                        case SDLK_b:
+                            if(scoreboard->on){
+                                scoreboard->on = false;
+                                break;
+                            }
+                            scoreboard->on = true;
+                            break;
+                        case SDLK_ESCAPE:
+                            quit = true;
+                            break;
+                        case SDLK_RETURN:
+                            typing = 1;
+                            break;
+                    }
+                    keys[event.key.keysym.sym] = SDL_PRESSED;
+                    break;
                 }
-                keys[event.key.keysym.sym] = SDL_PRESSED;
-                break;
-        }
 
+        }
     }
     SDL_Quit();
     exit (0);
