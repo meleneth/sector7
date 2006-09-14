@@ -8,8 +8,8 @@
 class Radar {
     public:
         // Public data members go here.
-        Radar::Radar(Area *actual_size, Area *rendered_size); // Constructor
-        Radar::~Radar(); // Destructor
+        Radar(Area *actual_size, Area *rendered_size); // Constructor
+        ~Radar(); // Destructor
 
         void blip(Vector *p);
 

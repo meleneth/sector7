@@ -9,10 +9,10 @@
 class Video {
     public:
         // Public data members go here.
-        Video::Video(Uint32 xres, Uint32 yres); // Constructor
-        Video::~Video(); // Destructor
+        Video(Uint32 xres, Uint32 yres); // Constructor
+        ~Video(); // Destructor
     private:
-        void Video::InitGL(int bpp, int fullscreen, float gamma, Uint32 xres, Uint32 yres);
+        void InitGL(int bpp, int fullscreen, float gamma, Uint32 xres, Uint32 yres);
         // Private members go here.
 
     protected:

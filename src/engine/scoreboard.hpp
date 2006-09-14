@@ -12,8 +12,8 @@ class ScoreBoard {
         Sint32 score;
         bool on;
 
-        ScoreBoard::ScoreBoard(); // Constructor
-        ScoreBoard::~ScoreBoard(); // Destructor
+        ScoreBoard(); // Constructor
+        ~ScoreBoard(); // Destructor
 
         int render(void);
         int add(Sint16 myscore);

@@ -1,6 +1,11 @@
 #include "stdutil.hpp"
 #include "vector.hpp"
 #include "area.hpp"
+#include "console.hpp"
+
+#include<sstream>
+
+using std::stringstream;
 
 Sint32 m_trunc(double value);
 
@@ -72,8 +77,15 @@ void Vector::follow(Vector *v, double leash_length)
 
     double angle = calc_angle(v);
 
-    x += ((d - leash_length) * cos(angle * (PI/180)));
-    y += ((d - leash_length) * sin(angle * (PI/180)));
+    Sint32 xdelta = rint(((d - leash_length) * cos(angle * (PI/180))));
+    Sint32 ydelta = rint(((d - leash_length) * sin(angle * (PI/180))));
+
+    stringstream buf;
+    buf << "moving (" << x << "," << y << ") by (" << xdelta << "," << ydelta << ")";
+    console->log(buf.str());
+
+    x += xdelta;
+    y += ydelta;
     
 }
 

@@ -9,9 +9,9 @@ class Area;
 class Vector {
     public:
         // Public data members go here.
-        Vector::Vector();	// Constructor
-        Vector::Vector(Vector *copy_me);	// Constructor
-        Vector::~Vector();		// Destructor
+        Vector();	// Constructor
+        Vector(Vector *copy_me);	// Constructor
+        ~Vector();		// Destructor
 
         double calc_angle(double x, double y);
         double calc_angle(Vector *target);

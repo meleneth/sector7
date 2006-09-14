@@ -10,10 +10,10 @@ class Asteroid :public Entity{
 	public:
 
 		// Public data members go here.
-		Asteroid::Asteroid(Uint16 mass); // Constructor
-		Asteroid::Asteroid();
-		Asteroid::Asteroid(Asteroid *parent, Uint16 mass);
-		Asteroid::~Asteroid(); // Destructor
+		Asteroid(Uint16 mass); // Constructor
+		Asteroid();
+		Asteroid(Asteroid *parent, Uint16 mass);
+		~Asteroid(); // Destructor
 
         void setup_asteroid(void);
 

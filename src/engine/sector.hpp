@@ -12,8 +12,8 @@ class EntityMgr;
 class Sector : public EntityMgr {
     public:
         // Public data members go here.
-        Sector::Sector(std::string sector_id); // Constructor
-        Sector::~Sector(); // Destructor
+        Sector(std::string sector_id); // Constructor
+        ~Sector(); // Destructor
         
         void setup_master(void);
         Entity *setup_connecting(void);

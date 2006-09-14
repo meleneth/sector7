@@ -13,8 +13,8 @@ class Physics {
         Sint16 turnrate;
 
         // Public data members go here.
-        Physics::Physics(); // Constructor
-        Physics::~Physics(); // Destructor
+        Physics(); // Constructor
+        ~Physics(); // Destructor
         Sint16 howfast(int accelerating);
         Sint16 getturnrate();
     private:

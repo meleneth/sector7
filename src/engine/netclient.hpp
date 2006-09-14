@@ -11,8 +11,8 @@
 class NetClient {
     public:
         // Public data members go here.
-        NetClient::NetClient(std::string servername, int port, std::string nickname); // Constructor
-        NetClient::~NetClient(); // Destructor
+        NetClient(std::string servername, int port, std::string nickname); // Constructor
+        ~NetClient(); // Destructor
         Sector *do_frame();
         void send_line(std::string line);
 

@@ -8,8 +8,8 @@ class Vector;
 class Area {
     public:
         // Public data members go here.
-        Area::Area(double width, double height); // Constructor
-        Area::~Area(); // Destructor
+        Area(double width, double height); // Constructor
+        ~Area(); // Destructor
 
         bool contains(Vector *p);
         void wrap_within(Vector *p);

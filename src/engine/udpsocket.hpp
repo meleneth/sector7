@@ -10,9 +10,9 @@
 class UDPSocket {
     public:
         // Public data members go here.
-        UDPSocket::UDPSocket(); // Constructor
+        UDPSocket(); // Constructor
         
-        UDPSocket::~UDPSocket(); // Destructor
+        ~UDPSocket(); // Destructor
 
         NetPacket *get_next_packet(void);
 

@@ -13,14 +13,14 @@ class Entity;
 class EntityMgr {
     public:
         // Public data members go here.
-        EntityMgr::EntityMgr(); // Constructor
-        EntityMgr::~EntityMgr(); // Destructor
+        EntityMgr(); // Constructor
+        ~EntityMgr(); // Destructor
         Entity *_new_ent_of_type(Uint16 ent_type, Sint16 size);
         virtual Entity *add_entity(Entity *entity);
         Entity *find_ent_for_id(Uint32 id);
         Entity *ent_for_id(Uint32 id);
         void dump_all(void);
-        int EntityMgr::frameupdate_with_collisions (void);
+        int frameupdate_with_collisions (void);
 
         virtual void remove_ent(Entity *entity);
         int frameupdate(void);

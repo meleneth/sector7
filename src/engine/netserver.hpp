@@ -12,8 +12,8 @@
 class NetServer : public Sector {
     public:
         // Public data members go here.
-        NetServer::NetServer(int port, std::string sector_id); // Constructor
-        NetServer::~NetServer(); // Destructor
+        NetServer(int port, std::string sector_id); // Constructor
+        ~NetServer(); // Destructor
         void send_all_clients(int length, void *data);
         void send_all_clients(NetPacket *packet);
         void send_all_clients(NetPacket *packet, NetServerClient *except_me);

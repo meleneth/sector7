@@ -21,10 +21,10 @@ class Texture {
         Uint16 width;
         Uint16 height;
 
-        Texture::Texture(void);
-        Texture::Texture(int dummy, char *filename, TileNum tilenum); // Constructor
-        int Texture::LoadImage(char *filename);
-        Texture::~Texture(); // Destructor
+        Texture(void);
+        Texture(int dummy, char *filename, TileNum tilenum); // Constructor
+        int LoadImage(char *filename);
+        ~Texture(); // Destructor
         int generate(void);
         void DrawGLSquare(Sint16 size);
         void DrawGLSquare(Sint16 size, Vector *where);

@@ -10,8 +10,8 @@ class Projectile : public Entity {
         Entity *who_held_the_gun; // FIXME bugsource from ent going away with projectiles still active
         Uint16 lifespan;
 
-        Projectile::Projectile(Sint16 dmg, Vector *direction, Entity *firing_party); // Constructor
-        Projectile::~Projectile(); // Destructor
+        Projectile(Sint16 dmg, Vector *direction, Entity *firing_party); // Constructor
+        ~Projectile(); // Destructor
 
         virtual int frameupdate(void);
         virtual int chkCollision(Entity *check);

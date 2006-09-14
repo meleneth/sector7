@@ -12,8 +12,8 @@
 class Renderer {
     public:
         // Public data members go here.
-        Renderer::Renderer(Uint32 xres, Uint32 yres); // Constructor
-        Renderer::~Renderer(); // Destructor
+        Renderer(Uint32 xres, Uint32 yres); // Constructor
+        ~Renderer(); // Destructor
         void swap_buffers(void);
         int RenderFrame(Camera *camera);
         void ClearScreen(void);

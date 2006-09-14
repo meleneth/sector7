@@ -10,8 +10,8 @@
 class PlasmaCannon : public Weapon {
     public:
         // Public data members go here.
-        PlasmaCannon::PlasmaCannon(Entity *owner_ent); // Constructor
-        PlasmaCannon::~PlasmaCannon(); // Destructor
+        PlasmaCannon(Entity *owner_ent); // Constructor
+        ~PlasmaCannon(); // Destructor
 
         virtual void render();
         virtual void fire_shot();

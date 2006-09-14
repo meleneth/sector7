@@ -58,9 +58,9 @@ union NetCommand {
 class NetPacket {
     public:
         // Public data members go here.
-        NetPacket::NetPacket(int length); // Constructor
-        NetPacket::NetPacket(int length, void *data);
-        NetPacket::~NetPacket(); // Destructor
+        NetPacket(int length); // Constructor
+        NetPacket(int length, void *data);
+        ~NetPacket(); // Destructor
         void recv(UDPSocket *socket);
         void set_command(NetCmd cmd);
         NetCmd get_command(void);

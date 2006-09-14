@@ -17,8 +17,8 @@ class Particle {
         float red, green, blue, alpha;
 
 
-        Particle::Particle(); // Constructor
-        Particle::~Particle(); // Destructor
+        Particle(); // Constructor
+        ~Particle(); // Destructor
 
 };
 
@@ -27,8 +27,8 @@ class ParticleSystem {
         std::list < Particle * > particles;
 
         // Public data members go here.
-        ParticleSystem::ParticleSystem(); // Constructor
-        ParticleSystem::~ParticleSystem(); // Destructor
+        ParticleSystem(); // Constructor
+        ~ParticleSystem(); // Destructor
 
         void render(void);
         void frameupdate(void);
